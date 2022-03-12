@@ -1,8 +1,21 @@
 const express = require("express");
 const cors = require('cors')
+const https = require('https')
 const app = express();
 const port = 8000;
 const bodyParser = require("body-parser");
+
+const privateKey = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/privkey.pem", "utf8");
+const certificate = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/cert.pem", "utf8")
+const ca = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/chain.pem", "utf8")
+
+const credentials = {
+    key: privateKey,
+    cert: certificate,
+    ca: ca
+};
+
+const httpsServer = https.createServer(credentials, app)
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -30,4 +43,4 @@ app.post("/api/newModify", (req, res) => {
     res.send("post newModify")
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+httpsServer.listen(port, () => console.log(`Example app listening on port ${port}!`));
