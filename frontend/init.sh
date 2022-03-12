@@ -1,1 +1,1 @@
-cp ./ /var/www/html/top_archive/
+cp -r ./ /var/www/html/top_archive/
