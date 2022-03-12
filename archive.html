@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<!--
+	Eventually by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>TOPEDU_SMP</title>
+		<link rel="shortcut icon" href="images/background.ico">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<img class ="profile" src="images/background_logo.png" onclick="window.open(this.src)"/>
+				<h1 style="display: inline;">학생이름 </h1>
+				<p style="display: inline;"> 지점</p>
+			</header>
+
+			<br>
+		<!-- result foldable -->
+		<div>
+			<details>
+				<summary>신규생 기록사항</summary>
+				<button class="modifyBtn" onclick="window.location.href='newModify.html'">수정하기</button>
+				<div id="fistLevel">
+					<h4>1. 첫레벨</h4></a>
+					<table>
+						<tr>
+							<td>영어 입학일</td>
+							<td>영어 입학레벨</td>
+							<td>수학 입학일</td>
+							<td>수학 입학레벨</td>
+						</tr>
+						<tr>
+							<td id = regEnglish>x</td>
+							<td id = lvEnglish>x</td>
+							<td id = regMath>x</td>
+							<td id = lvMath>x</td>
+						</tr>
+					</table>
+				</div>
+				<br>
+				<div id="levelTest">
+					<h4>2. 레벨테스트</h4>
+					<h5>- 영어</h5>
+					<!-- 반복문 4 -->
+						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<h5>- 수학</h5>
+					<!-- 반복문 2 -->
+						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+				</div>
+				<br>
+				<div id="newConsulting">
+					<h4>3. 상담요약</h4>
+					<ul>
+						<li id="friendShip">친구들과의 관계 : </li>
+						<li id="character">평소 성격 : </li>
+						<li id="parentShip">부모님과의 소통 : </li>
+						<li id="concentration">집중력 : </li>
+						<li id="homework">과제 성실도 : </li>
+						<li id="textbox"> 전체적인 요약 : </li>
+					</ul>
+				</div>
+				<br>
+				<div id="newCheckList">
+					<h4>4. 신규생 체크리스트</h4>
+						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+				</div>
+			 </details>
+
+
+			 <details>
+				<summary>검사결과</summary>
+				<button class="modifyBtn" onclick="window.location.href='resultModify'">수정하기</button>
+				<div id="SCA">
+					<h4>1. SCA</h4>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+				</div>
+				<br>
+				<div id="CPS">
+					<h4>2. CPS</h4>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+				</div>
+				<br>
+				<div id="careerNet">
+					<h4>3. 커리어넷</h4>
+					<p style="text-align: center;"><a href="path">PDF로 제공됩니다. 누르면 이동</a></p>
+				</div>
+				<br>
+				<div id="sixSence">
+					<h4>4. 식스센스 코칭</h4>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+				</div>
+				<br>
+				<div id="testEtc">
+					<h4>5. 그 외 진로 검사</h4>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+				</div>
+							
+			 </details>
+
+			 <details>
+				<summary>학교 성적표</summary>
+				<button class="modifyBtn" onclick="window.location.href='schoolModify'">수정하기</button>
+				<div id="selectMiddle">
+					<select id="gradeMiddle" name="gradeMiddle" onchange="changeMiddle()">
+						<option value="middle1-1-1">중학교1학년 1학기 1차고사</option>
+						<option value="middle1-1-2">중학교1학년 1학기 2차고사</option>
+						<option value="middle1-2-1">중학교1학년 2학기 1차고사</option>
+						<option value="middle1-2-2">중학교1학년 2학기 2차고사</option>
+
+						<option value="middle2-1-1">중학교2학년 1학기 1차고사</option>
+						<option value="middle2-1-2">중학교2학년 1학기 2차고사</option>
+						<option value="middle2-2-1">중학교2학년 2학기 1차고사</option>
+						<option value="middle2-2-2">중학교2학년 2학기 2차고사</option>
+
+						<option value="middle3-1-1">중학교3학년 1학기 1차고사</option>
+						<option value="middle3-1-2">중학교3학년 1학기 2차고사</option>
+						<option value="middle3-2-1">중학교3학년 2학기 1차고사</option>
+						<option value="middle3-2-2">중학교3학년 2학기 2차고사</option>
+		
+					</select>
+					<br><br>
+					<div id="middleImg">
+						<img class ="mini_img" src="images/myface.PNG" onclick="window.open(this.src)"/>
+					</div>
+				</div>
+				<br>
+				<div id="selectHigh">
+					<select id="gradeHigh" name="gradeHigh" onchange="changeHigh()">
+						<option value="high1-1-1">고등학교1학년 1학기 1차고사</option>
+						<option value="high1-1-2">고등학교1학년 1학기 2차고사</option>
+						<option value="high1-2-1">고등학교1학년 2학기 1차고사</option>
+						<option value="high1-2-2">고등학교1학년 2학기 2차고사</option>
+				
+						<option value="high2-1-1">고등학교2학년 1학기 1차고사</option>
+						<option value="high2-1-2">고등학교2학년 1학기 2차고사</option>
+						<option value="high2-2-1">고등학교2학년 2학기 1차고사</option>
+						<option value="high2-2-2">고등학교2학년 2학기 2차고사</option>
+				
+						<option value="high3-1-1">고등학교3학년 1학기 1차고사</option>
+						<option value="high3-1-2">고등학교3학년 1학기 2차고사</option>
+				
+					</select>
+					<br><br>
+					<div id="highImg">
+						<img class ="mini_img" src="images/myface.PNG" onclick="window.open(this.src)"/>
+					</div>
+				</div>
+				
+			 </details>
+			
+			 <details>
+				<summary>매월 상담지</summary>
+				<button class="modifyBtn" onclick="window.location.href='monthlyModify'">수정하기</button>
+				<div id="monthly">
+					<select id="month" name="month" onchange="changeMonth()">
+						<option value="jan">1월 상담지</option>
+						<option value="feb">2월 상담지</option>
+						<option value="mar">3월 상담지</option>
+						<option value="apr">4월 상담지</option>
+						<option value="may">5월 상담지</option>
+						<option value="jun">6월 상담지</option>
+						<option value="jul">7월 상담지</option>
+						<option value="aug">8월 상담지</option>
+						<option value="sep">9월 상담지</option>
+						<option value="oct">10월 상담지</option>
+						<option value="nov">11월 상담지</option>
+						<option value="dec">12월 상담지</option>
+				
+					</select>
+					<br><br>
+					<div id="monthlyImg">
+						<img class ="mini_img" src="images/myface.PNG" onclick="window.open(this.src)"/>
+					</div>
+				</div>
+				
+			 </details>
+
+
+			 <details>
+				<button class="modifyBtn" onclick="window.location.href='commentModify'">수정하기</button>
+				<summary>상담 내용</summary>
+				<div id="teacherComment">
+					<h4>1. 담임 주관 기록</h4>
+					<p>글을 작성하지 않았음</p>
+				</div>
+				<div id="studentComment">
+					<h4>2. 학생 상담 기록</h4>
+					<p>글을 작성하지 않았음</p>
+				</div>
+				<div id="parentsComment">
+					<h4>3. 부모님 상담 기록</h4>
+					<p>글을 작성하지 않았음</p>
+				</div>	
+			 </details>
+		</div>
+		
+
+		<!-- Scripts -->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
