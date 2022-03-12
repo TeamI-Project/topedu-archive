@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<!--
+	Eventually by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>TOPEDU_SMP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- result foldable -->
+		<div>
+            <div>
+				<h2 style="text-align: center;">학교성적표 수정</h2>
+				<div id="selectMiddle">
+					<select id="gradeMiddle" name="gradeMiddle" onchange="changeMiddle()">
+						<option value="middle1-1-1">중학교1학년 1학기 1차고사</option>
+						<option value="middle1-1-2">중학교1학년 1학기 2차고사</option>
+						<option value="middle1-2-1">중학교1학년 2학기 1차고사</option>
+						<option value="middle1-2-2">중학교1학년 2학기 2차고사</option>
+
+						<option value="middle2-1-1">중학교2학년 1학기 1차고사</option>
+						<option value="middle2-1-2">중학교2학년 1학기 2차고사</option>
+						<option value="middle2-2-1">중학교2학년 2학기 1차고사</option>
+						<option value="middle2-2-2">중학교2학년 2학기 2차고사</option>
+
+						<option value="middle3-1-1">중학교3학년 1학기 1차고사</option>
+						<option value="middle3-1-2">중학교3학년 1학기 2차고사</option>
+						<option value="middle3-2-1">중학교3학년 2학기 1차고사</option>
+						<option value="middle3-2-2">중학교3학년 2학기 2차고사</option>
+		
+					</select>
+					<br><br>
+					<div id="middleImg">
+						<img class ="mini_img" src="images/myface.PNG" onclick="window.open(this.src)"/>
+					</div>
+				</div>
+				<br>
+				<div id="selectHigh">
+					<select id="gradeHigh" name="gradeHigh" onchange="changeHigh()">
+						<option value="high1-1-1">고등학교1학년 1학기 1차고사</option>
+						<option value="high1-1-2">고등학교1학년 1학기 2차고사</option>
+						<option value="high1-2-1">고등학교1학년 2학기 1차고사</option>
+						<option value="high1-2-2">고등학교1학년 2학기 2차고사</option>
+				
+						<option value="high2-1-1">고등학교2학년 1학기 1차고사</option>
+						<option value="high2-1-2">고등학교2학년 1학기 2차고사</option>
+						<option value="high2-2-1">고등학교2학년 2학기 1차고사</option>
+						<option value="high2-2-2">고등학교2학년 2학기 2차고사</option>
+				
+						<option value="high3-1-1">고등학교3학년 1학기 1차고사</option>
+						<option value="high3-1-2">고등학교3학년 1학기 2차고사</option>
+				
+					</select>
+					<br><br>
+					<div id="highImg">
+						<img class ="mini_img" src="images/myface.PNG" onclick="window.open(this.src)"/>
+					</div>
+                <button class="completeBtn">완료</button>
+			 </div>
+		</div>
+		
+
+		<!-- Scripts -->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
