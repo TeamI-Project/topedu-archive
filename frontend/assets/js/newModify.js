@@ -3,11 +3,13 @@ var regLvEng = document.getElementById("regLvEng");
 var regAtMath = document.getElementById("regAtMath");
 var regLvMath = document.getElementById("regLvMath");
 
-fetch('localhost:8000/api/newModify').then(function(res){
+const url = "http://localhost:8000/api/newModify"
+
+fetch(url).then(function(res){
     res.json().then(function(json){
-        regAtEng.placeholder = json.regEnglish;
-        regLvEng.placeholder = json.lvEnglish;
-        regAtMath.placeholder = json.regMath;
-        regLvMath.placeholder = json.lvMath;
+        regAtEng.placeholder = json.firstLevel.regEnglish;
+        regLvEng.placeholder = json.firstLevel.lvEnglish;
+        regAtMath.placeholder = json.firstLevel.regMath;
+        regLvMath.placeholder = json.firstLevel.lvMath;
     })
 })
