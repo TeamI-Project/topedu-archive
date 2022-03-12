@@ -6,6 +6,7 @@ const port = 8000;
 app.get("/", (req, res) => res.send("Hello World~!"));
 
 app.get("/api/newModify", cors(), (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     res.status(200).json({
         firstLevel : {
             regEnglish : "2022-03-12",
