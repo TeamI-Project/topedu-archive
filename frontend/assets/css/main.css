@@ -12,6 +12,7 @@
 
 .mini_img{
   width: 40%;
+  padding: 1px;
 }
 .profile{
   width: 100px;
@@ -22,6 +23,15 @@
   margin-top: 1em;
   margin-bottom: 1em;
   background-color: rgba( 255, 255, 255, 0.5 );
+}
+
+.labelBtn{
+  background-color: #173D72;
+  border-radius: 10px;
+  padding: 0.5em;
+}
+.chooseFile {
+  visibility: hidden;
 }
 
 div{
@@ -68,6 +78,8 @@ select::-ms-expand {
   background:#173D72;
   color:#fff;
 }
+
+
 
 
 html, body, div, span, applet, object,
@@ -528,7 +540,7 @@ ul.icons {
 
 /* Form */
 form {
-  margin: 0 0 2em 0; }
+  margin: 1em; }
   form .message {
     text-decoration: none;
     -moz-transition: opacity 0.2s ease-in-out, -moz-transform 0.2s ease-in-out;
