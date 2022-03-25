@@ -2,6 +2,9 @@ temp*
 *.pem
 ssh*
 
+# for db connect
+mysql.js
+
 # for node
 # Logs
 logs
