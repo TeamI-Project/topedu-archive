@@ -87,7 +87,6 @@ CREATE TABLE Consulting (
     studentComment TEXT,
     parentsComment TEXT,
     etcComment TEXT,
-    modifyDate TIMESTAMP DEFAULT now(),
     modifyer VARCHAR(20),
     modifyDate TIMESTAMP DEFAULT now(),
     FOREIGN KEY (studentID) REFERENCES Students (studentID)
