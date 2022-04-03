@@ -25,9 +25,9 @@ DROP TABLE IF EXISTS NewRecord;
 CREATE TABLE NewRecord (
     studentID CHAR(20),
     regEng DATE,
-    levelEng TINYINT,
+    levelEng VARCHAR(20),
     regMath DATE,
-    levelMath TINYINT,
+    levelMath VARCHAR(20),
     testEng VARCHAR(255),
     testMath VARCHAR(255),
     friendShip TINYINT,
