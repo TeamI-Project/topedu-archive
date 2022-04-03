@@ -30,19 +30,44 @@ const url = "https://top-edu.co.kr:8000/api/newModify?id=mtop1234";
 fetch(url).then(function(res){
     res.json().then(function(json){
         //1
-        regAtEng.placeholder = json.firstLevel.regEnglish;
-        regLvEng.placeholder = json.firstLevel.lvEnglish;
-        regAtMath.placeholder = json.firstLevel.regMath;
-        regLvMath.placeholder = json.firstLevel.lvMath;
+        if(json.firstLevel.regEnglish == null){
+            regAtEng.value = 'x';
+        }
+        else{
+            regAtEng.value = json.firstLevel.regEnglish;
+        }
+
+        if(json.firstLevel.lvEnglish == null){
+            regLvEng.value = 'x';
+        }
+        else{
+            regLvEng.value = json.firstLevel.lvEnglish;
+        }
+        
+        if(json.firstLevel.regMath == null){
+            regAtMath.value = 'x';
+        }
+        else{
+            regAtMath.value = json.firstLevel.regMath;
+        }
+
+        if(json.firstLevel.lvMath == null){
+            regLvMath.value = 'x';
+        }
+        else{
+            regLvMath.value = json.firstLevel.lvMath;
+        }      
+        
 
         //2
         let engImg = json.levelTest.english;
         if (engImg.length == 0){
-            engTestImg.innerHTML += '<img class="mini_img" src="noimg_url" onclick="delImg(this.id)"></img>';
+            engTestImg.innerHTML += '<img id='+engImgCnt+' class="mini_img" src="noimg_url" onclick="delImg(this.id)"></img>';
+            engImgCnt+=1;
         }
         else{
             for(i=0; i < engImg.length ; i++){
-                engTestImg.innerHTML += '<img class="mini_img" src="' + engImg[i] +'" onclick="delImg(this.id)"></img>';
+                engTestImg.innerHTML += '<img id='+engImgCnt+' class="mini_img" src="' + engImg[i] +'" onclick="delImg(this.id)"></img>';
                 engImgCnt+=1;
             }
         }
@@ -50,11 +75,12 @@ fetch(url).then(function(res){
         
         let mathImg = json.levelTest.math;
         if (mathImg.length == 0){
-            mathTestImg.innerHTML += '<img class="mini_img" src="noimg_url" onclick="delImg(this.id)"></img>';
+            mathTestImg.innerHTML += '<img id='+mathImgCnt+' class="mini_img" src="noimg_url" onclick="delImg(this.id)"></img>';
+            mathImgCnt+=1;
         }
         else{
             for(i=0; i < engImg.length ; i++){
-                mathTestImg.innerHTML += '<img class="mini_img" src="' + mathImg[i] +'" onclick="delImg(this.id)"></img>';
+                mathTestImg.innerHTML += '<img id='+mathImgCnt+' class="mini_img" src="' + mathImg[i] +'" onclick="delImg(this.id)"></img>';
                 mathImgCnt+=1;
             }
         }
@@ -65,8 +91,7 @@ fetch(url).then(function(res){
         for(i=0; i<3; i++){
 
             //friendShip
-            friendShip.innerHTML += '<label class="radioBtn">\
-                                        <input type="radio" name="chk_friendShip" id="friendShip'+i+'" ';
+            friendShip.innerHTML += '<label class="radioBtn"><input type="radio" name="chk_friendShip" id="friendShip'+i+'" ';
 
             if(newc.friendShip == i){
                 friendShip.innerHTML += 'checked = "checked"';
@@ -74,8 +99,7 @@ fetch(url).then(function(res){
             friendShip.innerHTML += '><span>'+use1[i]+'</span></label>';
 
             //personality
-            personality.innerHTML += '<label class="radioBtn">\
-            <input type="radio" name="chk_personality" id="personality'+i+'" ';
+            personality.innerHTML += '<label class="radioBtn"><input type="radio" name="chk_personality" id="personality'+i+'" ';
 
             if(newc.personality == i){
             personality.innerHTML += 'checked = "checked"';
@@ -83,8 +107,7 @@ fetch(url).then(function(res){
             personality.innerHTML += '><span>'+use1[i]+'</span></label>';
 
             //parentShip
-            parentShip.innerHTML += '<label class="radioBtn">\
-            <input type="radio" name="chk_parentShip" id="parentShip'+i+'" ';
+            parentShip.innerHTML += '<label class="radioBtn"><input type="radio" name="chk_parentShip" id="parentShip'+i+'" ';
 
             if(newc.parentShip == i){
             parentShip.innerHTML += 'checked = "checked"';
@@ -93,8 +116,7 @@ fetch(url).then(function(res){
 
 
             //concentration
-            concentration.innerHTML += '<label class="radioBtn">\
-            <input type="radio" name="chk_concentration" id="concentration'+i+'" ';
+            concentration.innerHTML += '<label class="radioBtn"><input type="radio" name="chk_concentration" id="concentration'+i+'" ';
 
             if(newc.concentration == i){
             concentration.innerHTML += 'checked = "checked"';
@@ -103,8 +125,7 @@ fetch(url).then(function(res){
 
 
             //homework
-            homework.innerHTML += '<label class="radioBtn">\
-            <input type="radio" name="chk_homework" id="homework'+i+'" ';
+            homework.innerHTML += '<label class="radioBtn"><input type="radio" name="chk_homework" id="homework'+i+'" ';
 
             if(newc.homework == i){
             homework.innerHTML += 'checked = "checked"';
@@ -170,5 +191,38 @@ function delImg(input){
   remove.remove();
 }
 
+function doneModify() {
+    let regEnglish = regAtEng.value;
+    let lvEnglish = regLvEng.value;
+    let regMath = regAtMath.value;
+    let lvMath = regLvMath.value;
+    let english = [];
+    let math = [];
+
+    if(regEnglish == 'x'){
+        regEnglish = null;
+    }
+    if(lvEnglish == 'x'){
+        lvEnglish = null;
+    }
+    if(regMath == 'x'){
+        regMath = null;
+    }
+    if(lvMath == 'x'){
+        lvMath = null;
+    }
+
+    var imgList = document.getElementById('engTestImg').children;
+    for(i=0; i< imgList.length; i++){
+        english.push(imgList[i].src);
+    }
+
+    var imgList = document.getElementById('mathTestImg').children;
+    for(i=0; i< imgList.length; i++){
+        math.push(imgList[i].src);
+    }
 
 
+
+
+}
