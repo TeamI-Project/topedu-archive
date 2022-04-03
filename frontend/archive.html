@@ -48,22 +48,28 @@
 				<div id="levelTest">
 					<h4>2. 레벨테스트</h4>
 					<h5>- 영어</h5>
-					<!-- 반복문 4 -->
+					<div id="engTestImg">
+						<!-- 반복문 4 -->
 						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					</div>
 					<h5>- 수학</h5>
-					<!-- 반복문 2 -->
+					<div id="mathTestImg">
+						<!-- 반복문 4 -->
 						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					</div>
 				</div>
 				<br>
 				<div id="newConsulting">
 					<h4>3. 상담요약</h4>
 					<ul>
 						<li id="friendShip">친구들과의 관계 : </li>
-						<li id="character">평소 성격 : </li>
+						<li id="personality">평소 성격 : </li>
 						<li id="parentShip">부모님과의 소통 : </li>
 						<li id="concentration">집중력 : </li>
 						<li id="homework">과제 성실도 : </li>
@@ -79,7 +85,7 @@
 
 
 			 <details>
-				<summary>검사결과</summary>
+				<summary>각종 검사 결과</summary>
 				<button class="modifyBtn" onclick="window.location.href='resultModify.html'">수정하기</button>
 				<div id="SCA">
 					<h4>1. SCA</h4>
@@ -170,7 +176,7 @@
 			 </details>
 			
 			 <details>
-				<summary>매월 상담지</summary>
+				<summary>월간 상담지</summary>
 				<button class="modifyBtn" onclick="window.location.href='monthlyModify.html'">수정하기</button>
 				<div id="monthly">
 					<select id="month" name="month" onchange="changeMonth()">
@@ -199,7 +205,7 @@
 
 			 <details>
 				<button class="modifyBtn" onclick="window.location.href='commentModify.html'">수정하기</button>
-				<summary>상담 내용</summary>
+				<summary>상담 및 기타</summary>
 				<div id="teacherComment">
 					<h4>1. 담임 주관 기록</h4>
 					<p>글을 작성하지 않았음</p>
@@ -212,6 +218,10 @@
 					<h4>3. 부모님 상담 기록</h4>
 					<p>글을 작성하지 않았음</p>
 				</div>	
+				<div id="etcComment">
+					<h4>4. 기타 기록 사항</h4>
+					<p>글을 작성하지 않았음</p>
+				</div>
 			 </details>
 		</div>
 		

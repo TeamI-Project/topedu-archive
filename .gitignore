@@ -3,6 +3,9 @@ temp*
 ssh*
 .DS_Store
 
+# for db connect
+mysql.js
+
 # for node
 database.js
 # Logs

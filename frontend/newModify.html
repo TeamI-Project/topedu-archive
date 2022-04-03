@@ -38,98 +38,77 @@
 				<div id="levelTest">
 					<h4>2. 레벨테스트</h4>
 					<h5>- 영어</h5>
-						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
-						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
-						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
-						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					💡 이미지를 누르면 삭제 됩니다.
+					<div>
+						<form method="post" enctype="multipart/form-data">
+							<label for="chooseFile1" class="labelBtn">추가</label>
+							<input type="file" id="chooseFile1" class="chooseFile" accept="image/*" onchange="addEngImg(this)">
+						</form>
+					</div>
+					
+
+					<div id="engTestImg">
+						
+					</div>
+
 					<h5>- 수학</h5>
-						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
-						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					💡 이미지를 누르면 삭제 됩니다.
+					<div>
+						<form method="post" enctype="multipart/form-data">
+							<label for="chooseFile2" class="labelBtn">추가</label>
+							<input type="file" id="chooseFile2" class="chooseFile" accept="image/*" onchange="addMathImg(this)">
+						</form>
+					</div>
+					<div id="mathTestImg">
+						
+					</div>
 				</div>
 				<br>
 				<div id="newConsulting">
 					<h4>3. 상담요약</h4>
-					<div id="frindShip">
-						📌 친구들과의관계
-						<div>
-							<label class="radioBtn">
-								<input type="radio" name="chk_frindShip" id="good">
-								<span>좋음</span></label>
-							<label class="radioBtn">
-								<input type="radio" name="chk_frindShip" id="soso">
-								<span>보통</span></label>
-							<label class="radioBtn">
-									<input type="radio" name="chk_frindShip" id="bad">
-									<span>도움필요</span></label>	
-						</div>
+					📌 친구들과의관계
+					<div id="friendShip">
+						
 					</div>
 					<br>
-					<div id="character">
-						📌 평소성격
-						<div>
-							<label class="radioBtn">
-								<input type="radio" name="chk_character" id="outside">
-								<span>외향적</span></label>
-							<label class="radioBtn">
-								<input type="radio" name="chk_character" id="inside">
-								<span>내향적</span></label>
-							<label class="radioBtn">
-									<input type="radio" name="chk_character" id="outinside">
-									<span>외내향적</span></label>	
-						</div>
+					📌 평소성격
+					<div id="personality">
+						
 					</div>
 					<br>
+					📌 부모님과의소통
 					<div id="parentShip">
-						📌 부모님과의소통
-						<div>
-							<label class="radioBtn">
-								<input type="radio" name="chk_parentShip" id="good">
-								<span>좋음</span></label>
-							<label class="radioBtn">
-								<input type="radio" name="chk_parentShip" id="soso">
-								<span>보통</span></label>
-							<label class="radioBtn">
-									<input type="radio" name="chk_parentShip" id="bad">
-									<span>개선필요</span></label>	
-						</div>
+						
 					</div>
 					<br>
+					📌 집중력
 					<div id="concentration">
-						📌 집중력
-						<div>
-							<label class="radioBtn">
-								<input type="radio" name="chk_concentration" id="good">
-								<span>좋음</span></label>
-							<label class="radioBtn">
-								<input type="radio" name="chk_concentration" id="soso">
-								<span>보통</span></label>
-							<label class="radioBtn">
-									<input type="radio" name="chk_concentration" id="bad">
-									<span>도움필요</span></label>	
-						</div>
+						
 					</div>
 					<br>
+					📌 과제성실도
 					<div id="homework">
-						📌 과제성실도
-						<div>
-							<label class="radioBtn">
-								<input type="radio" name="chk_homework" id="good">
-								<span>좋음</span></label>
-							<label class="radioBtn">
-								<input type="radio" name="chk_homework" id="soso">
-								<span>보통</span></label>
-							<label class="radioBtn">
-									<input type="radio" name="chk_homework" id="bad">
-									<span>도움필요</span></label>	
-						</div>
+						
+					</div>
+					<br>
+					📌 전체적인 요약
+					<div id="textbox">
+						
 					</div>
 				</div>
 				<br>
 				<div id="newChecklist">
 					<h4>4. 신규생 체크리스트</h4>
-						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					💡 이미지를 누르면 삭제 됩니다.
+					<div>
+						<form method="post" enctype="multipart/form-data">
+							<label for="chooseFile3" class="labelBtn">추가</label>
+							<input type="file" id="chooseFile3" class="chooseFile" accept="image/*" onchange="newCheckImg(this)">
+						</form>
+					</div>
+						
 				</div>
-                <button class="completeBtn">완료</button>
+                <button class="completeBtn" onclick="doneModify()">완료</button>
 			 </div>
 		</div>
 		
