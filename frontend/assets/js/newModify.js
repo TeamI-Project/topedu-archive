@@ -14,7 +14,7 @@ let concentration = document.getElementById("concentration");
 let homework = document.getElementById("homework");
 let textbox = document.getElementById("textbox");
 //newChecklist
-let checkList = document.getElementById("newChecklist");
+let checkList = document.getElementById("newCheckImg");
 
 
 let use1 = ["좋음", "보통", "도움필요"];
@@ -23,6 +23,7 @@ let use3 = ["좋음", "보통", "개선필요"];
 
 let engImgCnt = 0;
 let mathImgCnt = 0;
+let checkImgCnt = 0;
 
 
 const url = "https://top-edu.co.kr:8000/api/newModify?id=mtop1234";
@@ -89,61 +90,74 @@ fetch(url).then(function(res){
         //3
         let newc = json.newConsulting;
         for(i=0; i<3; i++){
+            var temp = '';
 
             //friendShip
-            friendShip.innerHTML += '<label class="radioBtn">\
-                                        <input type="radio" name="chk_friendShip" id="friendShip'+i+'" ';
+            temp += '<label class="radioBtn">\
+            <input type="radio" name="chk_friendShip" id="friendShip'+i+'" ';
 
             if(newc.friendShip == i){
-                friendShip.innerHTML += 'checked = "checked"';
+                temp += 'checked = "checked"';
             }
-            friendShip.innerHTML += '><span>'+use1[i]+'</span></label>';
+            temp += '><span>'+use1[i]+'</span></label>';
+            friendShip.innerHTML += temp;
 
+            temp = '';
             //personality
-            personality.innerHTML += '<label class="radioBtn">\
+            temp += '<label class="radioBtn">\
             <input type="radio" name="chk_personality" id="personality'+i+'" ';
 
             if(newc.personality == i){
-            personality.innerHTML += 'checked = "checked"';
+            temp += 'checked = "checked"';
             }
-            personality.innerHTML += '><span>'+use1[i]+'</span></label>';
+            temp += '><span>'+use1[i]+'</span></label>';
+            personality.innerHTML += temp;
 
+            temp = '';
             //parentShip
-            parentShip.innerHTML += '<label class="radioBtn">\
+            temp += '<label class="radioBtn">\
             <input type="radio" name="chk_parentShip" id="parentShip'+i+'" ';
 
             if(newc.parentShip == i){
-            parentShip.innerHTML += 'checked = "checked"';
+            temp += 'checked = "checked"';
             }
-            parentShip.innerHTML += '><span>'+use1[i]+'</span></label>';
+            temp += '><span>'+use1[i]+'</span></label>';
+            parentShip.innerHTML += temp;
 
-
+            temp = '';
             //concentration
-            concentration.innerHTML += '<label class="radioBtn">\
+            temp += '<label class="radioBtn">\
             <input type="radio" name="chk_concentration" id="concentration'+i+'" ';
 
             if(newc.concentration == i){
-            concentration.innerHTML += 'checked = "checked"';
+            temp += 'checked = "checked"';
             }
-            concentration.innerHTML += '><span>'+use1[i]+'</span></label>';
+            temp += '><span>'+use1[i]+'</span></label>';
+            concentration.innerHTML += temp;
 
 
+            temp = '';
             //homework
-            homework.innerHTML += '<label class="radioBtn">\
+            temp += '<label class="radioBtn">\
             <input type="radio" name="chk_homework" id="homework'+i+'" ';
 
             if(newc.homework == i){
-            homework.innerHTML += 'checked = "checked"';
+            temp += 'checked = "checked"';
             }
-            homework.innerHTML += '><span>'+use1[i]+'</span></label>';
+            temp += '><span>'+use1[i]+'</span></label>';
+            homework.innerHTML += temp;
         }
 
-
-        textbox.innerHTML += '<textarea>'+newc.comment+'</textarea>';
-
+        if(newc.comment == null){
+            textbox.innerHTML += '<textarea>'+"작성된 내용이 없습니다."+'</textarea>';
+        }
+        else{
+            textbox.innerHTML += '<textarea>'+newc.comment+'</textarea>';
+        }
+        
         //4
-        checkList.innerHTML += '<img class="mini_img" src="' + json.newCheckList.checkList +'" onclick="window.open(this.src)"></img>';
-
+        checkList.innerHTML += '<img id="checkListImg" class="mini_img" src="' + json.newCheckList.checkList +'" onclick="delImg(this.id)"></img>';
+        checkImgCnt += 1;
     })
 })
 
@@ -178,20 +192,30 @@ function addMathImg(input) {
 
 
 function newCheckImg(input) {
-    console.log("running");
+    if(checkImgCnt >= 1){
+        alert("체크리스트는 하나의 이미지만 추가할 수 있습니다.");
+        return;
+    }
     var file = input.files[0];	//선택된 파일 가져오기
 
   	//새로운 이미지 div 추가
     var newImage = '<img id="checkListImg" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this.id)"></img>';
+    checkImgCnt+=1;
 
     //이미지를 image-show div에 추가
-    var imgList = document.getElementById('newChecklist');
+    var imgList = document.getElementById('newCheckImg');
     imgList.innerHTML += (newImage);
+
 };
 
 function delImg(input){
+    
   var file = input;
   let remove = document.getElementById(file);
+
+  if(file == "checkListImg"){
+    checkImgCnt -=1;
+  }
 
   remove.remove();
 }
@@ -227,5 +251,51 @@ function doneModify() {
         math.push(imgList[i].src);
     }
 
+    var temp = '';
+
+    temp = document.querySelector('input[name="chk_friendShip"]:checked').id;
+    friendShip = parseInt(temp.substr(-1));
+
+    temp = document.querySelector('input[name="chk_personality"]:checked').id;
+    personality = parseInt(temp.substr(-1));
+
+    temp = document.querySelector('input[name="chk_parentShip"]:checked').id;
+    parentShip = parseInt(temp.substr(-1));
+
+    temp = document.querySelector('input[name="chk_concentration"]:checked').id;
+    concentration = parseInt(temp.substr(-1));
+
+    temp = document.querySelector('input[name="chk_homework"]:checked').id;
+    homework = parseInt(temp.substr(-1));
+
+    textbox = document.getElementById('textbox').children[0].value;
+    
+    checkList = document.getElementById('newCheckImg').children[0].src;
+
+    var data = {
+        firstLevel : {
+            regEnglish : regEnglish,
+            lvEnglish : lvEnglish,
+            regMath : regMath,
+            lvMath : lvMath
+        },
+        levelTest : {
+            english : english,
+            math : math
+        },
+        newConsulting : {
+            friendShip : friendShip,
+            personality : personality,
+            parentShip : parentShip,
+            concentration : concentration,
+            homework : homework,
+            textbox : textbox
+        },
+        newCheckList : {
+            checkList : checkList
+        }
+    }
+
+    
 
 }
