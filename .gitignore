@@ -1,8 +1,10 @@
 temp*
 *.pem
 ssh*
+.DS_Store
 
 # for node
+database.js
 # Logs
 logs
 *.log

@@ -1,7 +1,12 @@
-const fs = require('fs');
 const express = require("express");
+const mysql = require('mysql')
+const dbconfig = require('./config/database.js')
+const connection = mysql.createConnection(dbconfig)
+
 const cors = require('cors')
+const fs = require('fs');
 const https = require('https')
+
 const app = express();
 const port = 8000;
 const bodyParser = require("body-parser");
