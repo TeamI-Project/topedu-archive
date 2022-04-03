@@ -91,7 +91,8 @@ fetch(url).then(function(res){
         for(i=0; i<3; i++){
 
             //friendShip
-            friendShip.innerHTML += '<label class="radioBtn"><input type="radio" name="chk_friendShip" id="friendShip'+i+'" ';
+            friendShip.innerHTML += '<label class="radioBtn">\
+                                        <input type="radio" name="chk_friendShip" id="friendShip'+i+'" ';
 
             if(newc.friendShip == i){
                 friendShip.innerHTML += 'checked = "checked"';
@@ -99,7 +100,8 @@ fetch(url).then(function(res){
             friendShip.innerHTML += '><span>'+use1[i]+'</span></label>';
 
             //personality
-            personality.innerHTML += '<label class="radioBtn"><input type="radio" name="chk_personality" id="personality'+i+'" ';
+            personality.innerHTML += '<label class="radioBtn">\
+            <input type="radio" name="chk_personality" id="personality'+i+'" ';
 
             if(newc.personality == i){
             personality.innerHTML += 'checked = "checked"';
@@ -107,7 +109,8 @@ fetch(url).then(function(res){
             personality.innerHTML += '><span>'+use1[i]+'</span></label>';
 
             //parentShip
-            parentShip.innerHTML += '<label class="radioBtn"><input type="radio" name="chk_parentShip" id="parentShip'+i+'" ';
+            parentShip.innerHTML += '<label class="radioBtn">\
+            <input type="radio" name="chk_parentShip" id="parentShip'+i+'" ';
 
             if(newc.parentShip == i){
             parentShip.innerHTML += 'checked = "checked"';
@@ -116,7 +119,8 @@ fetch(url).then(function(res){
 
 
             //concentration
-            concentration.innerHTML += '<label class="radioBtn"><input type="radio" name="chk_concentration" id="concentration'+i+'" ';
+            concentration.innerHTML += '<label class="radioBtn">\
+            <input type="radio" name="chk_concentration" id="concentration'+i+'" ';
 
             if(newc.concentration == i){
             concentration.innerHTML += 'checked = "checked"';
@@ -125,7 +129,8 @@ fetch(url).then(function(res){
 
 
             //homework
-            homework.innerHTML += '<label class="radioBtn"><input type="radio" name="chk_homework" id="homework'+i+'" ';
+            homework.innerHTML += '<label class="radioBtn">\
+            <input type="radio" name="chk_homework" id="homework'+i+'" ';
 
             if(newc.homework == i){
             homework.innerHTML += 'checked = "checked"';
@@ -221,8 +226,6 @@ function doneModify() {
     for(i=0; i< imgList.length; i++){
         math.push(imgList[i].src);
     }
-
-
 
 
 }
