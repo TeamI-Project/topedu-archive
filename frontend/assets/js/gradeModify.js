@@ -19,10 +19,16 @@ fetch(url).then(function(res){
 
 function chengeMiddle(){
     let selectMiddle = gradeMiddle.options[gradeMiddle.selectedIndex].value;
-    middleImg.innerHTML += '<img class ="mini_img" src="'+middle[selectMiddle]+'" onclick="window.open(this.src)"/>';
+    let imgs = middle[selectMiddle];
+    for(i=0; i < imgs.length ; i++){
+        middleImg.innerHTML += '<img class ="mini_img" src="'+imgs[i]+'" onclick="window.open(this.src)"/>';
+    }
 }
 
 function changeHigh(){
     let selectHigh = gradeHigh.options[gradeHigh.selectedIndex].value;
-    highImg.innerHTML += '<img class ="mini_img" src="'+high[selectHigh]+'" onclick="window.open(this.src)"/>';
+    let imgs = high[selectHigh];
+    for(i=0; i < imgs.length ; i++){
+        highImg.innerHTML += '<img class ="mini_img" src="'+imgs[i]+'" onclick="window.open(this.src)"/>';
+    }
 }
