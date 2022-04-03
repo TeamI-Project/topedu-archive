@@ -25,7 +25,7 @@ let engImgCnt = 0;
 let mathImgCnt = 0;
 
 
-const url = "http://top-edu.co.kr:8000/api/newModify?id=mtop1234";
+const url = "https://top-edu.co.kr:8000/api/newModify?id=mtop1234";
 
 fetch(url).then(function(res){
     res.json().then(function(json){
