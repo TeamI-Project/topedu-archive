@@ -18,12 +18,20 @@ const port = 8000;
 
 // const httpsServer = https.createServer(credentials, app)
 
-const newModify = require('./routes/newModify');
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const newModify = require('./routes/newModify');
+const resultModify = require('./routes/resultModify');
+const gradeModify = require('./routes/gradeModify');
+const monthly = require('./routes/monthly');
+const comment = require('./routes/comment');
+
 app.use('/api/newModify', cors(), newModify);
+app.use('/api/resultModify', cors(), resultModify);
+app.use('/api/gradeModify', cors(), gradeModify);
+app.use('/api/monthly', cors(), monthly);
+app.use('/api/comment', cors(), comment);
 
 app.get("/", (req, res) => res.send("Hello World~!"));
 
