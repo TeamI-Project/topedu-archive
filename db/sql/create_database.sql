@@ -21,6 +21,14 @@ CREATE TABLE Students (
     PRIMARY KEY (studentID)
 );
 
+DROP TABLE IF EXISTS Teacher;
+CREATE TABLE Teacher (
+    teacherID CHAR(20),
+    teacherName CHAR(20) NOT NULL,
+    branch VARCHAR(10),
+    PRIMARY KEY (teacherID)
+);
+
 DROP TABLE IF EXISTS NewRecord;
 CREATE TABLE NewRecord (
     studentID CHAR(20),
@@ -28,8 +36,6 @@ CREATE TABLE NewRecord (
     levelEng VARCHAR(20),
     regMath DATE,
     levelMath VARCHAR(20),
-    testEng VARCHAR(255),
-    testMath VARCHAR(255),
     friendShip TINYINT,
     personality TINYINT,
     parentShip TINYINT,
@@ -37,8 +43,14 @@ CREATE TABLE NewRecord (
     homework TINYINT,
     comment TEXT,
     checklist VARCHAR(255),
-    modifyer VARCHAR(20),
-    modifyDate TIMESTAMP DEFAULT now(),
+    PRIMARY KEY (studentID)
+);
+
+DROP TABLE IF EXISTS LevelTest;
+CREATE TABLE LevelTest (
+    studentID CHAR(20),
+    dataType TINYINT,
+    dataPath VARCHAR(255),
     PRIMARY KEY (studentID)
 );
 
@@ -48,25 +60,16 @@ careerNet : pdf_link
 DROP TABLE IF EXISTS Testpaper;
 CREATE TABLE Testpaper (
     studentID CHAR(20),
-    SCA VARCHAR(255),
-    CPS VARCHAR(255),
-    careerNet VARCHAR(255),
-    sixSence VARCHAR(255),
-    testEtc VARCHAR(255),
-    modifyer VARCHAR(20),
-    modifyDate TIMESTAMP DEFAULT now(),
+    dataType TINYINT NOT NULL,
+    dataPath VARCHAR(255),
     FOREIGN KEY (studentID) REFERENCES Students (studentID)
 );
 
 DROP TABLE IF EXISTS Grade;
 CREATE TABLE Grade (
     studentID CHAR(20),
-    midType TINYINT NOT NULL,
-    midCard VARCHAR(255),
-    highType TINYINT NOT NULL,
-    highCard VARCHAR(255),
-    modifyer VARCHAR(20),
-    modifyDate TIMESTAMP DEFAULT now(),
+    dataType TINYINT NOT NULL,
+    dataPath VARCHAR(255),
     FOREIGN KEY (studentID) REFERENCES Students (studentID)
 );
 
@@ -74,9 +77,7 @@ DROP TABLE IF EXISTS Monthly;
 CREATE TABLE Monthly (
     studentID CHAR(20),
     monthType TINYINT NOT NULL,
-    monthCard VARCHAR(255),
-    modifyer VARCHAR(20),
-    modifyDate TIMESTAMP DEFAULT now(),
+    monthPath VARCHAR(255),
     FOREIGN KEY (studentID) REFERENCES Students (studentID)
 );
 
@@ -87,10 +88,25 @@ CREATE TABLE Consulting (
     studentComment TEXT,
     parentsComment TEXT,
     etcComment TEXT,
-    modifyer VARCHAR(20),
-    modifyDate TIMESTAMP DEFAULT now(),
     FOREIGN KEY (studentID) REFERENCES Students (studentID)
 );
 
 
-
+/*
+col마다 teacherID 입력하고, Teacher table에서 이름 긁긁
+*/
+DROP TABLE IF EXISTS Modifyer;
+CREATE TABLE Modifyer (
+    studentID CHAR(20),
+    newRecord VARCHAR(20) DEFAULT NULL,
+    newRecordD TIMESTAMP DEFAULT now(),
+    Testpaper VARCHAR(20) DEFAULT NULL,
+    TestpaperD TIMESTAMP DEFAULT now(),
+    Grade VARCHAR(20) DEFAULT NULL,
+    GradeD TIMESTAMP DEFAULT now(),
+    Monthly VARCHAR(20) DEFAULT NULL,
+    MonthlyD TIMESTAMP DEFAULT now(),
+    Consulting VARCHAR(20) DEFAULT NULL,
+    ConsultingD TIMESTAMP DEFAULT now(),
+    FOREIGN KEY (studentID) REFERENCES Students (studentID)
+);
