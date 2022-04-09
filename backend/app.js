@@ -18,6 +18,7 @@ const credentials = {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 const newModify = require('./routes/newModify');
 const resultModify = require('./routes/resultModify');
