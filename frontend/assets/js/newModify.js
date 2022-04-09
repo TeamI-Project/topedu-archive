@@ -301,6 +301,10 @@ function doneModify() {
         }
     }
 
+    trans(postData);
+}
+
+function trans(postData){
     fetch(url, {
         method: "POST",
         mode: 'no-cors',
@@ -308,7 +312,7 @@ function doneModify() {
             "Access-Control-Allow-Origin" : "*",
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(postData)
 })
         .then((response) => response.json())
         .then((res) => console.log(res))
