@@ -55,7 +55,15 @@ function doneModify(){
     }
     
     var data = {
-        month : selectVal,
-        imgPath : imgPath
+        "month" : selectVal,
+        "imgPath" : imgPath
     }
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    }).then((res) => console.log(res))
 }

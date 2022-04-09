@@ -22,9 +22,17 @@ function doneModify(){
     etc = document.getElementById('etcText').value;
     
     var data = {
-        teacher : teacher,
-        student : student,
-        parents : parents,
-        etc : etc
+        "teacher" : teacher,
+        "student" : student,
+        "parents" : parents,
+        "etc" : etc
     }
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    }).then((res) => console.log(res))
 }

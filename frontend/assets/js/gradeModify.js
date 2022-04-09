@@ -54,8 +54,15 @@ function doneModify(){
     }
 
     var data = {
-        gradeType : selectVal,
-        gradePath : img
+        "gradeType" : selectVal,
+        "gradePath" : img
     }
 
+    fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    }).then((res) => console.log(res))
 }

@@ -148,21 +148,29 @@ function doneModify(){
     }
 
     var data = {
-        SCA : {
-            sca : scaPath
+        "SCA" : {
+            "sca" : scaPath
         },
-        CPS : {
-            cps : cpsPath
+        "CPS" : {
+            "cps" : cpsPath
         },
-        careerNet : {
-            careerNet : pdfList
+        "careerNet" : {
+            "careerNet" : pdfList
         },
-        sixSence : {
-            sixSence : ssPath
+        "sixSence" : {
+            "sixSence" : ssPath
         },
-        testEtc : {
-            etc : etcPath
+        "testEtc" : {
+            "etc" : etcPath
         }
     }
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    }).then((res) => console.log(res))
 
   }

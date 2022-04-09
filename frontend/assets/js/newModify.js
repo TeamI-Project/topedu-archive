@@ -308,9 +308,7 @@ function doneModify() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
-
-
-}).then((res) => console.log(res))
+    }).then((res) => console.log(res))
 
 }
 
