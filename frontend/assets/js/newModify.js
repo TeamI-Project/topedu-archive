@@ -121,7 +121,7 @@ fetch(url+id).then(function(res){
             if(newc.parentship == i){
             temp += 'checked = "checked"';
             }
-            temp += '><span>'+use[i]+'</span></label>';
+            temp += '><span>'+use3[i]+'</span></label>';
             parentShip.innerHTML += temp;
 
             temp = '';
