@@ -275,7 +275,14 @@ function doneModify() {
         checkList = checkList.src;
     }
 
-    var data = {
+    fetch(url, {
+        method: "POST",
+        mode: 'no-cors',
+        headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
         id : "mtop1234",
 
         firstLevel : {
@@ -298,22 +305,11 @@ function doneModify() {
         },
         newCheckList : {
             checklist : checkList
-        }
-    }
-
-    trans(postData);
-}
-
-function trans(postData){
-    fetch(url, {
-        method: "POST",
-        mode: 'no-cors',
-        headers: {
-            "Access-Control-Allow-Origin" : "*",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postData)
+        }})
 })
         .then((response) => response.json())
         .then((res) => console.log(res))
+
 }
+
+
