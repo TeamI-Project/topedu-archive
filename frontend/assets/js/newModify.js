@@ -270,7 +270,10 @@ function doneModify() {
 
     textbox = document.getElementById('textbox').children[0].value;
     
-    checkList = document.getElementById('newCheckImg').children[0].src;
+    checkList = document.getElementById('newCheckImg').children[0];
+    if(checkList != null){
+        checkList = checkList.src;
+    }
 
     var data = {
         id : "mtop1234",
@@ -305,7 +308,7 @@ function doneModify() {
             "Access-Control-Allow-Origin" : "*",
             "Content-Type": "application/json",
         },
-        body: data
+        body: JSON.stringify(data)
 })
         .then((response) => response.json())
         .then((res) => console.log(res))
