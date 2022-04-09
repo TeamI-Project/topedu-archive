@@ -55,30 +55,32 @@ router.get("/", (req, res) => {
 })
 
 router.post("/", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
     const id = req.body.id;
-    const query = "UPDATE NewRecord SET regEng=?, levelEng=?, \
+    const updateQuery = "UPDATE NewRecord SET regEng=?, levelEng=?, \
     regMath=?, levelMath=?, friendship=?, personality=?, parentship=?, \
     concentration=?, homework=?, comment=?, checklist=? \
     WHERE studentID=?";
 
-    const params = [];
+    const updateParams = [];
 
     const fLv = Object.keys(req.body.firstLevel);
     const lvTest = Object.keys(req.body.levelTest);
     const newCst = Object.keys(req.body.newConsulting);
     const newlst = Object.keys(req.body.newCheckList);
 
-    params.push(fLv);
-    params.push(lvTest);
-    params.push(newCst);
-    params.push(newlst);
-    params.push(id);
+    updateParams.push(fLv);
+    updateParams.push(newCst);
+    updateParams.push(newlst);
+    updateParams.push(id);
 
-    connection.query(query, params, (err, results, field) => {
+    connection.query(updateQuery, updateParams, (err, results, field) => {
         if (err) throw err;
-        res.header("Access-Control-Allow-Origin", "*");
         try {
-            res.status(200);
+            res.status(200).json({
+                msg : "success"
+            });
         } catch (err) {
             console.log(err);
             res.status(500);
