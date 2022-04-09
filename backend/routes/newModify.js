@@ -54,11 +54,10 @@ router.get("/", (req, res) => {
     });
 })
 
-router.post("/", (req, res) => {
+router.post("/", express.json(), (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
     console.log("in post~");
-    
     console.log(req.body);
 
     res.send("in post !!");

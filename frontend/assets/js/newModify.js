@@ -277,41 +277,40 @@ function doneModify() {
 
 
     var data = {
-        id : "mtop1234",
+        "id" : "mtop1234",
 
-        firstLevel : {
-            regEng : regEnglish,
-            levelEng : lvEnglish,
-            regMath : regMath,
-            levelMath : lvMath
+        "firstLevel" : {
+            "regEng" : regEnglish,
+            "levelEng" : lvEnglish,
+            "regMath" : regMath,
+            "levelMath" : lvMath
         },
-        levelTest : {
-            english : english,
-            math : math
+        "levelTest" : {
+            "english" : english,
+            "math" : math
         },
-        newConsulting : {
-            friendship : friendShip,
-            personality : personality,
-            parentship : parentShip,
-            concentration : concentration,
-            homework : homework,
-            comment : textbox
+        "newConsulting" : {
+            "friendship" : friendShip,
+            "personality" : personality,
+            "parentship" : parentShip,
+            "concentration" : concentration,
+            "homework" : homework,
+            "comment" : textbox
         },
-        newCheckList : {
-            checklist : checkList
+        "newCheckList" : {
+            "checklist" : checkList
         }
     }
 
     fetch(url, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            "id" : "1234",
-	    "pw": "qwe"
-        })
-}).then((res) => console.log(res));
+        body: JSON.stringify(data)
+
+
+}).then((res) => console.log(res))
 
 }
 
