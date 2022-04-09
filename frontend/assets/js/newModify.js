@@ -304,18 +304,14 @@ function doneModify() {
 
     fetch(url, {
         method: "POST",
-        mode: 'no-cors',
         headers: {
-            "Access-Control-Allow-Origin" : "*",
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            id : "1234",
-            pw : "1234"
+            "id" : "1234",
+	    "pw": "qwe"
         })
-})
-        .then((response) => response.json())
-        .then((res) => console.log(res))
+}).then((res) => console.log(res));
 
 }
 
