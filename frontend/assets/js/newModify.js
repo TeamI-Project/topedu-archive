@@ -274,25 +274,25 @@ function doneModify() {
 
     var data = {
         firstLevel : {
-            regEnglish : regEnglish,
-            lvEnglish : lvEnglish,
+            regEng : regEnglish,
+            levelEng : lvEnglish,
             regMath : regMath,
-            lvMath : lvMath
+            levelMath : lvMath
         },
         levelTest : {
             english : english,
             math : math
         },
         newConsulting : {
-            friendShip : friendShip,
+            friendship : friendShip,
             personality : personality,
-            parentShip : parentShip,
+            parentship : parentShip,
             concentration : concentration,
             homework : homework,
-            textbox : textbox
+            comment : textbox
         },
         newCheckList : {
-            checkList : checkList
+            checklist : checkList
         }
     }
 
