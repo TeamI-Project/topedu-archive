@@ -57,36 +57,41 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
+    console.log("in post~");
     const id = req.body.id;
-    const updateQuery = "UPDATE NewRecord SET regEng=?, levelEng=?, \
-    regMath=?, levelMath=?, friendship=?, personality=?, parentship=?, \
-    concentration=?, homework=?, comment=?, checklist=? \
-    WHERE studentID=?";
+    console.log(req.body);
 
-    const updateParams = [];
+    res.send("in post !!");
+    
+    // const updateQuery = "UPDATE NewRecord SET regEng=?, levelEng=?, \
+    // regMath=?, levelMath=?, friendship=?, personality=?, parentship=?, \
+    // concentration=?, homework=?, comment=?, checklist=? \
+    // WHERE studentID=?";
 
-    const fLv = Object.keys(req.body.firstLevel);
-    const lvTest = Object.keys(req.body.levelTest);
-    const newCst = Object.keys(req.body.newConsulting);
-    const newlst = Object.keys(req.body.newCheckList);
+    // const updateParams = [];
 
-    updateParams.push(fLv);
-    updateParams.push(newCst);
-    updateParams.push(newlst);
-    updateParams.push(id);
+    // // const fLv = Object.keys(req.body.firstLevel);
+    // // const lvTest = Object.keys(req.body.levelTest);
+    // // const newCst = Object.keys(req.body.newConsulting);
+    // // const newlst = Object.keys(req.body.newCheckList);
 
-    connection.query(updateQuery, updateParams, (err, results, field) => {
-        if (err) throw err;
-        try {
-            res.status(200).json({
-                msg : "success"
-            });
-        } catch (err) {
-            console.log(err);
-            res.status(500);
-            res.send(err.message);
-        }         
-    });
+    // // updateParams.push(fLv);
+    // // updateParams.push(newCst);
+    // // updateParams.push(newlst);
+    // // updateParams.push(id);
+
+    // connection.query(updateQuery, updateParams, (err, results, field) => {
+    //     if (err) throw err;
+    //     try {
+    //         res.status(200).json({
+    //             msg : "success"
+    //         });
+    //     } catch (err) {
+    //         console.log(err);
+    //         res.status(500);
+    //         res.send(err.message);
+    //     }         
+    // });
 })
 
 module.exports = router;
