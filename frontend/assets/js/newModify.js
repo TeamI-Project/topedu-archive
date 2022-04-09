@@ -300,6 +300,7 @@ function doneModify() {
 
     fetch(url, {
         method: "POST",
+        mode: 'no-cors',
         headers: {
             "Access-Control-Allow-Origin" : "*",
             "Content-Type": "application/json",
