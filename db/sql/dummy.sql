@@ -2,7 +2,7 @@ USE archive;
 
 INSERT INTO Students VALUES("mtop1234", "원령이", "ex_face.jpg", "MA", 1);
 
-INSERT INTO NewRecord (studentID, regEng, levelEng, friendShip, personality, parentShip, concentration, homework, checklist) VALUES("mtop1234", "22-02-01", "SproutA", 0,1,0,2,1, "dummy_img.jpeg", "teacher727");
+INSERT INTO NewRecord (studentID, regEng, levelEng, friendShip, personality, parentShip, concentration, homework, checklist) VALUES("mtop1234", "22-02-01", "SproutA", 0,1,0,2,1, "dummy_img.jpeg");
 
 INSERT INTO LevelTest (studentID, dataType, dataPath) VALUES("mtop1234", 0, "dummy_img.jpeg");
 
