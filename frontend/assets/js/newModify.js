@@ -273,6 +273,8 @@ function doneModify() {
     checkList = document.getElementById('newCheckImg').children[0].src;
 
     var data = {
+        id : "mtop1234",
+
         firstLevel : {
             regEng : regEnglish,
             levelEng : lvEnglish,
@@ -301,9 +303,7 @@ function doneModify() {
         headers: {
             "Content-Type": "application/json",
         },
-        body: { id : "mtop1234",
-                data
-            }
+        body: data
 })
         .then((response) => response.json())
         .then((res) => console.log(res))
