@@ -25,10 +25,10 @@ let engImgCnt = 0;
 let mathImgCnt = 0;
 let checkImgCnt = 0;
 
+const id = '?id=mtop1234'
+const url = "https://top-edu.co.kr:8000/api/newModify";
 
-const url = "https://top-edu.co.kr:8000/api/newModify?id=mtop1234";
-
-fetch(url).then(function(res){
+fetch(url+id).then(function(res){
     res.json().then(function(json){
         //1
         if(json.firstLevel.regEng == null){
@@ -96,7 +96,7 @@ fetch(url).then(function(res){
             temp += '<label class="radioBtn">\
             <input type="radio" name="chk_friendShip" id="friendShip'+i+'" ';
 
-            if(newc.friendShip == i){
+            if(newc.friendship == i){
                 temp += 'checked = "checked"';
             }
             temp += '><span>'+use1[i]+'</span></label>';
@@ -118,10 +118,10 @@ fetch(url).then(function(res){
             temp += '<label class="radioBtn">\
             <input type="radio" name="chk_parentShip" id="parentShip'+i+'" ';
 
-            if(newc.parentShip == i){
+            if(newc.parentship == i){
             temp += 'checked = "checked"';
             }
-            temp += '><span>'+use[i]+'</span></label>';
+            temp += '><span>'+use3[i]+'</span></label>';
             parentShip.innerHTML += temp;
 
             temp = '';
@@ -273,6 +273,8 @@ function doneModify() {
     checkList = document.getElementById('newCheckImg').children[0].src;
 
     var data = {
+        id : "mtop1234",
+
         firstLevel : {
             regEng : regEnglish,
             levelEng : lvEnglish,
@@ -298,11 +300,13 @@ function doneModify() {
 
     fetch(url, {
         method: "POST",
+        mode: 'no-cors',
         headers: {
+            "Access-Control-Allow-Origin" : "*",
             "Content-Type": "application/json",
         },
         body: data
-        })
+})
         .then((response) => response.json())
         .then((res) => console.log(res))
 }
