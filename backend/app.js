@@ -1,15 +1,14 @@
 const fs = require('fs');
 const express = require("express");
 const https = require('https');
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const cors = require('cors');
 const app = express();
 const port = 8000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors());
-app.use(app.router)
 
 const privateKey = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/privkey.pem", "utf8");
 const certificate = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/cert.pem", "utf8")
