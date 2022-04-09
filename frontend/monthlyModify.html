@@ -15,8 +15,8 @@
 
 		<!-- result foldable -->
 		<div>
-            <div>
-				<h2 style="text-align: center;">월간 상담지 수정</h2>
+            <div style="text-align: center;">
+				<h2>월간 상담지 수정</h2>
                 <div id="monthly">
 					<select id="month" name="month" onchange="changeMonth()">
 						<option value="jan">1월 상담지</option>
@@ -33,18 +33,26 @@
 						<option value="dec">12월 상담지</option>
 				
 					</select>
-					<br><br>
+					<br>
+					💡 이미지를 누르면 삭제 됩니다.
+					<div>
+						<form method="post" enctype="multipart/form-data">
+							<label for="chooseFile1" class="labelBtn">추가</label>
+							<input type="file" id="chooseFile1" class="chooseFile" accept="image/*" onchange="addEngImg(this)">
+						</form>
+					</div>
 					<div id="monthlyImg">
 						
 					</div>
 				</div>
-                <button class="completeBtn">완료</button>
+                <button class="completeBtn" onclick="doneModify()">완료</button>
 			 </div>
 		</div>
 		
 
 		<!-- Scripts -->
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/monthlyModify.js"></script>
 
 	</body>
 </html>

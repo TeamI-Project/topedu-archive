@@ -149,7 +149,7 @@ fetch(url).then(function(res){
         }
 
         if(newc.comment == null){
-            textbox.innerHTML += '<textarea>'+"작성된 내용이 없습니다."+'</textarea>';
+            textbox.innerHTML += '<textarea>'+"내용 없음"+'</textarea>';
         }
         else{
             textbox.innerHTML += '<textarea>'+newc.comment+'</textarea>';

@@ -48,7 +48,7 @@
 				<div id="levelTest">
 					<h4>2. 레벨테스트</h4>
 					<h5>- 영어</h5>
-					<div id="engTestImg">
+					<div id="engTestImg" class="scroll__wrap">
 						<!-- 반복문 4 -->
 						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
@@ -56,7 +56,7 @@
 						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 					</div>
 					<h5>- 수학</h5>
-					<div id="mathTestImg">
+					<div id="mathTestImg" class="scroll__wrap">
 						<!-- 반복문 4 -->
 						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 						<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
@@ -87,33 +87,35 @@
 			 <details>
 				<summary>각종 검사 결과</summary>
 				<button class="modifyBtn" onclick="window.location.href='resultModify.html'">수정하기</button>
-				<div id="SCA">
-					<h4>1. SCA</h4>
-					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
-					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
-				</div>
-				<br>
-				<div id="CPS">
-					<h4>2. CPS</h4>
+				<h4>1. SCA</h4>
+				<div id="SCA" class="scroll__wrap">
 					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 				</div>
 				<br>
+				<h4>2. CPS</h4>
+				<div id="CPS" class="scroll__wrap">
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
+				</div>
+				<br>
+				<h4>3. 커리어넷</h4>
 				<div id="careerNet">
-					<h4>3. 커리어넷</h4>
 					<p style="text-align: center;"><a href="path">PDF로 제공됩니다. 누르면 이동</a></p>
 				</div>
 				<br>
-				<div id="sixSence">
-					<h4>4. 식스센스 코칭</h4>
+				<h4>4. 식스센스 코칭</h4>
+				<div id="sixSence" class="scroll__wrap">
 					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 				</div>
 				<br>
-				<div id="testEtc">
-					<h4>5. 그 외 진로 검사</h4>
+				<h4>5. 그 외 진로 검사</h4>
+				<div id="testEtc" class="scroll__wrap">
 					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
 					<img class ="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"/>
@@ -129,20 +131,20 @@
 				<button class="modifyBtn" onclick="window.location.href='gradeModify.html'">수정하기</button>
 				<div id="selectMiddle">
 					<select id="gradeMiddle" name="gradeMiddle" onchange="changeMiddle()">
-						<option value="middle1-1-1">중학교1학년 1학기 1차고사</option>
-						<option value="middle1-1-2">중학교1학년 1학기 2차고사</option>
-						<option value="middle1-2-1">중학교1학년 2학기 1차고사</option>
-						<option value="middle1-2-2">중학교1학년 2학기 2차고사</option>
+						<option value=0>중학교1학년 1학기 1차고사</option>
+						<option value=1>중학교1학년 1학기 2차고사</option>
+						<option value=2>중학교1학년 2학기 1차고사</option>
+						<option value=3>중학교1학년 2학기 2차고사</option>
 
-						<option value="middle2-1-1">중학교2학년 1학기 1차고사</option>
-						<option value="middle2-1-2">중학교2학년 1학기 2차고사</option>
-						<option value="middle2-2-1">중학교2학년 2학기 1차고사</option>
-						<option value="middle2-2-2">중학교2학년 2학기 2차고사</option>
+						<option value=4>중학교2학년 1학기 1차고사</option>
+						<option value=5>중학교2학년 1학기 2차고사</option>
+						<option value=6>중학교2학년 2학기 1차고사</option>
+						<option value=7>중학교2학년 2학기 2차고사</option>
 
-						<option value="middle3-1-1">중학교3학년 1학기 1차고사</option>
-						<option value="middle3-1-2">중학교3학년 1학기 2차고사</option>
-						<option value="middle3-2-1">중학교3학년 2학기 1차고사</option>
-						<option value="middle3-2-2">중학교3학년 2학기 2차고사</option>
+						<option value=8>중학교3학년 1학기 1차고사</option>
+						<option value=9>중학교3학년 1학기 2차고사</option>
+						<option value=10>중학교3학년 2학기 1차고사</option>
+						<option value=11>중학교3학년 2학기 2차고사</option>
 		
 					</select>
 					<br><br>
@@ -153,18 +155,18 @@
 				<br>
 				<div id="selectHigh">
 					<select id="gradeHigh" name="gradeHigh" onchange="changeHigh()">
-						<option value="high1-1-1">고등학교1학년 1학기 1차고사</option>
-						<option value="high1-1-2">고등학교1학년 1학기 2차고사</option>
-						<option value="high1-2-1">고등학교1학년 2학기 1차고사</option>
-						<option value="high1-2-2">고등학교1학년 2학기 2차고사</option>
+						<option value=12>고등학교1학년 1학기 1차고사</option>
+						<option value=13>고등학교1학년 1학기 2차고사</option>
+						<option value=14>고등학교1학년 2학기 1차고사</option>
+						<option value=15>고등학교1학년 2학기 2차고사</option>
 				
-						<option value="high2-1-1">고등학교2학년 1학기 1차고사</option>
-						<option value="high2-1-2">고등학교2학년 1학기 2차고사</option>
-						<option value="high2-2-1">고등학교2학년 2학기 1차고사</option>
-						<option value="high2-2-2">고등학교2학년 2학기 2차고사</option>
+						<option value=16>고등학교2학년 1학기 1차고사</option>
+						<option value=17>고등학교2학년 1학기 2차고사</option>
+						<option value=18>고등학교2학년 2학기 1차고사</option>
+						<option value=19>고등학교2학년 2학기 2차고사</option>
 				
-						<option value="high3-1-1">고등학교3학년 1학기 1차고사</option>
-						<option value="high3-1-2">고등학교3학년 1학기 2차고사</option>
+						<option value=20>고등학교3학년 1학기 1차고사</option>
+						<option value=21>고등학교3학년 1학기 2차고사</option>
 				
 					</select>
 					<br><br>
@@ -195,7 +197,7 @@
 				
 					</select>
 					<br><br>
-					<div id="monthlyImg">
+					<div id="monthlyImg" class="scroll__wrap">
 						<img class ="mini_img" src="images/myface.PNG" onclick="window.open(this.src)"/>
 					</div>
 				</div>

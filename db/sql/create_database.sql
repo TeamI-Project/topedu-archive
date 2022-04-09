@@ -76,7 +76,7 @@ CREATE TABLE Grade (
 DROP TABLE IF EXISTS Monthly;
 CREATE TABLE Monthly (
     studentID CHAR(20),
-    monthType TINYINT NOT NULL,
+    monthType VARCHAR(10),
     monthPath VARCHAR(255),
     FOREIGN KEY (studentID) REFERENCES Students (studentID)
 );

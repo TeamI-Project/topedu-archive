@@ -15,59 +15,59 @@
 
 		<!-- result foldable -->
 		<div>
-            <div>
-				<h2 style="text-align: center;">학교 성적표 수정</h2>
-				<div id="selectMiddle">
-					<select id="gradeMiddle" name="gradeMiddle" onchange="changeMiddle()">
-						<option value="middle1-1-1">중학교1학년 1학기 1차고사</option>
-						<option value="middle1-1-2">중학교1학년 1학기 2차고사</option>
-						<option value="middle1-2-1">중학교1학년 2학기 1차고사</option>
-						<option value="middle1-2-2">중학교1학년 2학기 2차고사</option>
+            <div style="text-align: center;">
+				<h2 >학교 성적표 수정</h2>
+				<div id="select">
+					<select id="grade" name="grade">
+						<option value=0>중학교1학년 1학기 1차고사</option>
+						<option value=1>중학교1학년 1학기 2차고사</option>
+						<option value=2>중학교1학년 2학기 1차고사</option>
+						<option value=3>중학교1학년 2학기 2차고사</option>
 
-						<option value="middle2-1-1">중학교2학년 1학기 1차고사</option>
-						<option value="middle2-1-2">중학교2학년 1학기 2차고사</option>
-						<option value="middle2-2-1">중학교2학년 2학기 1차고사</option>
-						<option value="middle2-2-2">중학교2학년 2학기 2차고사</option>
+						<option value=4>중학교2학년 1학기 1차고사</option>
+						<option value=5>중학교2학년 1학기 2차고사</option>
+						<option value=6>중학교2학년 2학기 1차고사</option>
+						<option value=7>중학교2학년 2학기 2차고사</option>
 
-						<option value="middle3-1-1">중학교3학년 1학기 1차고사</option>
-						<option value="middle3-1-2">중학교3학년 1학기 2차고사</option>
-						<option value="middle3-2-1">중학교3학년 2학기 1차고사</option>
-						<option value="middle3-2-2">중학교3학년 2학기 2차고사</option>
-		
+						<option value=8>중학교3학년 1학기 1차고사</option>
+						<option value=9>중학교3학년 1학기 2차고사</option>
+						<option value=10>중학교3학년 2학기 1차고사</option>
+						<option value=11>중학교3학년 2학기 2차고사</option>
+
+						<option value=12>고등학교1학년 1학기 1차고사</option>
+						<option value=13>고등학교1학년 1학기 2차고사</option>
+						<option value=14>고등학교1학년 2학기 1차고사</option>
+						<option value=15>고등학교1학년 2학기 2차고사</option>
+				
+						<option value=16>고등학교2학년 1학기 1차고사</option>
+						<option value=17>고등학교2학년 1학기 2차고사</option>
+						<option value=18>고등학교2학년 2학기 1차고사</option>
+						<option value=19>고등학교2학년 2학기 2차고사</option>
+				
+						<option value=20>고등학교3학년 1학기 1차고사</option>
+						<option value=21>고등학교3학년 1학기 2차고사</option>
 					</select>
-					<br><br>
-					<div id="middleImg">
-						<img class ="mini_img" src="images/myface.PNG" onclick="window.open(this.src)"/>
+
+					<div>
+						<form method="post" enctype="multipart/form-data">
+							<label for="chooseFile" class="labelBtn">수정</label>
+							<input type="file" id="chooseFile" class="chooseFile" accept="image/*" onchange="changeImg(this)">
+						</form>
+					</div>
+					<div id="showImg">
+						
 					</div>
 				</div>
 				<br>
-				<div id="selectHigh">
-					<select id="gradeHigh" name="gradeHigh" onchange="changeHigh()">
-						<option value="high1-1-1">고등학교1학년 1학기 1차고사</option>
-						<option value="high1-1-2">고등학교1학년 1학기 2차고사</option>
-						<option value="high1-2-1">고등학교1학년 2학기 1차고사</option>
-						<option value="high1-2-2">고등학교1학년 2학기 2차고사</option>
 				
-						<option value="high2-1-1">고등학교2학년 1학기 1차고사</option>
-						<option value="high2-1-2">고등학교2학년 1학기 2차고사</option>
-						<option value="high2-2-1">고등학교2학년 2학기 1차고사</option>
-						<option value="high2-2-2">고등학교2학년 2학기 2차고사</option>
-				
-						<option value="high3-1-1">고등학교3학년 1학기 1차고사</option>
-						<option value="high3-1-2">고등학교3학년 1학기 2차고사</option>
-				
-					</select>
-					<br><br>
-					<div id="highImg">
-						<img class ="mini_img" src="images/myface.PNG" onclick="window.open(this.src)"/>
-					</div>
-                <button class="completeBtn">완료</button>
+                <button class="completeBtn" onclick="doneModify()">완료</button>
 			 </div>
 		</div>
 		
 
 		<!-- Scripts -->
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/gradeModify.js"></script>
 
 	</body>
 </html>
