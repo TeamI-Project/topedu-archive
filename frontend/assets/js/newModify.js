@@ -280,7 +280,7 @@ function doneModify() {
         mode: 'no-cors',
         headers: {
             "Access-Control-Allow-Origin" : "*",
-            "Content-Type": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
         },
         body: JSON.stringify({
         id : "mtop1234",
