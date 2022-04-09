@@ -36,9 +36,9 @@ router.get("/", (req, res) => {
                     math : math
                 },
                 newConsulting : {
-                    friendship : record[0].friendShip,
+                    friendship : record[0].friendship,
                     personality : record[0].personality,
-                    parentship : record[0].parentShip,
+                    parentship : record[0].parentship,
                     concentration : record[0].concentration,
                     homework : record[0].homework,
                     comment : record[0].comment
