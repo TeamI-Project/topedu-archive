@@ -25,10 +25,10 @@ let engImgCnt = 0;
 let mathImgCnt = 0;
 let checkImgCnt = 0;
 
+const id = '?id=mtop1234'
+const url = "https://top-edu.co.kr:8000/api/newModify";
 
-const url = "https://top-edu.co.kr:8000/api/newModify?id=mtop1234";
-
-fetch(url).then(function(res){
+fetch(url+id).then(function(res){
     res.json().then(function(json){
         //1
         if(json.firstLevel.regEng == null){
@@ -96,7 +96,7 @@ fetch(url).then(function(res){
             temp += '<label class="radioBtn">\
             <input type="radio" name="chk_friendShip" id="friendShip'+i+'" ';
 
-            if(newc.friendShip == i){
+            if(newc.friendship == i){
                 temp += 'checked = "checked"';
             }
             temp += '><span>'+use1[i]+'</span></label>';
@@ -118,7 +118,7 @@ fetch(url).then(function(res){
             temp += '<label class="radioBtn">\
             <input type="radio" name="chk_parentShip" id="parentShip'+i+'" ';
 
-            if(newc.parentShip == i){
+            if(newc.parentship == i){
             temp += 'checked = "checked"';
             }
             temp += '><span>'+use[i]+'</span></label>';
@@ -301,7 +301,7 @@ function doneModify() {
         headers: {
             "Content-Type": "application/json",
         },
-        body: data
+        body: {id : "mtop1234"}, data
         })
         .then((response) => response.json())
         .then((res) => console.log(res))

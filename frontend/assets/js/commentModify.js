@@ -10,7 +10,7 @@ fetch(url).then(function(res){
         teacher.innerHTML += '<textarea id="teacherText" cols="30" rows="10">'+json.teacherComment+'</textarea>';
         student.innerHTML += '<textarea id="studentText" cols="30" rows="10">'+studentComment+'</textarea>';
         parents.innerHTML += '<textarea id="parentsText" cols="30" rows="10">'+parentsComment+'</textarea>';
-        etc.innerHTML += '<textarea id="etcText" cols="30" rows="10"'+etcComment+'></textarea>';
+        etc.innerHTML += '<textarea id="etcText" cols="30" rows="10">'+etcComment+'</textarea>';
         
     })
 })
