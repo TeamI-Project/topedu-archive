@@ -31,18 +31,18 @@ const url = "https://top-edu.co.kr:8000/api/newModify?id=mtop1234";
 fetch(url).then(function(res){
     res.json().then(function(json){
         //1
-        if(json.firstLevel.regEnglish == null){
+        if(json.firstLevel.regEng == null){
             regAtEng.value = 'x';
         }
         else{
-            regAtEng.value = json.firstLevel.regEnglish;
+            regAtEng.value = json.firstLevel.regEng;
         }
 
-        if(json.firstLevel.lvEnglish == null){
+        if(json.firstLevel.levelEng == null){
             regLvEng.value = 'x';
         }
         else{
-            regLvEng.value = json.firstLevel.lvEnglish;
+            regLvEng.value = json.firstLevel.levelEng;
         }
         
         if(json.firstLevel.regMath == null){
@@ -52,11 +52,11 @@ fetch(url).then(function(res){
             regAtMath.value = json.firstLevel.regMath;
         }
 
-        if(json.firstLevel.lvMath == null){
+        if(json.firstLevel.levelMath == null){
             regLvMath.value = 'x';
         }
         else{
-            regLvMath.value = json.firstLevel.lvMath;
+            regLvMath.value = json.firstLevel.levelMath;
         }      
         
 
@@ -156,7 +156,7 @@ fetch(url).then(function(res){
         }
         
         //4
-        checkList.innerHTML += '<img id="checkListImg" class="mini_img" src="' + json.newCheckList.checkList +'" onclick="delImg(this.id)"></img>';
+        checkList.innerHTML += '<img id="checkListImg" class="mini_img" src="' + json.newCheckList.checklist +'" onclick="delImg(this.id)"></img>';
         checkImgCnt += 1;
     })
 })
@@ -274,27 +274,29 @@ function doneModify() {
 
     var data = {
         firstLevel : {
-            regEnglish : regEnglish,
-            lvEnglish : lvEnglish,
+            regEng : regEnglish,
+            levelEng : lvEnglish,
             regMath : regMath,
-            lvMath : lvMath
+            levelMath : lvMath
         },
         levelTest : {
             english : english,
             math : math
         },
         newConsulting : {
-            friendShip : friendShip,
+            friendship : friendShip,
             personality : personality,
-            parentShip : parentShip,
+            parentship : parentShip,
             concentration : concentration,
             homework : homework,
-            textbox : textbox
+            comment : textbox
         },
         newCheckList : {
-            checkList : checkList
+            checklist : checkList
         }
     }
+
+    
 
     
 
