@@ -8,6 +8,8 @@ const port = 8000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
+app.use(app.router)
 
 const privateKey = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/privkey.pem", "utf8");
 const certificate = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/cert.pem", "utf8")
@@ -19,7 +21,6 @@ const credentials = {
     ca: ca
 };
 
-app.use(cors());
 
 const newModify = require('./routes/newModify');
 const resultModify = require('./routes/resultModify');
