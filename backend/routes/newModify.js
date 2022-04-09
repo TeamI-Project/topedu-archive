@@ -54,11 +54,10 @@ router.get("/", (req, res) => {
     });
 })
 
-router.post("/", (req, res) => {
+router.post("/", express.json(), (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
     console.log("in post~");
-    const id = req.body.id;
     console.log(req.body);
 
     res.send("in post !!");
