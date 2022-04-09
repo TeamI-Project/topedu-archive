@@ -9,32 +9,42 @@ const connection = mysql.createConnection(dbconfig);
 // Table NewRecord
 router.get("/", (req, res) => {
     const id = req.query.id;
-    const query = "SELECT * from NewRecord WHERE studentID='" + id + "'";
-    connection.query(query, (err, rows) => {
+    const query_nr = "SELECT * FROM NewRecord WHERE studentID='" + id + "';"
+    const query_lt = "SELECT * FROM LevelTest WHERE studentID='" + id + "';";
+    connection.query(query_nr + query_lt, (err, results, field) => {
         if (err) throw err;
         res.header("Access-Control-Allow-Origin", "*");
+        const english = []
+        const math = []
+        const record = results[0];
+        const lvTest = results[1];
+        for (let index = 0; index < lvTest.length; index++) {
+            const element = lvTest[index];
+            element.dataType == 0 ? english.push(element.dataPath) : math.push(element.dataPath);
+        }
         try {
-            res.status(200).json({
+            res.status(200)
+            .json({
                 firstLevel : {
-                    regEnglish : rows[0].regEng,
-                    lvEnglish : rows[0].levelEng,
-                    regMath : rows[0].regMath,
-                    lvMath : rows[0].levelMath
+                    regEnglish : record[0].regEng,
+                    lvEnglish : record[0].levelEng,
+                    regMath : record[0].regMath,
+                    lvMath : record[0].levelMath
                 },
                 levelTest : {
-                    english : [rows[0].testEng],
-                    math : [rows[0].testMath]
+                    english : english,
+                    math : math
                 },
                 newConsulting : {
-                    friendShip : rows[0].friendShip,
-                    personality : rows[0].personality,
-                    parentShip : rows[0].parentShip,
-                    concentration : rows[0].concentration,
-                    homework : rows[0].homework,
-                    textbox : rows[0].comment
+                    friendship : record[0].friendShip,
+                    personality : record[0].personality,
+                    parentship : record[0].parentShip,
+                    concentration : record[0].concentration,
+                    homework : record[0].homework,
+                    comment : record[0].comment
                 },
                 newCheckList : {
-                    checkList : rows[0].checklist
+                    checkList : record[0].checklist
                 }
             });
         } catch (err) {
