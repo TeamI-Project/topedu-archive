@@ -301,8 +301,10 @@ function doneModify() {
         headers: {
             "Content-Type": "application/json",
         },
-        body: {id : "mtop1234"}, data
-        })
+        body: { id : "mtop1234",
+                data
+            }
+})
         .then((response) => response.json())
         .then((res) => console.log(res))
 }
