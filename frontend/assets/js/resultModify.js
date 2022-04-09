@@ -16,12 +16,14 @@ fetch(url).then(function(res){
 
         let scaImg = json.SCA.sca;
         for(i=0; i<scaImg.length; i++){
-            SCA.innerHTML += '<img class ="mini_img" src="'+scaImg[i]+'" onclick="window.open(this.src)"/>';
+            SCA.innerHTML += '<img id="'+scaCnt+'" class ="mini_img" src="'+scaImg[i]+'" onclick="delImg(this.id)"/>';
+            scaCnt+=1;
         }
 
         let cpsImg = json.CPS.cps;
         for(i=0; i<cpsImg.length; i++){
-            CPS.innerHTML += '<img class ="mini_img" src="'+cpsImg[i]+'" onclick="window.open(this.src)"/>';
+            CPS.innerHTML += '<img id="'+cpsCnt+'" class ="mini_img" src="'+cpsImg[i]+'" onclick="delImg(this.id)"/>';
+            cpsCnt+=1;
         }
 
         let careerPdf = json.careerNet.careerNet;
@@ -29,12 +31,14 @@ fetch(url).then(function(res){
 
         let ssImg = json.sixSence.sixSence;
         for(i=0; i<ssImg.length; i++){
-            sixSence.innerHTML += '<img class ="mini_img" src="'+ssImg[i]+'" onclick="window.open(this.src)"/>';
+            sixSence.innerHTML += '<img id="'+ssCnt+'" class ="mini_img" src="'+ssImg[i]+'" onclick="delImg(this.id)"/>';
+            ssCnt+=1;
         }
 
         let etcImg = json.testEtc.etc;
         for(i=0; i<etcImg.length; i++){
-            testEtc.innerHTML += '<img class ="mini_img" src="'+etcImg[i]+'" onclick="window.open(this.src)"/>';
+            testEtc.innerHTML += '<img id="'+etcCnt+'" class ="mini_img" src="'+etcImg[i]+'" onclick="delImg(this.id)"/>';
+            etcCnt+=1;
         }
     })
 })

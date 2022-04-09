@@ -110,7 +110,7 @@ fetch(url).then(function(res){
             if(newc.personality == i){
             temp += 'checked = "checked"';
             }
-            temp += '><span>'+use1[i]+'</span></label>';
+            temp += '><span>'+use2[i]+'</span></label>';
             personality.innerHTML += temp;
 
             temp = '';
@@ -121,7 +121,7 @@ fetch(url).then(function(res){
             if(newc.parentShip == i){
             temp += 'checked = "checked"';
             }
-            temp += '><span>'+use1[i]+'</span></label>';
+            temp += '><span>'+use[i]+'</span></label>';
             parentShip.innerHTML += temp;
 
             temp = '';
