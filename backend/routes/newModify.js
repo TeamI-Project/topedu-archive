@@ -6,7 +6,6 @@ const connection = mysql.createConnection(dbconfig);
 // const cors = require('cors');
 // ALTER USER 'topedu'@'localhost' IDENTIFIED WITH mysql_native_password BY 'topedu';
 
-// Table NewRecord
 router.get("/", (req, res) => {
     const id = req.query.id;
     const query_nr = "SELECT * FROM NewRecord WHERE studentID='" + id + "';"
@@ -56,7 +55,36 @@ router.get("/", (req, res) => {
 })
 
 router.post("/", (req, res) => {
-    res.send("success newModify send");
+    const id = req.body.id;
+    const query = "UPDATE NewRecord SET regEng=?, levelEng=?, \
+    regMath=?, levelMath=?, friendship=?, personality=?, parentship=?, \
+    concentration=?, homework=?, comment=?, checklist=? \
+    WHERE studentID=?";
+
+    const params = [];
+
+    const fLv = Object.keys(req.body.firstLevel);
+    const lvTest = Object.keys(req.body.levelTest);
+    const newCst = Object.keys(req.body.newConsulting);
+    const newlst = Object.keys(req.body.newCheckList);
+
+    params.push(fLv);
+    params.push(lvTest);
+    params.push(newCst);
+    params.push(newlst);
+    params.push(id);
+
+    connection.query(query, params, (err, results, field) => {
+        if (err) throw err;
+        res.header("Access-Control-Allow-Origin", "*");
+        try {
+            res.status(200);
+        } catch (err) {
+            console.log(err);
+            res.status(500);
+            res.send(err.message);
+        }         
+    });
 })
 
 module.exports = router;
