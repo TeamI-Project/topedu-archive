@@ -296,8 +296,13 @@ function doneModify() {
         }
     }
 
-    
-
-    
-
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: data
+        })
+        .then((response) => response.json())
+        .then((res) => console.log(res))
 }
