@@ -275,14 +275,8 @@ function doneModify() {
         checkList = checkList.src;
     }
 
-    fetch(url, {
-        method: "POST",
-        mode: 'no-cors',
-        headers: {
-            "Access-Control-Allow-Origin" : "*",
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: JSON.stringify({
+
+    var data = {
         id : "mtop1234",
 
         firstLevel : {
@@ -305,7 +299,20 @@ function doneModify() {
         },
         newCheckList : {
             checklist : checkList
-        }})
+        }
+    }
+
+    fetch(url, {
+        method: "POST",
+        mode: 'no-cors',
+        headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            id : "1234",
+            pw : "1234"
+        })
 })
         .then((response) => response.json())
         .then((res) => console.log(res))
