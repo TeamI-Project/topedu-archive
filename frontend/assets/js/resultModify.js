@@ -1,7 +1,7 @@
 let SCA = document.getElementById("SCA");
 let CPS = document.getElementById("CPS");
 let careerNet = document.getElementById("careerNet");
-let sixSence = document.getElementById("sixSence");
+let sixSense = document.getElementById("sixSense");
 let testEtc = document.getElementById("testEtc");
 
 let scaCnt = 0;
@@ -29,9 +29,9 @@ fetch(url).then(function(res){
         let careerPdf = json.careerNet.careerNet;
         careerNet.innerHTML += '<p style="text-align: center;"><a href="'+careerPdf+'">PDF로 제공됩니다. 누르면 이동</a></p>';
 
-        let ssImg = json.sixSence.sixSence;
+        let ssImg = json.sixSense.sixSense;
         for(i=0; i<ssImg.length; i++){
-            sixSence.innerHTML += '<img id="'+ssCnt+'" class ="mini_img" src="'+ssImg[i]+'" onclick="delImg(this.id)"/>';
+            sixSense.innerHTML += '<img id="'+ssCnt+'" class ="mini_img" src="'+ssImg[i]+'" onclick="delImg(this.id)"/>';
             ssCnt+=1;
         }
 
@@ -157,8 +157,8 @@ function doneModify(){
         "careerNet" : {
             "careerNet" : pdfList
         },
-        "sixSence" : {
-            "sixSence" : ssPath
+        "sixSense" : {
+            "sixSense" : ssPath
         },
         "testEtc" : {
             "etc" : etcPath
