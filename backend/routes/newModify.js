@@ -67,10 +67,10 @@ router.post("/", express.json(), (req, res) => {
     const updateParams = [];
 
     const id = req.body.id;
-    const fLv = Object.keys(req.body.firstLevel);
-    const lvTest = Object.keys(req.body.levelTest);
-    const newCst = Object.keys(req.body.newConsulting);
-    const newlst = Object.keys(req.body.newCheckList);
+    const fLv = req.body.firstLevel;
+    const lvTest = req.body.levelTest;
+    const newCst = req.body.newConsulting;
+    const newlst = req.body.newCheckList;
 
     console.log('id : ' + id);
     console.log('fLv : ' + fLv)
