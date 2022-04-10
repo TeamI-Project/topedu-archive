@@ -72,6 +72,12 @@ router.post("/", express.json(), (req, res) => {
     const newCst = Object.keys(req.body.newConsulting);
     const newlst = Object.keys(req.body.newCheckList);
 
+    console.log('id : ' + id);
+    console.log('fLv : ' + fLv)
+    console.log('lvTest : ' + lvTest);
+    console.log('newCst : ' + newCst);
+    console.log('newlst : ' + newlst);
+
     updateParams.push(fLv);
     updateParams.push(newCst);
     updateParams.push(newlst);
