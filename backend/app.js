@@ -9,9 +9,9 @@ const port = 8000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const privateKey = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/privkey.pem", "utf8");
-const certificate = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/cert.pem", "utf8")
-const ca = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/chain.pem", "utf8")
+const privateKey = fs.readFileSync("/etc/letsencrypt/live/archive.top-edu.co.kr/privkey.pem", "utf8");
+const certificate = fs.readFileSync("/etc/letsencrypt/live/archive.top-edu.co.kr/cert.pem", "utf8")
+const ca = fs.readFileSync("/etc/letsencrypt/live/archive.top-edu.co.kr/chain.pem", "utf8")
 
 const credentials = {
     key: privateKey,
