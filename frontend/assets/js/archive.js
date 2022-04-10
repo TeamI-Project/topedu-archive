@@ -19,7 +19,7 @@ function getCookie() {
 
 let studentID = getCookie();
 
-const info = "https://top-edu.co.kr:8000/api/studentInfo?id=";
+const info = "https://archive.top-edu.co.kr:8000/api/studentInfo?id=";
 
 fetch(info+studentID).then(function(res){
     res.json().then(function(json){
@@ -63,7 +63,7 @@ let use3 = ["좋음", "보통", "개선필요"];
 
 const id = '?id='+studentID;
 
-const url1 = "https://top-edu.co.kr:8000/api/newModify";
+const url1 = "https://archive.top-edu.co.kr:8000/api/newModify";
 
 fetch(url1+id).then(function(res){
     res.json().then(function(json){
@@ -168,7 +168,7 @@ let careerNet = document.getElementById("careerNet");
 let sixSence = document.getElementById("sixSence");
 let testEtc = document.getElementById("testEtc");
 
-const url2 = "http://top-edu.co.kr:8000/api/resultModify";
+const url2 = "http://archive.top-edu.co.kr:8000/api/resultModify";
 
 fetch(url2+id).then(function(res){
     res.json().then(function(json){
@@ -205,7 +205,7 @@ let middleImg = document.getElementById("middleImg");
 let high = document.getElementById("gradeMiddle");
 let highImg = document.getElementById("middleImg");
 
-const url3 = "http://top-edu.co.kr:8000/api/gradeModify";
+const url3 = "http://archive.top-edu.co.kr:8000/api/gradeModify";
 
 fetch(url3+id).then(function(res){
     res.json().then(function(json){
@@ -226,7 +226,7 @@ fetch(url3+id).then(function(res){
 let month = document.getElementById("month");
 let monthlyImg = document.getElementById("monthlyImg");
 
-const url4 = "http://top-edu.co.kr:8000/api/gradeModify";
+const url4 = "http://archive.top-edu.co.kr:8000/api/gradeModify";
 
 fetch(url+id).then(function(res){
     res.json().then(function(json){
@@ -246,7 +246,7 @@ let student = document.getElementById("studentComment");
 let parents = document.getElementById("parentsComment");
 let etc = document.getElementById("etcComment");
 
-const url = "http://top-edu.co.kr:8000/api/commentModify";
+const url = "http://archive.top-edu.co.kr:8000/api/commentModify";
 
 fetch(url).then(function(res){
     res.json().then(function(json){

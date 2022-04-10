@@ -50,7 +50,7 @@
 				function search() {
 					let value = document.getElementById("name");
 					value=value.value;
-					const url = "https://top-edu.co.kr:8000/api/studentID?name="+value;
+					const url = "https://archive.top-edu.co.kr:8000/api/studentID?name="+value;
 
 					fetch(url).then(function(res){
     					res.json().then(function(json){

@@ -23,7 +23,7 @@ let month = document.getElementById("month");
 let monthlyImg = document.getElementById("monthlyImg");
 let select = document.getElementById("month");
 
-const url = "http://top-edu.co.kr:8000/api/gradeModify?id="+studentID;
+const url = "http://archive.top-edu.co.kr:8000/api/gradeModify?id="+studentID;
 
 let monthData;
 let ImgCnt=0;

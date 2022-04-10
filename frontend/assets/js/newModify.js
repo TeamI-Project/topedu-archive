@@ -47,7 +47,7 @@ let mathImgCnt = 0;
 let checkImgCnt = 0;
 
 const id = '?id='+studentID;
-const url = "https://top-edu.co.kr:8000/api/newModify";
+const url = "https://archive.top-edu.co.kr:8000/api/newModify";
 
 fetch(url+id).then(function(res){
     res.json().then(function(json){
