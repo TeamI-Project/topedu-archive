@@ -1,3 +1,24 @@
+function getCookie() {
+    var result = null;
+    var cookie = document.cookie.split(';');
+    cookie.some(function (item) {
+        // 공백을 제거
+        item = item.replace(' ', '');
+ 
+        var dic = item.split('=');
+
+        var key = "student";
+
+        if (key === dic[0]) {
+            result = dic[1];
+            return true;    // break;
+        }
+    });
+    return unescape(result);
+}
+
+let studentID = getCookie();
+
 let SCA = document.getElementById("SCA");
 let CPS = document.getElementById("CPS");
 let careerNet = document.getElementById("careerNet");
@@ -9,7 +30,7 @@ let cpsCnt = 0;
 let ssCnt = 0;
 let etcCnt = 0;
 
-const url = "http://top-edu.co.kr:8000/api/resultModify";
+const url = "http://top-edu.co.kr:8000/api/resultModify?id="+studentID;
 
 fetch(url).then(function(res){
     res.json().then(function(json){
@@ -148,6 +169,7 @@ function doneModify(){
     }
 
     var data = {
+        "id" : studentID,
         "SCA" : {
             "sca" : scaPath
         },

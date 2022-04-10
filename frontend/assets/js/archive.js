@@ -1,3 +1,44 @@
+function getCookie() {
+    var result = null;
+    var cookie = document.cookie.split(';');
+    cookie.some(function (item) {
+        // 공백을 제거
+        item = item.replace(' ', '');
+ 
+        var dic = item.split('=');
+
+        var key = "student";
+
+        if (key === dic[0]) {
+            result = dic[1];
+            return true;    // break;
+        }
+    });
+    return unescape(result);
+}
+
+let studentID = getCookie();
+
+const info = "https://top-edu.co.kr:8000/api/studentInfo?id=";
+
+fetch(info+studentID).then(function(res){
+    res.json().then(function(json){
+        let branch;
+        if(json.branch == 'CH'){
+            branch="창원점";
+        }else if(json.branch == 'MA'){
+            branch="마산점";
+        }else if(json.branch == 'SA'){
+            branch="사천점"
+        }
+        let header = document.getElementById("header");
+        header.innerHTML+='<img class ="profile" src="../uploads/studentImg/'+json.img+'" onclick="window.open(this.src)"/>';
+		header.innerHTML+='<h1 id="studentID" style="display: inline;">'+json.name+'</h1>';
+		header.innserHTML+='<p id="branch" style="display: inline;">'+branch+'</p>';
+
+    })
+})
+
 //firstLevel
 let regAtEng = document.getElementById("regEnglish");
 let regLvEng = document.getElementById("lvEnglish");
@@ -20,7 +61,7 @@ let use1 = ["좋음", "보통", "도움필요"];
 let use2 = ["외향적", "내향적", "외내향적"];
 let use3 = ["좋음", "보통", "개선필요"];
 
-const id = '?id=mtop1234';
+const id = '?id='+studentID;
 
 const url1 = "https://top-edu.co.kr:8000/api/newModify";
 
@@ -88,23 +129,23 @@ fetch(url1+id).then(function(res){
             var temp = '';
 
             //friendShip
-            temp = '친구들과의 관계 : '+uae1[i];
+            temp = '📌 친구들과의 관계 : '+use1[i];
             friendShip.innerText += temp;
 
             //personality
-            temp = '평소 성격 : '+uae2[i];
+            temp = '📌 평소 성격 : '+use2[i];
             personality.innerText += temp;
 
             //parentShip
-            temp = '부모님과의 소통 : '+uae3[i];
+            temp = '📌 부모님과의 소통 : '+use3[i];
             parentShip.innerText += temp;
 
             //concentration
-            temp = '집중력 : '+uae1[i];
+            temp = '📌 집중력 : '+use1[i];
             concentration.innerText += temp;
 
             //homework
-            temp = '과제성실도 : '+uae1[i];
+            temp = '📌 과제성실도 : '+use1[i];
             homework.innerText += temp;
         }
 
@@ -157,7 +198,7 @@ fetch(url2+id).then(function(res){
     })
 })
 
-let grade = ['middle1-1-1', 'middle1-1-2', 'middle1-2-1', 'middle1-2-2', 'middle2-1-1', 'middle2-1-2', 'middle2-2-1', 'middle2-2-2', 'middle3-1-1', 'middle3-1-2', 'middle3-2-1', 'middle3-2-2', 'high1-1-1', 'high1-1-2', 'high1-2-1', 'high1-2-2', 'high2-1-1', 'high2-1-2', 'high2-2-1', 'high2-2-2', 'high3-1-1', 'high3-1-2']
+//let grade = ['middle1-1-1', 'middle1-1-2', 'middle1-2-1', 'middle1-2-2', 'middle2-1-1', 'middle2-1-2', 'middle2-2-1', 'middle2-2-2', 'middle3-1-1', 'middle3-1-2', 'middle3-2-1', 'middle3-2-2', 'high1-1-1', 'high1-1-2', 'high1-2-1', 'high1-2-2', 'high2-1-1', 'high2-1-2', 'high2-2-1', 'high2-2-2', 'high3-1-1', 'high3-1-2']
 
 let middle = document.getElementById("gradeMiddle");
 let middleImg = document.getElementById("middleImg");

@@ -1,9 +1,30 @@
+function getCookie() {
+    var result = null;
+    var cookie = document.cookie.split(';');
+    cookie.some(function (item) {
+        // 공백을 제거
+        item = item.replace(' ', '');
+ 
+        var dic = item.split('=');
+
+        var key = "student";
+
+        if (key === dic[0]) {
+            result = dic[1];
+            return true;    // break;
+        }
+    });
+    return unescape(result);
+}
+
+let studentID = getCookie();
+
 let teacher = document.getElementById("teacherComment");
 let student = document.getElementById("studentComment");
 let parents = document.getElementById("parentsComment");
 let etc = document.getElementById("etcComment");
 
-const url = "http://top-edu.co.kr:8000/api/commentModify";
+const url = "http://top-edu.co.kr:8000/api/commentModify?id="+studentID;
 
 fetch(url).then(function(res){
     res.json().then(function(json){
@@ -22,6 +43,7 @@ function doneModify(){
     etc = document.getElementById('etcText').value;
     
     var data = {
+        "id" : studentID,
         "teacher" : teacher,
         "student" : student,
         "parents" : parents,
