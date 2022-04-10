@@ -67,28 +67,24 @@ router.post("/", express.json(), (req, res) => {
     const updateParams = [];
 
     const id = req.body.id;
-    const fLv = Object.keys(req.body.firstLevel);
-    const lvTest = Object.keys(req.body.levelTest);
-    const newCst = Object.keys(req.body.newConsulting);
-    const newlst = Object.keys(req.body.newCheckList);
+    const fLv = req.body.firstLevel;
+    const lvTest = req.body.levelTest;
+    const newCst = req.body.newConsulting;
+    const newlst = req.body.newCheckList;
 
-    console.log('id : ' + id);
-    console.log('fLv : ' + fLv)
-    console.log('lvTest : ' + lvTest);
-    console.log('newCst : ' + newCst);
-    console.log('newlst : ' + newlst);
+    updateParams.push(fLv.regEng);
+    updateParams.push(fLv.levelEng);
+    updateParams.push(fLv.regMath);
+    updateParams.push(fLv.levelMath);
 
-    for (let index = 0; index < fLv.length; index++) {
-        updateParams.push(req.body.firstLevel.fLv[index]);
-    }
+    updateParams.push(newCst.friendship);
+    updateParams.push(newCst.personality);
+    updateParams.push(newCst.parentship);
+    updateParams.push(newCst.concentration);
+    updateParams.push(newCst.homework);
+    updateParams.push(newCst.comment);
 
-    for (let index = 0; index < newCst.length; index++) {
-        updateParams.push(req.body.newConsulting.newCst[index]);
-    }
-
-    for (let index = 0; index < newlst.length; index++) {
-        updateParams.push(req.body.newCheckList.newlst[index]);
-    }
+    updateParams.push(newlst.checklist);    
 
     console.log('updateParams : ' + updateParams);
 
