@@ -9,9 +9,9 @@ const port = 8000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const privateKey = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/privkey.pem", "utf8");
-const certificate = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/cert.pem", "utf8")
-const ca = fs.readFileSync("/etc/letsencrypt/live/top-edu.co.kr/chain.pem", "utf8")
+const privateKey = fs.readFileSync("/etc/letsencrypt/live/archive.top-edu.co.kr/privkey.pem", "utf8");
+const certificate = fs.readFileSync("/etc/letsencrypt/live/archive.top-edu.co.kr/cert.pem", "utf8")
+const ca = fs.readFileSync("/etc/letsencrypt/live/archive.top-edu.co.kr/chain.pem", "utf8")
 
 const credentials = {
     key: privateKey,
@@ -19,13 +19,16 @@ const credentials = {
     ca: ca
 };
 
-
+const studentID = require('./routes/studentID');
+const studentInfo = require('./routes/studentInfo');
 const newModify = require('./routes/newModify');
 const resultModify = require('./routes/resultModify');
 const gradeModify = require('./routes/gradeModify');
 const monthly = require('./routes/monthly');
 const comment = require('./routes/comment');
 
+app.use('/api/studentID', cors(), studentID);
+app.use('/api/studentInfo', cors(), studentInfo);
 app.use('/api/newModify', cors(), newModify);
 app.use('/api/resultModify', cors(), resultModify);
 app.use('/api/gradeModify', cors(), gradeModify);
