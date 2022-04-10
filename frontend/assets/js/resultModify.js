@@ -30,7 +30,7 @@ let cpsCnt = 0;
 let ssCnt = 0;
 let etcCnt = 0;
 
-const url = "http://archive.top-edu.co.kr:8000/api/resultModify?id="+studentID;
+const url = "https://archive.top-edu.co.kr:8000/api/resultModify?id="+studentID;
 
 fetch(url).then(function(res){
     res.json().then(function(json){

@@ -24,7 +24,7 @@ let studentID = getCookie();
 let select = document.getElementById("grade");
 let show = document.getElementById("showImg");
 
-const url = "http://archive.top-edu.co.kr:8000/api/gradeModify?id="+studentID;
+const url = "https://archive.top-edu.co.kr:8000/api/gradeModify?id="+studentID;
 
 let middle;
 let high;

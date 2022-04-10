@@ -168,7 +168,7 @@ let careerNet = document.getElementById("careerNet");
 let sixSence = document.getElementById("sixSence");
 let testEtc = document.getElementById("testEtc");
 
-const url2 = "http://archive.top-edu.co.kr:8000/api/resultModify";
+const url2 = "https://archive.top-edu.co.kr:8000/api/resultModify";
 
 fetch(url2+id).then(function(res){
     res.json().then(function(json){
@@ -226,7 +226,7 @@ fetch(url3+id).then(function(res){
 let month = document.getElementById("month");
 let monthlyImg = document.getElementById("monthlyImg");
 
-const url4 = "http://archive.top-edu.co.kr:8000/api/gradeModify";
+const url4 = "https://archive.top-edu.co.kr:8000/api/gradeModify";
 
 fetch(url+id).then(function(res){
     res.json().then(function(json){
@@ -246,7 +246,7 @@ let student = document.getElementById("studentComment");
 let parents = document.getElementById("parentsComment");
 let etc = document.getElementById("etcComment");
 
-const url = "http://archive.top-edu.co.kr:8000/api/commentModify";
+const url = "https://archive.top-edu.co.kr:8000/api/commentModify";
 
 fetch(url).then(function(res){
     res.json().then(function(json){
