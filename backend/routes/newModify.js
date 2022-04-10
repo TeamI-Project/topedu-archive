@@ -99,6 +99,7 @@ router.post("/", express.json(), (req, res) => {
             // 하나씩 english insert
             const imgQ = "INSERT INTO LevelTest VALUES ('" +  studentID + "', 0, ?)";
             connection.query(imgQ, lvTest.english[index], (err, results) => {
+                if (err) throw err;
                 console.log("insert english " + lvTest.english[index]);
             });
         }
@@ -106,6 +107,7 @@ router.post("/", express.json(), (req, res) => {
             // 하나씩 math insert
             const imgQ = "INSERT INTO LevelTest VALUES ('" +  studentID + "', 1, ?)";
             connection.query(imgQ, lvTest.math[index], (err, results) => {
+                if (err) throw err;
                 console.log("insert math " + lvTest.math[index]);
             });
         }
