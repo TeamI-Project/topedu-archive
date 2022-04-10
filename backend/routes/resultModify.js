@@ -7,25 +7,50 @@ const connection = mysql.createConnection(dbconfig);
 // ALTER USER 'topedu'@'localhost' IDENTIFIED WITH mysql_native_password BY 'topedu';
 
 router.get("/", (req, res) => {
-    connection.query('SELECT * from Students', (err, rows) => {
+    const studentID = req.query.id;
+    const query = 'SELECT * from Testpaper WHERE studentID=?';
+    connection.query(query, studentID, (err, results, field) => {
         if (err) throw err;
         res.header("Access-Control-Allow-Origin", "*");
         try {
+            const testPaper = results[0];
+            const sca = [];
+            const cps = [];
+            let careerNet = "";
+            const sixSense = [];
+            const testEtc = [];
+
+            for (let index = 0; index < testPaper.length; index++) {
+                const element = testPaper[index];
+                if (element === 0) {
+                    sca.push(element.dataPath);
+                } else if (element === 1) {
+                    cps.push(element.dataPath);
+                } else if (element === 2) {
+                    careerNet = element.dataPath;
+                } else if (element === 3) {
+                    sixSense.push(element.dataPath);
+                } else if (element === 4) {
+                    testEtc.push(element.dataPath);
+                } else {
+                    continue
+                }
+            }
             res.status(200).json({
-                SCA : {
-                    sca : "img path"
+                SCA : { // 0
+                    sca : sca
                 },
-                CPS : {
-                    cps : "img path"
+                CPS : { // 1
+                    cps : cps
                 }, 
-                careerNet : {
-                    careerNet : "pdf path"
+                careerNet : { // 2
+                    careerNet : careerNet
                 },
-                sixSence : {
-                    sixSense : "img path"
+                sixSense : { // 3
+                    sixSense : sixSense
                 },
-                testEtc : {
-                    etc : "img path"
+                testEtc : { // 4
+                    etc : testEtc
                 }
             });
         } catch (err) {
@@ -33,6 +58,68 @@ router.get("/", (req, res) => {
             res.send(err.message);
         }         
     });
+})
+
+
+router.post("/", express.json(), (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    const deleteImgQuery = "DELETE FROM TestPaper WHERE studentID=?";
+
+    const studentID = req.body.id;
+    const sca = req.body.SCA.sca;
+    const cps = req.body.CPS.cps;
+    const careerNet = req.body.careerNet.careerNet;
+    const sixSense = req.body.sixSense.sixSense;
+    const testEtc = req.body.testEtc.etc;
+
+    connection.query(deleteImgQuery, studentID, (err, results, field) => {
+        if (err) throw err;
+    });
+
+    for (let index = 0; index < sca.length; index++) {
+        const scaQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 0, ?)";
+        connection.query(scaQuery, sca[index], (err, results) => {
+            if (err) throw err;
+            console.log("insert sca : " + sca[index]);
+        });
+    }
+    for (let index = 0; index < cps.length; index++) {
+        const cpsQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 1, ?)";
+        connection.query(cpsQuery, cps[index], (err, results) => {
+            if (err) throw err;
+            console.log("insert cps : " + cps[index]);
+        });
+    }
+    const careerNetQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 2, ?)";
+    connection.query(careerNetQuery, careerNet, (err, results) => {
+        if (err) throw err;
+        console.log("insert careerNet : " + careerNet);
+    });
+    for (let index = 0; index < sixSense.length; index++) {
+        const sixSenseQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 3, ?)";
+        connection.query(sixSenseQuery, sixSense[index], (err, results) => {
+            if (err) throw err;
+            console.log("insert sixSense : " + sixSense[index]);
+        });
+    }
+    for (let index = 0; index < testEtc.length; index++) {
+        const testEtcQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 4, ?)";
+        connection.query(testEtcQuery, testEtc[index], (err, results) => {
+            if (err) throw err;
+            console.log("insert testEtc : " + testEtc[index]);
+        });
+    }
+    
+    try {
+        res.status(200).json({
+            msg : "success"
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500);
+        res.send(err.message);
+    }  
 })
 
 module.exports = router;
