@@ -64,9 +64,11 @@ router.post("/", express.json(), (req, res) => {
     concentration=?, homework=?, comment=?, checklist=? \
     WHERE studentID=?";
 
+    const deleteImgQuery = "DELETE FROM LevelTest WHERE id=?";
+
     const updateParams = [];
 
-    const studenID = req.body.id;
+    const studentID = req.body.id;
     const fLv = req.body.firstLevel;
     const lvTest = req.body.levelTest;
     const newCst = req.body.newConsulting;
@@ -85,13 +87,27 @@ router.post("/", express.json(), (req, res) => {
     updateParams.push(newCst.comment);
 
     updateParams.push(newlst.checklist);
-
-    updateParams.push(studenID);
-
-    console.log('updateParams : ' + updateParams);
+    updateParams.push(studentID);
 
     connection.query(updateQuery, updateParams, (err, results, field) => {
         if (err) throw err;
+        connection.query(deleteImgQuery, studentID, (err, results, field) => {
+            if (err) throw err;
+            for (let index = 0; index < lvTest.english.length; index++) {
+                // 하나씩 english insert
+                const imgQ = "INSERT INTO LevelTest VALUES ('" +  studentID + "', 0, ?)";
+                connection.query(imgQuery, lvTest.english[index], (err, results) => {
+                    console.log("insert english " + index);
+                });
+            }
+            for (let index = 0; index < lvTest.math.length; index++) {
+                // 하나씩 math insert
+                const imgQ = "INSERT INTO LevelTest VALUES ('" +  studentID + "', 1, ?)";
+                connection.query(imgQuery, lvTest.math[index], (err, results) => {
+                    console.log("insert math " + index);
+                });
+            }
+        })
         try {
             res.status(200).json({
                 msg : "success"
