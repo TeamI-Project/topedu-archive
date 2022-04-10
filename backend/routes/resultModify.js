@@ -13,29 +13,31 @@ router.get("/", (req, res) => {
         if (err) throw err;
         res.header("Access-Control-Allow-Origin", "*");
         try {
-            const testPaper = results[0];
             const sca = [];
             const cps = [];
             let careerNet = "";
             const sixSense = [];
             const testEtc = [];
 
-            for (let index = 0; index < testPaper.length; index++) {
-                const element = testPaper[index];
-                if (element === 0) {
-                    sca.push(element.dataPath);
-                } else if (element === 1) {
-                    cps.push(element.dataPath);
-                } else if (element === 2) {
-                    careerNet = element.dataPath;
-                } else if (element === 3) {
-                    sixSense.push(element.dataPath);
-                } else if (element === 4) {
-                    testEtc.push(element.dataPath);
-                } else {
-                    continue
+            Object.keys(results).forEach((key) => {
+                const row = results[key];
+
+                console.log('dataType : ', row.dataType);
+                console.log('dataPath : ', row.dataPath);
+                
+                if (row.dataType === 0) {
+                    sca.push(row.dataPath);
+                } else if (row.dataType === 1) {
+                    cps.push(row.dataPath);
+                } else if (row.dataType === 2) {
+                    careerNet = row.dataPath;
+                } else if (row.dataType === 3) {
+                    sixSense.push(row.dataPath);
+                } else if (row.dataType === 4) {
+                    testEtc.push(row.dataPath);
                 }
-            }
+            })
+
             res.status(200).json({
                 SCA : { // 0
                     sca : sca
