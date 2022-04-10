@@ -96,14 +96,14 @@ router.post("/", express.json(), (req, res) => {
             for (let index = 0; index < lvTest.english.length; index++) {
                 // 하나씩 english insert
                 const imgQ = "INSERT INTO LevelTest VALUES ('" +  studentID + "', 0, ?)";
-                connection.query(imgQuery, lvTest.english[index], (err, results) => {
+                connection.query(imgQ, lvTest.english[index], (err, results) => {
                     console.log("insert english " + index);
                 });
             }
             for (let index = 0; index < lvTest.math.length; index++) {
                 // 하나씩 math insert
                 const imgQ = "INSERT INTO LevelTest VALUES ('" +  studentID + "', 1, ?)";
-                connection.query(imgQuery, lvTest.math[index], (err, results) => {
+                connection.query(imgQ, lvTest.math[index], (err, results) => {
                     console.log("insert math " + index);
                 });
             }
