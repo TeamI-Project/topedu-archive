@@ -64,7 +64,7 @@ router.post("/", express.json(), (req, res) => {
     concentration=?, homework=?, comment=?, checklist=? \
     WHERE studentID=?";
 
-    const deleteImgQuery = "DELETE FROM LevelTest WHERE id=?";
+    const deleteImgQuery = "DELETE FROM LevelTest WHERE studentID=?";
 
     const updateParams = [];
 
