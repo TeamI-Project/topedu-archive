@@ -1,8 +1,29 @@
+function getCookie() {
+    var result = null;
+    var cookie = document.cookie.split(';');
+    cookie.some(function (item) {
+        // 공백을 제거
+        item = item.replace(' ', '');
+ 
+        var dic = item.split('=');
+
+        var key = "student";
+
+        if (key === dic[0]) {
+            result = dic[1];
+            return true;    // break;
+        }
+    });
+    return unescape(result);
+}
+
+let studentID = getCookie();
+
 let month = document.getElementById("month");
 let monthlyImg = document.getElementById("monthlyImg");
 let select = document.getElementById("month");
 
-const url = "http://top-edu.co.kr:8000/api/gradeModify";
+const url = "http://top-edu.co.kr:8000/api/gradeModify?id="+studentID;
 
 let monthData;
 let ImgCnt=0;
@@ -55,6 +76,7 @@ function doneModify(){
     }
     
     var data = {
+        "id" : studentID,
         "month" : selectVal,
         "imgPath" : imgPath
     }

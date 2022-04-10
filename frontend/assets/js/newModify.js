@@ -1,3 +1,24 @@
+function getCookie() {
+    var result = null;
+    var cookie = document.cookie.split(';');
+    cookie.some(function (item) {
+        // 공백을 제거
+        item = item.replace(' ', '');
+ 
+        var dic = item.split('=');
+
+        var key = "student";
+
+        if (key === dic[0]) {
+            result = dic[1];
+            return true;    // break;
+        }
+    });
+    return unescape(result);
+}
+
+let studentID = getCookie();
+
 //firstLevel
 let regAtEng = document.getElementById("regAtEng");
 let regLvEng = document.getElementById("regLvEng");
@@ -25,7 +46,7 @@ let engImgCnt = 0;
 let mathImgCnt = 0;
 let checkImgCnt = 0;
 
-const id = '?id=mtop1234'
+const id = '?id='+studentID;
 const url = "https://top-edu.co.kr:8000/api/newModify";
 
 fetch(url+id).then(function(res){
@@ -277,7 +298,7 @@ function doneModify() {
 
 
     var data = {
-        "id" : "mtop1234",
+        "id" : studentID,
 
         "firstLevel" : {
             "regEng" : regEnglish,

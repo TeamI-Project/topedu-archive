@@ -1,9 +1,30 @@
-let grade = ['middle1-1-1', 'middle1-1-2', 'middle1-2-1', 'middle1-2-2', 'middle2-1-1', 'middle2-1-2', 'middle2-2-1', 'middle2-2-2', 'middle3-1-1', 'middle3-1-2', 'middle3-2-1', 'middle3-2-2', 'high1-1-1', 'high1-1-2', 'high1-2-1', 'high1-2-2', 'high2-1-1', 'high2-1-2', 'high2-2-1', 'high2-2-2', 'high3-1-1', 'high3-1-2']
+function getCookie() {
+    var result = null;
+    var cookie = document.cookie.split(';');
+    cookie.some(function (item) {
+        // 공백을 제거
+        item = item.replace(' ', '');
+ 
+        var dic = item.split('=');
+
+        var key = "student";
+
+        if (key === dic[0]) {
+            result = dic[1];
+            return true;    // break;
+        }
+    });
+    return unescape(result);
+}
+
+let studentID = getCookie();
+
+//let grade = ['middle1-1-1', 'middle1-1-2', 'middle1-2-1', 'middle1-2-2', 'middle2-1-1', 'middle2-1-2', 'middle2-2-1', 'middle2-2-2', 'middle3-1-1', 'middle3-1-2', 'middle3-2-1', 'middle3-2-2', 'high1-1-1', 'high1-1-2', 'high1-2-1', 'high1-2-2', 'high2-1-1', 'high2-1-2', 'high2-2-1', 'high2-2-2', 'high3-1-1', 'high3-1-2']
 
 let select = document.getElementById("grade");
 let show = document.getElementById("showImg");
 
-const url = "http://top-edu.co.kr:8000/api/gradeModify";
+const url = "http://top-edu.co.kr:8000/api/gradeModify?id="+studentID;
 
 let middle;
 let high;
@@ -18,6 +39,8 @@ fetch(url).then(function(res){
         
     })
 })
+
+let file;
 
 function changeImg(input) {
 
@@ -34,10 +57,11 @@ function changeImg(input) {
 
 function delImg(input){
     
-    var file = input;
-    let remove = document.getElementById(file);
+    var tmp = input;
+    let remove = document.getElementById(tmp);
 
     remove.remove();
+    file = null;
 }
 
 
@@ -45,17 +69,15 @@ function doneModify(){
 
     let selectVal = select.options[select.selectedIndex].value;
     let img = document.getElementById('showImg').children;
-    if(img.length == 0){
+    if(file == null){
         alert("ERROR : 이미지가 없습니다.");
-    }
-    else{
-        img = img[0].src;
-        //이미지 있을 때 데이터 전송 여기에 작성
+        return
     }
 
     var data = {
+        "id" : studentID,
         "gradeType" : selectVal,
-        "gradePath" : img
+        "gradePath" : file
     }
 
     fetch(url, {

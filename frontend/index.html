@@ -21,10 +21,14 @@
 			</header>
 
 		<!-- Search Form -->
-			<form id="signup-form" method="get" action="archive.html">
-				<input type="text" name="name" id="name" placeholder="Eneter student name" />
-				<input type="submit" value="Search" />
-			</form>
+			<div id="signup-form">
+				<input type="text" name="name" id="name" value="" placeholder="Eneter student name" />
+				<input type="submit" value="Search" onclick="search()" />
+			</div>
+
+			<div id="id_list">
+
+			</div>
 
 		<!-- Footer 
 			<footer id="footer">
@@ -42,6 +46,38 @@
 
 		<!-- Scripts -->
 			<script src="assets/js/main.js"></script>
+			<script>
+				function search() {
+					let value = document.getElementById("name");
+					value=value.value;
+					const url = "https://top-edu.co.kr:8000/api/studentID?name="+value;
+
+					fetch(url).then(function(res){
+    					res.json().then(function(json){
+							let id_list = document.getElementById("id_list");
+							ids = json.ans.result;
+							if(ids == null){
+								id_list.innerHTML='<p>검색 결과 없음</p>'
+							}else{
+								for(i=0; i < ids.length ; i++){
+								id_list.innerHTML+='<button class="id_btn" onclick="setCookie(this)">'+ids[i]+'</button>';
+								}
+							}
+							
+						})
+					})
+				}
+				
+				function setCookie(tag) {
+					var id = tag.innerText;
+
+					let todayDate = new Date();
+					todayDate.setDate(todayDate.getDate() + 7); // 현재 시각 + 일 단위로 쿠키 만료 날짜 변경
+					//todayDate.setTime(todayDate.getTime() + (expiredays * 24 * 60 * 60 * 1000)); // 밀리세컨드 단위로 쿠키 만료 날짜 변경
+					document.cookie = "student=" + escape(id);
+					location.href="archive.html";
+				}
+			</script>
 
 	</body>
 </html>
