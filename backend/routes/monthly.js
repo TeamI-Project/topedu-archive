@@ -7,31 +7,56 @@ const connection = mysql.createConnection(dbconfig);
 // ALTER USER 'topedu'@'localhost' IDENTIFIED WITH mysql_native_password BY 'topedu';
 
 router.get("/", (req, res) => {
-    connection.query('SELECT * from Students', (err, rows) => {
+    const studentID = req.query.id;
+    const query = "SELECT * FROM Monthly WHERE studentID=?"
+    connection.query(query, studentID, (err, results, field) => {
         if (err) throw err;
         res.header("Access-Control-Allow-Origin", "*");
         try {
+            const month = {};
+
+            Object.keys(results).forEach((key) => {
+                const row = results[key];
+
+                month[row.monthType] = row.monthPath;
+            });
+
             res.status(200).json({
-                month : {
-                    jan : "img path",
-                    feb : "img path",
-                    mar : "img path",
-                    apr : "img path",
-                    may : "img path",
-                    jun : "img path",
-                    jul : "img path",
-                    aug : "img path",
-                    sep : "img path",
-                    oct : "img path",
-                    nov : "img path",
-                    dec : "img path"
-                }
+                month
             });
         } catch (err) {
             console.log(err);
             res.status(500);
             res.send(err.message);
         }         
+    });
+})
+
+
+router.post("/", express.json(), (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    const studentID = req.body.id;
+
+    const month = req.body.month;
+    const imgPath = req.body.imgPath;
+
+    const params = [imgPath, studentID, month];
+
+    const query = "UPDATE Monthly SET monthPath=? \
+    WHERE studentID=? AND monthType=?";
+    
+    connection.query(query, params, (err, results, field) => {
+        if (err) throw err;
+        try {
+            res.status(200).json({
+                msg : "success"
+            });
+        } catch (err) {
+            console.log(err);
+            res.status(500);
+            res.send(err.message);
+        }  
     });
 })
 
