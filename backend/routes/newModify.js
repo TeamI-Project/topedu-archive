@@ -66,7 +66,7 @@ router.post("/", express.json(), (req, res) => {
 
     const updateParams = [];
 
-    const id = req.body.id;
+    const studenID = req.body.id;
     const fLv = req.body.firstLevel;
     const lvTest = req.body.levelTest;
     const newCst = req.body.newConsulting;
@@ -84,7 +84,9 @@ router.post("/", express.json(), (req, res) => {
     updateParams.push(newCst.homework);
     updateParams.push(newCst.comment);
 
-    updateParams.push(newlst.checklist);    
+    updateParams.push(newlst.checklist);
+
+    updateParams.push(studenID);
 
     console.log('updateParams : ' + updateParams);
 
