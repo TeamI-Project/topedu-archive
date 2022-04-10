@@ -66,6 +66,7 @@ router.post("/", express.json(), (req, res) => {
 
     const updateParams = [];
 
+    const id = req.body.id;
     const fLv = Object.keys(req.body.firstLevel);
     const lvTest = Object.keys(req.body.levelTest);
     const newCst = Object.keys(req.body.newConsulting);
