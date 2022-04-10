@@ -50,8 +50,7 @@ DROP TABLE IF EXISTS LevelTest;
 CREATE TABLE LevelTest (
     studentID CHAR(20),
     dataType TINYINT,
-    dataPath VARCHAR(255),
-    PRIMARY KEY (studentID)
+    dataPath VARCHAR(255)
 );
 
 /*

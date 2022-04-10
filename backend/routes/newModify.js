@@ -57,40 +57,70 @@ router.get("/", (req, res) => {
 router.post("/", express.json(), (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
-    console.log("in post~");
     console.log(req.body);
-
-    res.send("in post !!");
     
-    // const updateQuery = "UPDATE NewRecord SET regEng=?, levelEng=?, \
-    // regMath=?, levelMath=?, friendship=?, personality=?, parentship=?, \
-    // concentration=?, homework=?, comment=?, checklist=? \
-    // WHERE studentID=?";
+    const updateQuery = "UPDATE NewRecord SET regEng=?, levelEng=?, \
+    regMath=?, levelMath=?, friendship=?, personality=?, parentship=?, \
+    concentration=?, homework=?, comment=?, checklist=? \
+    WHERE studentID=?";
 
-    // const updateParams = [];
+    const deleteImgQuery = "DELETE FROM LevelTest WHERE studentID=?";
 
-    // // const fLv = Object.keys(req.body.firstLevel);
-    // // const lvTest = Object.keys(req.body.levelTest);
-    // // const newCst = Object.keys(req.body.newConsulting);
-    // // const newlst = Object.keys(req.body.newCheckList);
+    const updateParams = [];
 
-    // // updateParams.push(fLv);
-    // // updateParams.push(newCst);
-    // // updateParams.push(newlst);
-    // // updateParams.push(id);
+    const studentID = req.body.id;
+    const fLv = req.body.firstLevel;
+    const lvTest = req.body.levelTest;
+    const newCst = req.body.newConsulting;
+    const newlst = req.body.newCheckList;
 
-    // connection.query(updateQuery, updateParams, (err, results, field) => {
-    //     if (err) throw err;
-    //     try {
-    //         res.status(200).json({
-    //             msg : "success"
-    //         });
-    //     } catch (err) {
-    //         console.log(err);
-    //         res.status(500);
-    //         res.send(err.message);
-    //     }         
-    // });
+    updateParams.push(fLv.regEng);
+    updateParams.push(fLv.levelEng);
+    updateParams.push(fLv.regMath);
+    updateParams.push(fLv.levelMath);
+
+    updateParams.push(newCst.friendship);
+    updateParams.push(newCst.personality);
+    updateParams.push(newCst.parentship);
+    updateParams.push(newCst.concentration);
+    updateParams.push(newCst.homework);
+    updateParams.push(newCst.comment);
+
+    updateParams.push(newlst.checklist);
+    updateParams.push(studentID);
+
+    connection.query(updateQuery, updateParams, (err, results, field) => {
+        if (err) throw err;
+        connection.query(deleteImgQuery, studentID, (err, results, field) => {
+            if (err) throw err;
+            
+        })
+        for (let index = 0; index < lvTest.english.length; index++) {
+            // 하나씩 english insert
+            const imgQ = "INSERT INTO LevelTest VALUES ('" +  studentID + "', 0, ?)";
+            connection.query(imgQ, lvTest.english[index], (err, results) => {
+                if (err) throw err;
+                console.log("insert english " + lvTest.english[index]);
+            });
+        }
+        for (let index = 0; index < lvTest.math.length; index++) {
+            // 하나씩 math insert
+            const imgQ = "INSERT INTO LevelTest VALUES ('" +  studentID + "', 1, ?)";
+            connection.query(imgQ, lvTest.math[index], (err, results) => {
+                if (err) throw err;
+                console.log("insert math " + lvTest.math[index]);
+            });
+        }
+        try {
+            res.status(200).json({
+                msg : "success"
+            });
+        } catch (err) {
+            console.log(err);
+            res.status(500);
+            res.send(err.message);
+        }         
+    });
 })
 
 module.exports = router;
