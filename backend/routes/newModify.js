@@ -59,35 +59,35 @@ router.post("/", express.json(), (req, res) => {
 
     console.log(req.body);
     
-    // const updateQuery = "UPDATE NewRecord SET regEng=?, levelEng=?, \
-    // regMath=?, levelMath=?, friendship=?, personality=?, parentship=?, \
-    // concentration=?, homework=?, comment=?, checklist=? \
-    // WHERE studentID=?";
+    const updateQuery = "UPDATE NewRecord SET regEng=?, levelEng=?, \
+    regMath=?, levelMath=?, friendship=?, personality=?, parentship=?, \
+    concentration=?, homework=?, comment=?, checklist=? \
+    WHERE studentID=?";
 
-    // const updateParams = [];
+    const updateParams = [];
 
-    // // const fLv = Object.keys(req.body.firstLevel);
-    // // const lvTest = Object.keys(req.body.levelTest);
-    // // const newCst = Object.keys(req.body.newConsulting);
-    // // const newlst = Object.keys(req.body.newCheckList);
+    const fLv = Object.keys(req.body.firstLevel);
+    const lvTest = Object.keys(req.body.levelTest);
+    const newCst = Object.keys(req.body.newConsulting);
+    const newlst = Object.keys(req.body.newCheckList);
 
-    // // updateParams.push(fLv);
-    // // updateParams.push(newCst);
-    // // updateParams.push(newlst);
-    // // updateParams.push(id);
+    updateParams.push(fLv);
+    updateParams.push(newCst);
+    updateParams.push(newlst);
+    updateParams.push(id);
 
-    // connection.query(updateQuery, updateParams, (err, results, field) => {
-    //     if (err) throw err;
-    //     try {
-    //         res.status(200).json({
-    //             msg : "success"
-    //         });
-    //     } catch (err) {
-    //         console.log(err);
-    //         res.status(500);
-    //         res.send(err.message);
-    //     }         
-    // });
+    connection.query(updateQuery, updateParams, (err, results, field) => {
+        if (err) throw err;
+        try {
+            res.status(200).json({
+                msg : "success"
+            });
+        } catch (err) {
+            console.log(err);
+            res.status(500);
+            res.send(err.message);
+        }         
+    });
 })
 
 module.exports = router;
