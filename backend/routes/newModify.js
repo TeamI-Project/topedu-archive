@@ -97,14 +97,14 @@ router.post("/", express.json(), (req, res) => {
                 // 하나씩 english insert
                 const imgQ = "INSERT INTO LevelTest VALUES ('" +  studentID + "', 0, ?)";
                 connection.query(imgQ, lvTest.english[index], (err, results) => {
-                    console.log("insert english " + index);
+                    console.log("insert english " + lvTest.english[index]);
                 });
             }
             for (let index = 0; index < lvTest.math.length; index++) {
                 // 하나씩 math insert
                 const imgQ = "INSERT INTO LevelTest VALUES ('" +  studentID + "', 1, ?)";
                 connection.query(imgQ, lvTest.math[index], (err, results) => {
-                    console.log("insert math " + index);
+                    console.log("insert math " + lvTest.math[index]);
                 });
             }
         })
