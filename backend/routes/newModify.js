@@ -79,15 +79,15 @@ router.post("/", express.json(), (req, res) => {
     console.log('newlst : ' + newlst);
 
     for (let index = 0; index < fLv.length; index++) {
-        updateParams.push(fLv[index]);
+        updateParams.push(req.body.firstLevel.fLv[index]);
     }
 
     for (let index = 0; index < newCst.length; index++) {
-        updateParams.push(newCst[index]);
+        updateParams.push(req.body.newConsulting.newCst[index]);
     }
 
     for (let index = 0; index < newlst.length; index++) {
-        updateParams.push(newlst[index]);
+        updateParams.push(req.body.newCheckList.newlst[index]);
     }
 
     console.log('updateParams : ' + updateParams);
