@@ -57,10 +57,7 @@ router.get("/", (req, res) => {
 router.post("/", express.json(), (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
-    console.log("in post~");
     console.log(req.body);
-
-    res.send("in post !!");
     
     // const updateQuery = "UPDATE NewRecord SET regEng=?, levelEng=?, \
     // regMath=?, levelMath=?, friendship=?, personality=?, parentship=?, \
