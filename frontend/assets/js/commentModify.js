@@ -24,7 +24,7 @@ let student = document.getElementById("studentComment");
 let parents = document.getElementById("parentsComment");
 let etc = document.getElementById("etcComment");
 
-const url = "https://archive.top-edu.co.kr:8000/api/commentModify?id="+studentID;
+const url = "https://archive.top-edu.co.kr:8000/api/comment?id="+studentID;
 
 fetch(url).then(function(res){
     res.json().then(function(json){
