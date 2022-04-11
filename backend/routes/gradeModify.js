@@ -62,6 +62,7 @@ router.post("/", express.json(), (req, res) => {
     })
 
     const params = [newpath, studentID, gradeType];
+    console.log(newpath, studentID, gradeType);
 
     const query = "UPDATE Grade SET dataPath=? \
     WHERE studentID=? AND dataType=?";
