@@ -3,6 +3,9 @@ const router = express.Router();
 const mysql = require('mysql');
 const dbconfig = require('../config/database.js');
 const connection = mysql.createConnection(dbconfig);
+const formidable = require('formidable');
+const fs = require('fs');
+const config = require('../config/config');
 // const cors = require('cors');
 // ALTER USER 'topedu'@'localhost' IDENTIFIED WITH mysql_native_password BY 'topedu';
 
@@ -41,16 +44,24 @@ router.get("/", (req, res) => {
     });
 })
 
-
 router.post("/", express.json(), (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
+    let studentID = "";
+    let gradeType = "";
+    let newpath = "";
 
-    const studentID = req.body.id;
+    const form = new formidable.IncomingForm();
+    form.parse(req, (err, fields, files) => {
+        studentID = fields.id;
+        gradeType = fields.gradeType;
+        const oldpath = files.gradePath.filepath;
+        newpath = config.upload_url + files.gradePath.newFilename;
+        fs.rename(oldpath, newpath, (err) => {
+            if(err) throw err;
+        })
+    })
 
-    const gradeType = req.body.gradeType;
-    const gradePath = req.body.gradePath;
-
-    const params = [gradePath, studentID, gradeType];
+    const params = [newpath, studentID, gradeType];
 
     const query = "UPDATE Grade SET dataPath=? \
     WHERE studentID=? AND dataType=?";
