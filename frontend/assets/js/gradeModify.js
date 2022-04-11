@@ -47,7 +47,8 @@ function changeImg(input) {
     var file = input.files[0];	//선택된 파일 가져오기
 
   	//새로운 이미지 div 추가
-    var newPath = '<img id='+imgCnt+' class="mini_img" src="' + URL.createObjectURL(file) +'" ></img>';
+    var newPath = '<img id='+imgCnt+' class="mini_img" src="' + file +'" ></img>';
+    console.log(file);
     imgCnt+=1;
 
     //이미지를 image-show div에 추가
