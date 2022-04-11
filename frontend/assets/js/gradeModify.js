@@ -24,7 +24,7 @@ let studentID = getCookie();
 let select = document.getElementById("grade");
 let show = document.getElementById("showImg");
 
-const url = "https://archive.top-edu.co.kr:8000/api/gradeModify?id="+studentID;
+const url = "http://localhost:8000/api/gradeModify?id="+studentID;
 
 let middle;
 let high;
@@ -44,11 +44,10 @@ let file;
 
 function changeImg(input) {
 
-    var file = input.files[0];	//선택된 파일 가져오기
+    file = input.files[0];	//선택된 파일 가져오기
 
   	//새로운 이미지 div 추가
     var newPath = '<img id='+imgCnt+' class="mini_img" src="' + URL.createObjectURL(file) +'" ></img>';
-    console.log(file);
     imgCnt+=1;
 
     //이미지를 image-show div에 추가
@@ -75,6 +74,12 @@ function doneModify(){
         return
     }
 
+    var formData = new FormData();
+    console.log(formData);
+    formData.append('id',studentID);
+    formData.append('gradeType', selectVal);
+    formData.append("gradePath", file);
+
     var data = {
         "id" : studentID,
         "gradeType" : selectVal,
@@ -84,8 +89,8 @@ function doneModify(){
     fetch(url, {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
         },
-        body: JSON.stringify(data)
+        body: formData
     }).then((res) => console.log(res))
 }
