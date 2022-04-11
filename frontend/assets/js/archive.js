@@ -32,7 +32,7 @@ fetch(info+studentID).then(function(res){
             branch="사천점"
         }
         let header = document.getElementById("header");
-        header.innerHTML+='<img class ="profile" src="../uploads/studentImg/'+json.img+'" onclick="window.open(this.src)"/>';
+        header.innerHTML+='<img class ="profile" src="uploads/studentImg/'+json.img+'" onclick="window.open(this.src)"/>';
 		header.innerHTML+='<h1 id="studentID" style="display: inline;">'+json.name+'</h1>';
 		header.innserHTML+='<p id="branch" style="display: inline;">'+branch+'</p>';
 
@@ -100,7 +100,7 @@ fetch(url1+id).then(function(res){
         //2
         let engImg = json.levelTest.english;
         if (engImg.length == 0){
-            engTestImg.innerHTML += '<img class="mini_img" src="../backend/uploads/noimg_url" onclick="window.open(this.src)"></img>';
+            engTestImg.innerHTML += '<img class="mini_img" src="uploads/noimg.png" onclick="window.open(this.src)"></img>';
         }
         else{
             for(i=0; i < engImg.length ; i++){
@@ -205,7 +205,7 @@ let middleImg = document.getElementById("middleImg");
 let high = document.getElementById("gradeMiddle");
 let highImg = document.getElementById("middleImg");
 
-const url3 = "http://archive.top-edu.co.kr:8000/api/gradeModify";
+const url3 = "https://archive.top-edu.co.kr:8000/api/gradeModify";
 
 fetch(url3+id).then(function(res){
     res.json().then(function(json){
@@ -214,10 +214,10 @@ fetch(url3+id).then(function(res){
         getHigh = json.gradeHigh;
 
         let middleVal = middle.options[middle.selectedIndex].value;
-        middleImg.innerHTML = '<img class ="mini_img" src="../backend/uploads/grade/middle/'+getMiddle[middleVal]+'" onclick="window.open(this.src)"/>';
+        middleImg.innerHTML = '<img class ="mini_img" src="/tmp/uploads/'+getMiddle[middleVal]+'" onclick="window.open(this.src)"/>';
         
         let highVal = high.options[high.selectedIndex].value;
-        highImg.innerHTML = '<img class ="mini_img" src="../backend/uploads/grade/high/'+getHigh[highVal]+'" onclick="window.open(this.src)"/>';
+        highImg.innerHTML = '<img class ="mini_img" src="/tmp/uploads/'+getHigh[highVal]+'" onclick="window.open(this.src)"/>';
 
     })
 })
