@@ -89,7 +89,7 @@ function doneModify(){
     fetch(url, {
         method: "POST",
         headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: formData
     }).then((res) => console.log(res))
