@@ -59,30 +59,24 @@ router.post("/", express.json(), (req, res) => {
         fs.rename(oldpath, newpath, (err) => {
             if(err) throw err;
         })
+
+        const params = [newpath, studentID, gradeType];
+        const query = "UPDATE Grade SET dataPath=? \
+        WHERE studentID=? AND dataType=?";
+        
+        connection.query(query, params, (err, results, field) => {
+            if (err) throw err;
+            try {
+                res.status(200).json({
+                    msg : "success"
+                });
+            } catch (err) {
+                console.log(err);
+                res.status(500);
+                res.send(err.message);
+            }  
+        });
     })
-
-    const params = [];
-    params.push(newpath);
-    params.push(studentID);
-    params.push(gradeType);
-    console.log(newpath, studentID, gradeType);
-
-    const query = "UPDATE Grade SET dataPath=? \
-    WHERE studentID=? AND dataType=?";
-    
-    connection.query(query, params, (err, results, field) => {
-        if (err) throw err;
-        try {
-            console.log('db update');
-            res.status(200).json({
-                msg : "success"
-            });
-        } catch (err) {
-            console.log(err);
-            res.status(500);
-            res.send(err.message);
-        }  
-    });
 })
 
 module.exports = router;
