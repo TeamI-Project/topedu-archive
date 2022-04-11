@@ -69,6 +69,7 @@ router.post("/", express.json(), (req, res) => {
     connection.query(query, params, (err, results, field) => {
         if (err) throw err;
         try {
+            console.log('db update');
             res.status(200).json({
                 msg : "success"
             });
