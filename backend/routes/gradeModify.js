@@ -55,7 +55,7 @@ router.post("/", express.json(), (req, res) => {
         studentID = fields.id;
         gradeType = fields.gradeType;
         const oldpath = files.gradePath.filepath;
-        newpath = config.upload_url + files.gradePath.newFilename;
+        newpath = config.upload_url + "grade/" + files.gradePath.newFilename;
         fs.rename(oldpath, newpath, (err) => {
             if(err) throw err;
         })
