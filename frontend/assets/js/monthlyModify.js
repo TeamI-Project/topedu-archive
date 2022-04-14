@@ -62,10 +62,11 @@ function addEngImg(input) {
 
 function delImg(input){
     
-    var file = input;
-    let remove = document.getElementById(file);
+    var temp = input;
+    let remove = document.getElementById(temp);
 
     remove.remove();
+    file = null;
 }
 
 function doneModify(){
