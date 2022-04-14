@@ -131,56 +131,24 @@ router.post("/", express.json(), (req, res) => {
     let studentID = "";
     let firstLevel;
     let newConsulting;
-    let newpath_eng = "";
-    let newpath_math = "";
-    let newpath_checklist = "";
-
 
     const form = new formidable.IncomingForm();
     form.parse(req, (err, fields, files) => {
         studentID = fields.id;
         firstLevel = fields.firstLevel;
         newConsulting = fields.newConsulting;
-        const oldpath_eng = files.english.filepath;
-        const oldpath_math = files.math.filepath;
-        const oldpath_checklist = files.checklist.filepath;
-
-        newpath_eng = config.upload_url + "levelTest/" + files.english.newFilename;
-        newpath_math = config.upload_url + "levelTest/" + files.math.newFilename;
-        newpath_checklist = config.upload_url + "levelTest/" + files.checklist.newFilename;
-        
-        fs.rename(oldpath_eng, newpath_eng, (err) => {
-            if(err) throw err;
-        })
-        fs.rename(oldpath_math, newpath_eng, (err) => {
-            if(err) throw err;
-        })
-        fs.rename(oldpath_checklist, newpath_eng, (err) => {
-            if(err) throw err;
-        })
 
         const query = "UPDATE NewRecord SET regEng=?, levelEng=?, \
         regMath=?, levelMath=?, friendship=?, personality=?, parentship=?, \
-        concentration=?, homework=?, comment=?, checklist=? \
+        concentration=?, homework=?, comment=?  \
         WHERE studentID=?";
 
         const params = [firstLevel.regEng, firstLevel.levelEng, firstLevel.regMath, firstLevel.levelMath,
             newConsulting.friendship, newConsulting.personality, newConsulting.parentship, newConsulting.concentration, newConsulting.homework, newConsulting.comment,
-            newpath_checklist, studentID];
+            studentID];
 
         connection.query(query, params, (err, results, fields) => {
             if (err) throw err;
-            const q = "UPDATE LevelTest SET dataPath=? \
-            WHERE studentID=? AND dataType=?";
-            const eng_param = [newpath_eng, studentID, 0];
-            connection.query(q, eng_param, (err, results, fields) => {
-                if (err) throw err;
-            });
-            const math_param = [newpath_math, studentID, 1];
-            connection.query(q, math_param, (err, results, fields) => {
-                if (err) throw err;
-            });
-
             try {
                 res.status(200).json({
                     msg : "success"
