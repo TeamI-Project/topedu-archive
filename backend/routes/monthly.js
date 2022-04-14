@@ -75,6 +75,7 @@ router.post("/", express.json(), (req, res) => {
         studentID = fields.id;
         month = fields.month;
         const oldpath = files.imgPath.filepath;
+        newpath = config.upload_url + "monthly/" + files.imgPath.newFilename;
         
         fs.rename(oldpath, newpath, (err) => {
             if(err) throw err;
