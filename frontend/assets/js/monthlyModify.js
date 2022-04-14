@@ -70,6 +70,10 @@ function delImg(input){
 }
 
 function doneModify(){
+    if(file == null){
+        return
+    }
+    
     let selectVal = select.options[select.selectedIndex].value;
     let img = document.getElementById('monthlyImg').children;
 
