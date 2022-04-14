@@ -254,9 +254,7 @@ fetch(url4+id).then(function(res){
         let monthData = json.month;
         let monthVal = month.options[month.selectedIndex].value;
         let img = monthData[monthVal]
-        for(i=0; i<img.length; i++){
-            monthlyImg.innerHTML += '<img class ="mini_img" src="'+Img[i].substr(14)+'"  onclick="window.open(this.src)"/>';
-        }
+        monthlyImg.innerHTML += '<img class ="mini_img" src="'+Img.substr(14)+'"  onclick="window.open(this.src)"/>';
         
     })
 })

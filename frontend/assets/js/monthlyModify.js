@@ -41,9 +41,10 @@ function changeMonth(){
     monthlyImg.innerHTML = "";
     let selectMonth = month.options[month.selectedIndex].value;
     let img = monthData[selectMonth]
-    for(i=0; i < img.length ; i++){
+    if(img != null){
         monthlyImg.innerHTML += '<img class ="mini_img" src="'+monthData[selectMonth]+'" onclick="window.open(this.src)"/>';
     }
+   
 }
 
 function addEngImg(input) {
@@ -55,7 +56,7 @@ function addEngImg(input) {
     file = input.files[0];	//선택된 파일 가져오기
 
   	//새로운 이미지 div 추가
-    var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="window.open(this.src)"></img>';
+    var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
 
     //이미지를 image-show div에 추가
     var imgList = document.getElementById('monthlyImg');
@@ -63,27 +64,17 @@ function addEngImg(input) {
 };
 
 function delImg(input){
-    
-    var file = input;
-    let remove = document.getElementById(file);
 
-    remove.remove();
+    input.remove();
+    file = null;
 }
 
 function doneModify(){
-    let selectVal = select.options[select.selectedIndex].value;
-    let img = document.getElementById('monthlyImg').children;
+    if(file == null){
+        return
+    }
 
-    let imgPath = []
-    for(i=0; i < img.length ; i++){
-        imgPath.push(img[i].src);
-    }
-    
-    var data = {
-        "id" : studentID,
-        "month" : selectVal,
-        "imgPath" : imgPath
-    }
+    let selectVal = select.options[select.selectedIndex].value;
 
     var formData = new FormData();
     formData.append('id',studentID);
