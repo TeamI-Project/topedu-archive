@@ -267,24 +267,26 @@ function newCheckImg(input) {
 };
 
 function delImg(tag){
+    let temp = tag.src.split("/");
+    let src = "/var/www/html/uploads/"+temp[temp.length-1];
+    console.log(t[t.length -1]);
+    var formData = new FormData();
+    formData.append('id',studentID);
+    formData.append('type', tag.name);
+    formData.append("image", tag.src);
 
-  var formData = new FormData();
-  formData.append('id',studentID);
-  formData.append('type', tag.name);
-  formData.append("image", tag.src);
-
-  fetch(uploadURL, {
-      method: "POST",
-      body: formData
-  }).then((res) => {
-    if (res.msg == 'success') {
-        tag.remove();
+    fetch(uploadURL, {
+        method: "POST",
+        body: formData
+    }).then((res) => {
+        if (res.msg == 'success') {
+            tag.remove();
+        }
+        else{
+            alert("이미지 저장에 실패했습니다.");
+        }
+    }).catch(error => alert('이미지 저장에 실패했습니다.'));
     }
-    else{
-        alert("이미지 저장에 실패했습니다.");
-    }
-}).catch(error => alert('이미지 저장에 실패했습니다.'));
-}
 
 function doneModify() {
     let regEnglish = regAtEng.value;
