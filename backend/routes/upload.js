@@ -66,23 +66,23 @@ router.post("/", express.json(), (req, res) => {
                 break;   
             case 'sca':
                 params = [studentID, 0, newpath];
-                query = "INSERT INTO TestPaper VALUES (?, ?, ?)";
+                query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
                 break;  
             case 'cps':
                 params = [studentID, 1, newpath];
-                query = "INSERT INTO TestPaper VALUES (?, ?, ?)";
+                query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
                 break;  
             case 'careerNet':
                 params = [studentID, 2, newpath];
-                query = "INSERT INTO TestPaper VALUES (?, ?, ?)";
+                query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
                 break;  
             case 'sixSense':
                 params = [studentID, 3, newpath];
-                query = "INSERT INTO TestPaper VALUES (?, ?, ?)";
+                query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
                 break;  
             case 'etc':
                 params = [studentID, 4, newpath];
-                query = "INSERT INTO TestPaper VALUES (?, ?, ?)";
+                query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
                 break;  
         }
         connection.query(query, params, (err, results, field) => {
