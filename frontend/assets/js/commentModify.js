@@ -28,10 +28,10 @@ const url = "https://archive.top-edu.co.kr:8000/api/comment?id="+studentID;
 
 fetch(url).then(function(res){
     res.json().then(function(json){
-        teacher.innerHTML += '<textarea id="teacherText" cols="30" rows="10">'+json.ans.teacher+'</textarea>';
-        student.innerHTML += '<textarea id="studentText" cols="30" rows="10">'+json.ans.student+'</textarea>';
-        parents.innerHTML += '<textarea id="parentsText" cols="30" rows="10">'+json.ans.parents+'</textarea>';
-        etc.innerHTML += '<textarea id="etcText" cols="30" rows="10">'+json.ans.etc+'</textarea>';
+        teacher.innerHTML += '<textarea id="teacherText" cols="30" rows="10">'+json.comment.teacher+'</textarea>';
+        student.innerHTML += '<textarea id="studentText" cols="30" rows="10">'+json.comment.student+'</textarea>';
+        parents.innerHTML += '<textarea id="parentsText" cols="30" rows="10">'+json.comment.parents+'</textarea>';
+        etc.innerHTML += '<textarea id="etcText" cols="30" rows="10">'+json.comment.etc+'</textarea>';
         
     })
 })
@@ -56,5 +56,14 @@ function doneModify(){
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
-    }).then((res) => console.log(res))
+    }).then(res => res.json())
+    .then(response => {
+        if (response.msg === 'success') {
+            alert("success")
+            location.href="archive.html";
+        }
+        else{
+            alert("error");
+        }
+    }).catch(error => alert('error'));
 }

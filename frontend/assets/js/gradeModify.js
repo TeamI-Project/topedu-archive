@@ -84,5 +84,14 @@ function doneModify(){
     fetch(url, {
         method: "POST",
         body: formData
-    }).then((res) => console.log(res))
+    }).then(res => res.json())
+    .then(response => {
+        if (response.msg === 'success') {
+            alert("success")
+            location.href="archive.html";
+        }
+        else{
+            alert("error");
+        }
+    }).catch(error => alert('error'));
 }
