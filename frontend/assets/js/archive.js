@@ -251,7 +251,7 @@ let etc = document.getElementById("etcComment");
 
 const url = "https://archive.top-edu.co.kr:8000/api/comment";
 
-fetch(url).then(function(res){
+fetch(url+id).then(function(res){
     res.json().then(function(json){
         if(json.comment.teacherComment == null){
             teacher.innerHTML += '<p>내용없음</p>';
