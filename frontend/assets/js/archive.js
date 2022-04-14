@@ -234,11 +234,22 @@ fetch(url3+id).then(function(res){
         getHigh = json.gradeHigh;
 
         let middleVal = middle.options[middle.selectedIndex].value;
-        middleImg.innerHTML = '<img class ="mini_img" src="'+getMiddle[middleVal].substr(14)+'" onclick="window.open(this.src)"/>';
+        if(getMiddle[middleVal] == null){
+            middle.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }
+        else{
+            middleImg.innerHTML = '<img class ="mini_img" src="'+getMiddle[middleVal].substr(14)+'" onclick="window.open(this.src)"/>';
+        }
+        
         
         let highVal = high.options[high.selectedIndex].value;
-        highImg.innerHTML = '<img class ="mini_img" src="'+getHigh[highVal].substr(14)+'"  onclick="window.open(this.src)"/>';
-
+        if(getHigh[highVal] == null){
+            highImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }
+        else{
+            highImg.innerHTML = '<img class ="mini_img" src="'+getHigh[highVal].substr(14)+'"  onclick="window.open(this.src)"/>';
+        }
+        
     })
 })
 
@@ -254,7 +265,13 @@ fetch(url4+id).then(function(res){
         let monthData = json.month;
         let monthVal = month.options[month.selectedIndex].value;
         let img = monthData[monthVal]
-        monthlyImg.innerHTML += '<img class ="mini_img" src="'+Img.substr(14)+'"  onclick="window.open(this.src)"/>';
+        if(img == null){
+            monthlyImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }
+        else{
+            monthlyImg.innerHTML = '<img class ="mini_img" src="'+img.substr(14)+'"  onclick="window.open(this.src)"/>';
+        }
+        
         
     })
 })
