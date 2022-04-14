@@ -171,7 +171,7 @@ fetch(url+id).then(function(res){
         }
         
         //4
-        checkList.innerHTML += '<img name="checkList" class="mini_img" src="' + json.newCheckList.checklist.substr(14) +'" onclick="delImg(this)"></img>';
+        checkList.innerHTML += '<img name="checklist" class="mini_img" src="' + json.newCheckList.checklist.substr(14) +'" onclick="delImg(this)"></img>';
     })
 })
 
@@ -251,7 +251,7 @@ function newCheckImg(input) {
     }).then((res) => {
         if (res.msg == 'success') {
             //새로운 이미지 div 추가
-            var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
+            var newImage = '<img name="checklist" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
             checkList = file;
 
             //이미지를 image-show div에 추가
@@ -267,24 +267,30 @@ function newCheckImg(input) {
 };
 
 function delImg(tag){
+    let temp = tag.src.split("/");
+    let src = "/var/www/html/uploads/";
+    if(tag.name == "english" || tag.name == "math"){
+        src += "levelTest/"+temp[temp.length-1];
+    }else{
+        src += "etcImg/"+temp[temp.length-1];
+    }
+    var formData = new FormData();
+    formData.append('id',studentID);
+    formData.append('type', tag.name);
+    formData.append("image", src);
 
-  var formData = new FormData();
-  formData.append('id',studentID);
-  formData.append('type', tag.name);
-  formData.append("image", tag.src);
-
-  fetch(uploadURL, {
-      method: "POST",
-      body: formData
-  }).then((res) => {
-      if (res.msg == 'success') {
-          tag.remove();
-      }
-      else{
-          alert("이미지 삭제에 실패했습니다.");
-      }
-  })
-}
+    fetch(deleteURL, {
+        method: "POST",
+        body: formData
+    }).then((res) => {
+        if (res.msg == 'success') {
+            tag.remove();
+        }
+        else{
+            alert("이미지 삭제에 실패했습니다.");
+        }
+    }).catch(error => alert('이미지 삭제에 실패했습니다.'));
+    }
 
 function doneModify() {
     let regEnglish = regAtEng.value;
@@ -343,14 +349,19 @@ function doneModify() {
     formData.append('id',studentID);
     formData.append('firstLevel', firstLevel);
     formData.append("newConsulting",newConsulting);
-    formData.append("english",english);
-    formData.append("math", math);
-    formData.append( "checklist",checkList);
    
     fetch(url, {
         method: "POST",
         body: formData
-    }).then((res) => console.log(res))
+    }).then((res) => {
+        if (res.msg == 'success') {
+            alert("complete");
+        }
+        else{
+            alert("error");
+        }
+    }).catch(error => alert('error'));
+    
 
 }
 
