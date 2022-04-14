@@ -192,7 +192,7 @@ function addEngImg(input) {
     .then(response => {
         if (response.msg === 'success') {
             //새로운 이미지 div 추가
-          var newImage = '<img name="english" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
+          var newImage = '<img name="levelTest" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
 
           //이미지를 image-show div에 추가
           var imgList = document.getElementById('engTestImg');
@@ -221,7 +221,7 @@ function addMathImg(input) {
     .then(response => {
         if (response.msg === 'success') {
             //새로운 이미지 div 추가
-            var newImage = '<img name="math" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
+            var newImage = '<img name="levelTest" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
             math = file;
 
             //이미지를 image-show div에 추가
@@ -251,7 +251,7 @@ function newCheckImg(input) {
     }).then((res) => {
         if (res.msg == 'success') {
             //새로운 이미지 div 추가
-            var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
+            var newImage = '<img name="checklist" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
             checkList = file;
 
             //이미지를 image-show div에 추가
@@ -268,12 +268,12 @@ function newCheckImg(input) {
 
 function delImg(tag){
     let temp = tag.src.split("/");
-    let src = "/var/www/html/uploads/"+temp[temp.length-1];
-    console.log(t[t.length -1]);
+    let src = "/var/www/html/uploads/"+tag.name+"/"+temp[temp.length-1];
+    console.log(src);
     var formData = new FormData();
     formData.append('id',studentID);
     formData.append('type', tag.name);
-    formData.append("image", tag.src);
+    formData.append("image", src);
 
     fetch(uploadURL, {
         method: "POST",
