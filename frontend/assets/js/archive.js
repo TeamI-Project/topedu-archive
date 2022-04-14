@@ -148,10 +148,12 @@ fetch(url1+id).then(function(res){
         }
 
         if(newc.comment == null){
-            textbox.innerText += '내용 없음';
+            temp = '📌 요약 : 내용 없음';
+            textbox.innerText += temp;
         }
         else{
-            textbox.innerText += newc.comment;
+            temp = '📌 요약 : ' + newc.comment;
+            textbox.innerText += temp
         }
         
         //4
