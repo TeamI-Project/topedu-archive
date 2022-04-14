@@ -266,7 +266,7 @@ fetch(url4+id).then(function(res){
 
         let monthData = json.month;
         let monthVal = month.options[month.selectedIndex].value;
-        let index = monthCode.find(monthVal);
+        let index = monthCode.indexOf(monthVal);
         let img = monthData[index]
         if(img == null){
             monthlyImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
