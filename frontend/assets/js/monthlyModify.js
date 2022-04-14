@@ -53,7 +53,7 @@ function addEngImg(input) {
     file = input.files[0];	//선택된 파일 가져오기
 
   	//새로운 이미지 div 추가
-    var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="window.open(this.src)"></img>';
+    var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
 
     //이미지를 image-show div에 추가
     var imgList = document.getElementById('monthlyImg');
@@ -61,11 +61,8 @@ function addEngImg(input) {
 };
 
 function delImg(input){
-    
-    var temp = input;
-    let remove = document.getElementById(temp);
 
-    remove.remove();
+    input.remove();
     file = null;
 }
 
