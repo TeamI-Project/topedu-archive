@@ -340,6 +340,7 @@ function doneModify() {
     .then(response => {
         if (response.msg === 'success') {
             alert("success")
+            location.href="archive.html";
         }
         else{
             alert("error");
