@@ -184,7 +184,7 @@ function delImg(tag){
     var formData = new FormData();
     formData.append('id',studentID);
     formData.append('type', tag.name);
-    formData.append("image", tag.src);
+    formData.append("image", src);
 
     fetch(deleteURL, {
         method: "POST",
@@ -199,7 +199,27 @@ function delImg(tag){
         }
     }).catch(error => alert('이미지 삭제에 실패했습니다.'));
 }
+function delPdf(tag){
+    let temp = tag.href.split("/");
+    let src = "/var/www/html/uploads/testResult/"+tag.name+"/"+temp[temp.length-1];
+    var formData = new FormData();
+    formData.append('id',studentID);
+    formData.append('type', tag.name);
+    formData.append("image", src);
 
+    fetch(deleteURL, {
+        method: "POST",
+        body: formData
+    }).then(res => res.json())
+    .then(response => {
+        if (response.msg === 'success') {
+            tag.remove();
+        }
+        else{
+            alert("pdf 삭제에 실패했습니다.");
+        }
+    }).catch(error => alert('pdf 삭제에 실패했습니다.'));
+}
 function doneModify(){
     location.href = "archive.html";
 }
