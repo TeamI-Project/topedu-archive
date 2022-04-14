@@ -188,22 +188,21 @@ function addEngImg(input) {
     fetch(uploadURL, {
         method: "POST",
         body: formData
-    }).then((res) => {
-        if (res.msg == 'success') {
+    }).then(res => res.json())
+    .then(response => {
+        if (response.msg === 'success') {
             //새로운 이미지 div 추가
-            var newImage = '<img name="english" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
+          var newImage = '<img name="english" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
 
-            //이미지를 image-show div에 추가
-            var imgList = document.getElementById('engTestImg');
-            imgList.innerHTML += (newImage);
-
+          //이미지를 image-show div에 추가
+          var imgList = document.getElementById('engTestImg');
+          imgList.innerHTML += (newImage);
         }
         else{
             alert("이미지 저장에 실패했습니다.");
         }
-    })
-
-
+    }).catch(error => alert('이미지 저장에 실패했습니다.'));
+      
 };
 
 function addMathImg(input) {
@@ -218,8 +217,9 @@ function addMathImg(input) {
     fetch(uploadURL, {
         method: "POST",
         body: formData
-    }).then((res) => {
-        if (res.msg == 'success') {
+    }).then(res => res.json())
+    .then(response => {
+        if (response.msg === 'success') {
             //새로운 이미지 div 추가
             var newImage = '<img name="math" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
             math = file;
@@ -232,7 +232,7 @@ function addMathImg(input) {
         else{
             alert("이미지 저장에 실패했습니다.");
         }
-    })
+    }).catch(error => alert('이미지 저장에 실패했습니다.'));
 };
 
 
@@ -262,7 +262,7 @@ function newCheckImg(input) {
         else{
             alert("이미지 저장에 실패했습니다.");
         }
-    })
+    }).catch(error => alert('이미지 저장에 실패했습니다.'));
 
 };
 
