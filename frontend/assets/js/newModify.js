@@ -171,7 +171,7 @@ fetch(url+id).then(function(res){
         }
         
         //4
-        checkList.innerHTML += '<img name="checklist" class="mini_img" src="' + json.newCheckList.checklist.substr(14) +'" onclick="delImg(this)"></img>';
+        checkList.innerHTML += '<img name="checklist" class="mini_img" src="' + json.newCheckList.checkList.substr(14) +'" onclick="delImg(this)"></img>';
     })
 })
 
