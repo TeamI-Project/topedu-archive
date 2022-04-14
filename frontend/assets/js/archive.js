@@ -288,29 +288,29 @@ const url5 = "https://archive.top-edu.co.kr:8000/api/comment";
 
 fetch(url5+id).then(function(res){
     res.json().then(function(json){
-        if(json.comment.teacherComment == null){
+        if(json.comment.teacher == null){
             teacher.innerHTML += '<p>내용없음</p>';
         }
         else{
-            teacher.innerHTML += '<p>'+json.comment.teacherComment+'</p>';
+            teacher.innerHTML += '<p>'+json.comment.teacherC+'</p>';
         }
-        if(json.comment.studentComment == null){
+        if(json.comment.student == null){
             student.innerHTML += '<p>내용없음</p>';
         }
         else{
-            student.innerHTML += '<p>'+json.comment.studentComment+'</p>';
+            student.innerHTML += '<p>'+json.comment.student+'</p>';
         }
-        if(json.comment.parentsComment == null){
+        if(json.comment.parents == null){
             parents.innerHTML += '<p>내용없음</p>';
         }
         else{
-            parents.innerHTML += '<p>'+json.comment.parentsComment+'</p>';
+            parents.innerHTML += '<p>'+json.comment.parents+'</p>';
         }
-        if(json.comment.etcComment == null){
+        if(json.comment.etc == null){
             etc.innerHTML += '<p>내용없음</p>';
         }
         else{
-            etc.innerHTML += '<p>'+json.comment.etcComment+'</p>';
+            etc.innerHTML += '<p>'+json.comment.etc+'</p>';
         }
         
     })
