@@ -68,18 +68,18 @@ const url1 = "https://archive.top-edu.co.kr:8000/api/newModify";
 fetch(url1+id).then(function(res){
     res.json().then(function(json){
         //1
-        if(json.firstLevel.regEng == null){
+        if(json.firstLevel.regEnglish == null){
             regAtEng.innerText = 'x';
         }
         else{
-            regAtEng.innerText = json.firstLevel.regEng;
+            regAtEng.innerText = json.firstLevel.regEnglish;
         }
 
-        if(json.firstLevel.levelEng == null){
+        if(json.firstLevel.lvEnglish == null){
             regLvEng.innerText = 'x';
         }
         else{
-            regLvEng.innerText = json.firstLevel.levelEng;
+            regLvEng.innerText = json.firstLevel.lvEnglish;
         }
         
         if(json.firstLevel.regMath == null){
@@ -89,28 +89,35 @@ fetch(url1+id).then(function(res){
             regAtMath.innerText = json.firstLevel.regMath;
         }
 
-        if(json.firstLevel.levelMath == null){
+        if(json.firstLevel.lvMath == null){
             regLvMath.innerText = 'x';
         }
         else{
-            regLvMath.innerText = json.firstLevel.levelMath;
+            regLvMath.innerText = json.firstLevel.lvMath;
         }      
         
 
         //2
         let engImg = json.levelTest.english;
         if(engImg.length == 0){
-            engTestImg.innerHTML += '<img name="english" class="mini_img" src="images/background_logo.png" onclick="delImg(this)"></img>';
+            engTestImg.innerHTML += '<img name="english" class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }else{
+            for(i=0; i < engImg.length ; i++){
+                engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="window.open(this.src)"></img>';
+            }
         }
-        for(i=0; i < engImg.length ; i++){
-            engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="delImg(this)"></img>';
-        }
+        
             
         
         let mathImg = json.levelTest.math;
-        for(i=0; i < engImg.length ; i++){
-            mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+        if(mathImg.length == 0){
+            mathTestImg.innerHTML += '<img name="math" class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }else{
+            for(i=0; i < engImg.length ; i++){
+                mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" oonclick="window.open(this.src)"></img>';
+            }
         }
+        
         
         
 
@@ -141,14 +148,21 @@ fetch(url1+id).then(function(res){
         }
 
         if(newc.comment == null){
-            textbox.innerText += '내용 없음';
+            temp = '📌 요약 : 내용 없음';
+            textbox.innerText += temp;
         }
         else{
-            textbox.innerText += newc.comment;
+            temp = '📌 요약 : ' + newc.comment;
+            textbox.innerText += temp
         }
         
         //4
-        checkList.innerHTML += '<img id="checkListImg" class="mini_img" src="'+json.newCheckList.checklist.substr(14) +'" onclick="window.open(this.src)"></img>';
+        if(json.newCheckList.checkList == null){
+            checkList.innerHTML += '<img id="checkListImg" class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }else{
+            checkList.innerHTML += '<img id="checkListImg" class="mini_img" src="'+json.newCheckList.checklist.substr(14) +'" onclick="window.open(this.src)"></img>';
+        }
+        
     })
 })
 

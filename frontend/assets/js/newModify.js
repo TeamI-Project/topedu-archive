@@ -91,14 +91,19 @@ fetch(url+id).then(function(res){
 
         //2
         let engImg = json.levelTest.english;
-        for(i=0; i < engImg.length ; i++){
-            engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+        if(engImg.length > 0){
+            for(i=0; i < engImg.length ; i++){
+                engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+            }
         }
+        
             
         
         let mathImg = json.levelTest.math;
-        for(i=0; i < engImg.length ; i++){
-            mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+        if(mathImg.length > 0){
+            for(i=0; i < engImg.length ; i++){
+                mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+            }
         }
 
 
@@ -268,7 +273,7 @@ function delImg(tag){
             alert("이미지 삭제에 실패했습니다.");
         }
     }).catch(error => alert('이미지 삭제에 실패했습니다.'));
-    }
+}
 
 function doneModify() {
     let regEnglish = regAtEng.value;
@@ -335,6 +340,7 @@ function doneModify() {
     .then(response => {
         if (response.msg === 'success') {
             alert("success")
+            location.href="archive.html";
         }
         else{
             alert("error");
