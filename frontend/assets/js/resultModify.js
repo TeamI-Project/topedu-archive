@@ -198,11 +198,8 @@ function delImg(tag){
             alert("이미지 삭제에 실패했습니다.");
         }
     }).catch(error => alert('이미지 삭제에 실패했습니다.'));
-    }
-
-function delImg(){
-
 }
+
 function doneModify(){
     location.href = "archive.html";
-  }
+}
