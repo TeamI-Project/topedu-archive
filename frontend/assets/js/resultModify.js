@@ -18,6 +18,8 @@ function getCookie() {
 }
 
 let studentID = getCookie();
+const uploadURL = "https://archive.top-edu.co.kr:8000/api/upload";
+const deleteURL = "https://archive.top-edu.co.kr:8000/api/delete";
 
 let SCA = document.getElementById("SCA");
 let CPS = document.getElementById("CPS");
