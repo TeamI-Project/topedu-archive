@@ -74,41 +74,41 @@ router.post("/", express.json(), (req, res) => {
     form.parse(req, (err, fields, files) => {
         studentID = fields.id;
         switch (fields.month) {
-            case 0:
-                month = "jan";
+            case "jan":
+                month = 0;
                 break;
-            case 1:
-                month = "feb";
+            case "feb":
+                month = 1;
                 break;
-            case 2:
-                month = "mar";
+            case "mar":
+                month = 2;
                 break;
-            case 3:
-                month = "apr";
+            case "apr":
+                month = 3;
                 break;
-            case 4:
-                month = "may";
+            case "may":
+                month = 4;
                 break;
-            case 5:
-                month = "jun";
+            case "jun":
+                month = 5;
                 break;
-            case 6:
-                month = "jul";
+            case "jul":
+                month = 6;
                 break;
-            case 7:
-                month = "aug";
+            case "aug":
+                month = 7;
                 break;
-            case 8:
-                month = "sep";
+            case "sep":
+                month = 8;
                 break;
-            case 9:
-                month = "oct";
+            case "oct":
+                month = 9;
                 break;
-            case 10:
-                month = "nov";
+            case "nov":
+                month = 10;
                 break;
-            case 11:
-                month = "dec";
+            case "dec":
+                month = 11;
                 break;
         }
         const oldpath = files.imgPath.filepath;
