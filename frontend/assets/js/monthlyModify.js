@@ -41,7 +41,10 @@ function changeMonth(){
     monthlyImg.innerHTML = "";
     let selectMonth = month.options[month.selectedIndex].value;
     let img = monthData[selectMonth]
-    monthlyImg.innerHTML += '<img class ="mini_img" src="'+monthData[selectMonth]+'" onclick="window.open(this.src)"/>';
+    if(img != null){
+        monthlyImg.innerHTML += '<img class ="mini_img" src="'+monthData[selectMonth]+'" onclick="window.open(this.src)"/>';
+    }
+   
 }
 
 function addEngImg(input) {
