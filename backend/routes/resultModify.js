@@ -63,65 +63,65 @@ router.get("/", (req, res) => {
 })
 
 
-router.post("/", express.json(), (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
+// router.post("/", express.json(), (req, res) => {
+//     res.header("Access-Control-Allow-Origin", "*");
 
-    const deleteImgQuery = "DELETE FROM TestPaper WHERE studentID=?";
+//     const deleteImgQuery = "DELETE FROM TestPaper WHERE studentID=?";
 
-    const studentID = req.body.id;
-    const sca = req.body.SCA.sca;
-    const cps = req.body.CPS.cps;
-    const careerNet = req.body.careerNet.careerNet;
-    const sixSense = req.body.sixSense.sixSense;
-    const testEtc = req.body.testEtc.etc;
+//     const studentID = req.body.id;
+//     const sca = req.body.SCA.sca;
+//     const cps = req.body.CPS.cps;
+//     const careerNet = req.body.careerNet.careerNet;
+//     const sixSense = req.body.sixSense.sixSense;
+//     const testEtc = req.body.testEtc.etc;
 
-    connection.query(deleteImgQuery, studentID, (err, results, field) => {
-        if (err) throw err;
-    });
+//     connection.query(deleteImgQuery, studentID, (err, results, field) => {
+//         if (err) throw err;
+//     });
 
-    for (let index = 0; index < sca.length; index++) {
-        const scaQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 0, ?)";
-        connection.query(scaQuery, sca[index], (err, results) => {
-            if (err) throw err;
-            console.log("insert sca : " + sca[index]);
-        });
-    }
-    for (let index = 0; index < cps.length; index++) {
-        const cpsQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 1, ?)";
-        connection.query(cpsQuery, cps[index], (err, results) => {
-            if (err) throw err;
-            console.log("insert cps : " + cps[index]);
-        });
-    }
-    const careerNetQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 2, ?)";
-    connection.query(careerNetQuery, careerNet, (err, results) => {
-        if (err) throw err;
-        console.log("insert careerNet : " + careerNet);
-    });
-    for (let index = 0; index < sixSense.length; index++) {
-        const sixSenseQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 3, ?)";
-        connection.query(sixSenseQuery, sixSense[index], (err, results) => {
-            if (err) throw err;
-            console.log("insert sixSense : " + sixSense[index]);
-        });
-    }
-    for (let index = 0; index < testEtc.length; index++) {
-        const testEtcQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 4, ?)";
-        connection.query(testEtcQuery, testEtc[index], (err, results) => {
-            if (err) throw err;
-            console.log("insert testEtc : " + testEtc[index]);
-        });
-    }
+//     for (let index = 0; index < sca.length; index++) {
+//         const scaQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 0, ?)";
+//         connection.query(scaQuery, sca[index], (err, results) => {
+//             if (err) throw err;
+//             console.log("insert sca : " + sca[index]);
+//         });
+//     }
+//     for (let index = 0; index < cps.length; index++) {
+//         const cpsQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 1, ?)";
+//         connection.query(cpsQuery, cps[index], (err, results) => {
+//             if (err) throw err;
+//             console.log("insert cps : " + cps[index]);
+//         });
+//     }
+//     const careerNetQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 2, ?)";
+//     connection.query(careerNetQuery, careerNet, (err, results) => {
+//         if (err) throw err;
+//         console.log("insert careerNet : " + careerNet);
+//     });
+//     for (let index = 0; index < sixSense.length; index++) {
+//         const sixSenseQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 3, ?)";
+//         connection.query(sixSenseQuery, sixSense[index], (err, results) => {
+//             if (err) throw err;
+//             console.log("insert sixSense : " + sixSense[index]);
+//         });
+//     }
+//     for (let index = 0; index < testEtc.length; index++) {
+//         const testEtcQuery = "INSERT INTO Testpaper VALUES ('" +  studentID + "', 4, ?)";
+//         connection.query(testEtcQuery, testEtc[index], (err, results) => {
+//             if (err) throw err;
+//             console.log("insert testEtc : " + testEtc[index]);
+//         });
+//     }
     
-    try {
-        res.status(200).json({
-            msg : "success"
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500);
-        res.send(err.message);
-    }  
-})
+//     try {
+//         res.status(200).json({
+//             msg : "success"
+//         });
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500);
+//         res.send(err.message);
+//     }  
+// })
 
 module.exports = router;
