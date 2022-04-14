@@ -52,14 +52,12 @@ router.post("/", express.json(), (req, res) => {
 
         switch(type) {
             case 'english':
-                params = [newpath, studentID, 0];
-                query = "UPDATE LevelTest SET dataPath=? \
-                WHERE studentID=? AND dataType=?";
+                params = [studentID, 0, newpath];
+                query = "INSERT INTO LevelTest VALUES (?, ?, ?)";
                 break;
             case 'math':
-                params = [newpath, studentID, 1];
-                query = "UPDATE LevelTest SET dataPath=? \
-                WHERE studentID=? AND dataType=?";
+                params = [studentID, 1, newpath];
+                query = "INSERT INTO LevelTest VALUES (?, ?, ?)";
                 break;
             case 'checklist':
                 params = [newpath, studentID];
@@ -67,29 +65,24 @@ router.post("/", express.json(), (req, res) => {
                 WHERE studentID=?";
                 break;   
             case 'sca':
-                params = [newpath, studentID, 0];
-                query = "UPDATE TestPaper SET dataPath=? \
-                WHERE studentID=? AND dataType=?";
+                params = [studentID, 0, newpath];
+                query = "INSERT INTO TestPaper VALUES (?, ?, ?)";
                 break;  
             case 'cps':
-                params = [newpath, studentID, 1];
-                query = "UPDATE TestPaper SET dataPath=? \
-                WHERE studentID=? AND dataType=?";
+                params = [studentID, 1, newpath];
+                query = "INSERT INTO TestPaper VALUES (?, ?, ?)";
                 break;  
             case 'careerNet':
-                params = [newpath, studentID, 2];
-                query = "UPDATE TestPaper SET dataPath=? \
-                WHERE studentID=? AND dataType=?";
+                params = [studentID, 2, newpath];
+                query = "INSERT INTO TestPaper VALUES (?, ?, ?)";
                 break;  
             case 'sixSense':
-                params = [newpath, studentID, 3];
-                query = "UPDATE TestPaper SET dataPath=? \
-                WHERE studentID=? AND dataType=?";
+                params = [studentID, 3, newpath];
+                query = "INSERT INTO TestPaper VALUES (?, ?, ?)";
                 break;  
             case 'etc':
-                params = [newpath, studentID, 4];
-                query = "UPDATE TestPaper SET dataPath=? \
-                WHERE studentID=? AND dataType=?";
+                params = [studentID, 4, newpath];
+                query = "INSERT INTO TestPaper VALUES (?, ?, ?)";
                 break;  
         }
         connection.query(query, params, (err, results, field) => {
