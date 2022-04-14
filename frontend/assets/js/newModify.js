@@ -275,7 +275,7 @@ function delImg(tag){
     formData.append('type', tag.name);
     formData.append("image", src);
 
-    fetch(uploadURL, {
+    fetch(deleteURL, {
         method: "POST",
         body: formData
     }).then((res) => {
