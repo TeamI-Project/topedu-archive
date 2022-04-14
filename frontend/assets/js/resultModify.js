@@ -21,11 +21,11 @@ let studentID = getCookie();
 const uploadURL = "https://archive.top-edu.co.kr:8000/api/upload";
 const deleteURL = "https://archive.top-edu.co.kr:8000/api/delete";
 
-let SCA = document.getElementById("SCA");
-let CPS = document.getElementById("CPS");
-let careerNet = document.getElementById("careerNet");
-let sixSense = document.getElementById("sixSense");
-let testEtc = document.getElementById("testEtc");
+let SCA = document.getElementById("scaImg");
+let CPS = document.getElementById("cpsImg");
+let careerNet = document.getElementById("careerPath");
+let sixSense = document.getElementById("ssImg");
+let testEtc = document.getElementById("etcImg");
 
 let scaCnt = 0;
 let cpsCnt = 0;
@@ -47,9 +47,9 @@ fetch(url).then(function(res){
             CPS.innerHTML += '<img name="cps" class ="mini_img" src="'+cpsImg[i].substr(14)+'" onclick="delImg(this)"/>';
         }
 
-        let careerPdf = json.careerNet.careerNet;
-        careerNet.innerHTML += '<p style="text-align: center;"><a name="careerNet" href="'+careerPdf.substr(14)+'">PDF로 제공됩니다. 누르면 이동</a></p>';
-
+        let pdf = json.careerNet.careerNet;
+        careerNet.innerHTML += '<a href="'+pdf.substr(14)+'">pdf link</a>';
+        
         let ssImg = json.sixSense.sixSense;
         for(i=0; i<ssImg.length; i++){
             sixSense.innerHTML += '<img name="ss" class ="mini_img" src="'+ssImg[i].substr(14)+'" onclick="delImg(this)"/>';
@@ -200,6 +200,9 @@ function delImg(tag){
     }).catch(error => alert('이미지 삭제에 실패했습니다.'));
     }
 
+function delImg(){
+
+}
 function doneModify(){
     location.href = "archive.html";
   }
