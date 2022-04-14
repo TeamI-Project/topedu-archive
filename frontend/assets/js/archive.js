@@ -100,17 +100,24 @@ fetch(url1+id).then(function(res){
         //2
         let engImg = json.levelTest.english;
         if(engImg.length == 0){
-            engTestImg.innerHTML += '<img name="english" class="mini_img" src="images/background_logo.png" onclick="delImg(this)"></img>';
+            engTestImg.innerHTML += '<img name="english" class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }else{
+            for(i=0; i < engImg.length ; i++){
+                engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="window.open(this.src)"></img>';
+            }
         }
-        for(i=0; i < engImg.length ; i++){
-            engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="delImg(this)"></img>';
-        }
+        
             
         
         let mathImg = json.levelTest.math;
-        for(i=0; i < engImg.length ; i++){
-            mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+        if(mathImg.length == 0){
+            mathTestImg.innerHTML += '<img name="math" class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }else{
+            for(i=0; i < engImg.length ; i++){
+                mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" oonclick="window.open(this.src)"></img>';
+            }
         }
+        
         
         
 
@@ -148,7 +155,12 @@ fetch(url1+id).then(function(res){
         }
         
         //4
-        checkList.innerHTML += '<img id="checkListImg" class="mini_img" src="'+json.newCheckList.checklist.substr(14) +'" onclick="window.open(this.src)"></img>';
+        if(json.newCheckList.checkList == null){
+            checkList.innerHTML += '<img id="checkListImg" class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }else{
+            checkList.innerHTML += '<img id="checkListImg" class="mini_img" src="'+json.newCheckList.checklist.substr(14) +'" onclick="window.open(this.src)"></img>';
+        }
+        
     })
 })
 
