@@ -91,14 +91,19 @@ fetch(url+id).then(function(res){
 
         //2
         let engImg = json.levelTest.english;
-        for(i=0; i < engImg.length ; i++){
-            engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+        if(engImg.length > 0){
+            for(i=0; i < engImg.length ; i++){
+                engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+            }
         }
+        
             
         
         let mathImg = json.levelTest.math;
-        for(i=0; i < engImg.length ; i++){
-            mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+        if(mathImg.length > 0){
+            for(i=0; i < engImg.length ; i++){
+                mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+            }
         }
 
 
