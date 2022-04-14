@@ -355,9 +355,10 @@ function doneModify() {
     fetch(url, {
         method: "POST",
         body: formData
-    }).then((res) => {
-        if (res.msg == 'success') {
-            alert("complete");
+    }).then(res => res.json())
+    .then(response => {
+        if (response.msg === 'success') {
+            alert("success")
         }
         else{
             alert("error");
