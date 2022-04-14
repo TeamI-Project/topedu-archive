@@ -283,9 +283,9 @@ function delImg(tag){
             tag.remove();
         }
         else{
-            alert("이미지 저장에 실패했습니다.");
+            alert("이미지 삭제에 실패했습니다.");
         }
-    }).catch(error => alert('이미지 저장에 실패했습니다.'));
+    }).catch(error => alert('이미지 삭제에 실패했습니다.'));
     }
 
 function doneModify() {
