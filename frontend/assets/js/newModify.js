@@ -248,8 +248,9 @@ function newCheckImg(input) {
     fetch(uploadURL, {
         method: "POST",
         body: formData
-    }).then((res) => {
-        if (res.msg == 'success') {
+    }).then(res => res.json())
+    .then(response => {
+        if (response.msg == 'success') {
             //새로운 이미지 div 추가
             var newImage = '<img name="checklist" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
             checkList = file;
@@ -282,8 +283,9 @@ function delImg(tag){
     fetch(deleteURL, {
         method: "POST",
         body: formData
-    }).then((res) => {
-        if (res.msg == 'success') {
+    }).then(res => res.json())
+    .then(response => {
+        if (response.msg === 'success') {
             tag.remove();
         }
         else{
