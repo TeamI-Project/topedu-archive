@@ -48,7 +48,7 @@ fetch(url).then(function(res){
         }
 
         let pdf = json.careerNet.careerNet;
-        careerNet.innerHTML += '<a href="'+pdf.substr(14)+'">pdf link</a>';
+        careerNet.innerHTML += '<a name="career" href="'+pdf.substr(14)+'">pdf link</a>';
         
         let ssImg = json.sixSense.sixSense;
         for(i=0; i<ssImg.length; i++){
