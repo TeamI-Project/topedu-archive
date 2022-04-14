@@ -60,6 +60,7 @@ let checkList = document.getElementById("newCheckList");
 let use1 = ["좋음", "보통", "도움필요"];
 let use2 = ["외향적", "내향적", "외내향적"];
 let use3 = ["좋음", "보통", "개선필요"];
+let monthCode = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
 
 const id = '?id='+studentID;
 
@@ -254,6 +255,7 @@ fetch(url3+id).then(function(res){
 })
 
 
+
 let month = document.getElementById("month");
 let monthlyImg = document.getElementById("monthlyImg");
 
@@ -264,7 +266,8 @@ fetch(url4+id).then(function(res){
 
         let monthData = json.month;
         let monthVal = month.options[month.selectedIndex].value;
-        let img = monthData[monthVal]
+        let index = monthCode.find(monthVal);
+        let img = monthData[index]
         if(img == null){
             monthlyImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }
