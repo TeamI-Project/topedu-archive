@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
         try {
             const sca = [];
             const cps = [];
-            let careerNet = "";
+            const careerNet = [];
             const sixSense = [];
             const testEtc = [];
 
@@ -30,7 +30,7 @@ router.get("/", (req, res) => {
                 } else if (row.dataType === 1) {
                     cps.push(row.dataPath);
                 } else if (row.dataType === 2) {
-                    careerNet = row.dataPath;
+                    careerNet.push(row.dataPath);
                 } else if (row.dataType === 3) {
                     sixSense.push(row.dataPath);
                 } else if (row.dataType === 4) {
