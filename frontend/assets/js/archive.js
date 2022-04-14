@@ -253,20 +253,30 @@ const url = "https://archive.top-edu.co.kr:8000/api/comment";
 
 fetch(url).then(function(res){
     res.json().then(function(json){
-        if(json.teacherComment == null){
+        if(json.comment.teacherComment == null){
             teacher.innerHTML += '<p>내용없음</p>';
         }
         else{
-            teacher.innerHTML += '<p>'+json.teacherComment+'</p>';
+            teacher.innerHTML += '<p>'+json.comment.teacherComment+'</p>';
         }
-        if(json.studentComment == null){
+        if(json.comment.studentComment == null){
             student.innerHTML += '<p>내용없음</p>';
         }
         else{
-            student.innerHTML += '<p>'+json.studentComment+'</p>';
+            student.innerHTML += '<p>'+json.comment.studentComment+'</p>';
         }
- 
-        parents.innerHTML += '<p>'+json.parentsComment+'</p>';
-        etc.innerHTML += '<p>'+json.etcComment+'</p>';
+        if(json.comment.parentsComment == null){
+            parents.innerHTML += '<p>내용없음</p>';
+        }
+        else{
+            parents.innerHTML += '<p>'+json.comment.parentsComment+'</p>';
+        }
+        if(json.comment.etcComment == null){
+            etc.innerHTML += '<p>내용없음</p>';
+        }
+        else{
+            etc.innerHTML += '<p>'+json.comment.etcComment+'</p>';
+        }
+        
     })
 })
