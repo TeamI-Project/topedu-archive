@@ -191,12 +191,7 @@ function addEngImg(input) {
     }).then(res => res.json())
     .then(response => {
         if (response.msg === 'success') {
-            //새로운 이미지 div 추가
-          var newImage = '<img name="english" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
-
-          //이미지를 image-show div에 추가
-          var imgList = document.getElementById('engTestImg');
-          imgList.innerHTML += (newImage);
+            location.reload();
         }
         else{
             alert("이미지 저장에 실패했습니다.");
@@ -220,14 +215,7 @@ function addMathImg(input) {
     }).then(res => res.json())
     .then(response => {
         if (response.msg === 'success') {
-            //새로운 이미지 div 추가
-            var newImage = '<img name="math" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
-            math = file;
-
-            //이미지를 image-show div에 추가
-            var imgList = document.getElementById('mathTestImg');
-            imgList.innerHTML += (newImage);
-
+            location.reload();
         }
         else{
             alert("이미지 저장에 실패했습니다.");
@@ -251,14 +239,7 @@ function newCheckImg(input) {
     }).then(res => res.json())
     .then(response => {
         if (response.msg == 'success') {
-            //새로운 이미지 div 추가
-            var newImage = '<img name="checklist" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
-            checkList = file;
-
-            //이미지를 image-show div에 추가
-            var imgList = document.getElementById('newCheckImg');
-            imgList.innerHTML += (newImage);
-
+            location.reload();
         }
         else{
             alert("이미지 저장에 실패했습니다.");
