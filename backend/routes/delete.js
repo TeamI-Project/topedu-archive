@@ -40,7 +40,7 @@ router.post("/", express.json(), (req, res) => {
             case 'sixSense':
             case 'etc':
                 params = [studentID, image];
-                query = "DELETE FROM TestPaper \
+                query = "DELETE FROM Testpaper \
                 WHERE studentID=? AND dataPath=?";
                 break;
         }
