@@ -185,7 +185,12 @@ function delImg(tag){
     let src = "/var/www/html/uploads/testResult/"+tag.name+"/"+temp[temp.length-1];
     var formData = new FormData();
     formData.append('id',studentID);
-    formData.append('type', tag.name);
+    if(tag.name == 'career'){
+        formData.append('type', "careerNet");
+    }
+    else{
+        formData.append('type', tag.name);
+    }
     formData.append("image", src);
 
     fetch(deleteURL, {
