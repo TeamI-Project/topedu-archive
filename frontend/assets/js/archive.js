@@ -100,10 +100,10 @@ fetch(url1+id).then(function(res){
         //2
         let engImg = json.levelTest.english;
         if(engImg.length == 0){
-            engTestImg.innerHTML += '<img name="english" class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+            engTestImg.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
             for(i=0; i < engImg.length ; i++){
-                engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="window.open(this.src)"></img>';
+                engTestImg.innerHTML += '<img class="mini_img" src="' + engImg[i].substr(14) +'" onclick="window.open(this.src)"></img>';
             }
         }
         
@@ -111,10 +111,10 @@ fetch(url1+id).then(function(res){
         
         let mathImg = json.levelTest.math;
         if(mathImg.length == 0){
-            mathTestImg.innerHTML += '<img name="math" class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+            mathTestImg.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
             for(i=0; i < engImg.length ; i++){
-                mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" oonclick="window.open(this.src)"></img>';
+                mathTestImg.innerHTML += '<img class="mini_img" src="' + mathImg[i].substr(14) +'" oonclick="window.open(this.src)"></img>';
             }
         }
         
@@ -158,9 +158,9 @@ fetch(url1+id).then(function(res){
         
         //4
         if(json.newCheckList.checkList == null){
-            checkList.innerHTML += '<img id="checkListImg" class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+            checkList.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
-            checkList.innerHTML += '<img id="checkListImg" class="mini_img" src="'+json.newCheckList.checklist.substr(14) +'" onclick="window.open(this.src)"></img>';
+            checkList.innerHTML += '<img class="mini_img" src="'+json.newCheckList.checklist.substr(14) +'" onclick="window.open(this.src)"></img>';
         }
         
     })
@@ -179,26 +179,43 @@ fetch(url2+id).then(function(res){
     res.json().then(function(json){
 
         let scaImg = json.SCA.sca;
-        for(i=0; i<scaImg.length; i++){
-            SCA.innerHTML += '<img class ="mini_img" src="'+scaImg[i].substr(14)+'" onclick="window.open(this.src)"/>';
+        if(scaImg.length == 0){
+            SCA.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }else{
+            for(i=0; i<scaImg.length; i++){
+                SCA.innerHTML += '<img class ="mini_img" src="'+scaImg[i].substr(14)+'" onclick="window.open(this.src)"/>';
+            }
         }
+        
 
         let cpsImg = json.CPS.cps;
-        for(i=0; i<cpsImg.length; i++){
-            CPS.innerHTML += '<img class ="mini_img" src="'+cpsImg[i].substr(14)+'"  onclick="window.open(this.src)"/>';
+        if(cpsImg.length == 0){
+            CPS.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }else{
+            for(i=0; i<cpsImg.length; i++){
+                CPS.innerHTML += '<img class ="mini_img" src="'+cpsImg[i].substr(14)+'"  onclick="window.open(this.src)"/>';
+            }
         }
 
         let careerPdf = json.careerNet.careerNet;
         careerNet.innerHTML += '<p style="text-align: center;"><a href="'+careerPdf[i].substr(14)+'">PDF로 제공됩니다. 누르면 이동</a></p>';
 
         let ssImg = json.sixSence.sixSence;
-        for(i=0; i<ssImg.length; i++){
-            sixSence.innerHTML += '<img class ="mini_img" src="'+ssImg[i].substr(14)+'"  onclick="window.open(this.src)"/>';
+        if(ssImg.length == 0){
+            sixSence.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }else{
+            for(i=0; i<ssImg.length; i++){
+                sixSence.innerHTML += '<img class ="mini_img" src="'+ssImg[i].substr(14)+'"  onclick="window.open(this.src)"/>';
+            }
         }
 
         let etcImg = json.testEtc.etc;
-        for(i=0; i<etcImg.length; i++){
-            testEtc.innerHTML += '<img class ="mini_img" src="'+etcImg[i].substr(14)+'"  onclick="window.open(this.src)"/>';
+        if(etcImg.length == 0){
+            testEtc.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }else{
+            for(i=0; i<etcImg.length; i++){
+                testEtc.innerHTML += '<img class ="mini_img" src="'+etcImg[i].substr(14)+'"  onclick="window.open(this.src)"/>';
+            }
         }
     })
 })
