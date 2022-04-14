@@ -92,13 +92,13 @@ fetch(url+id).then(function(res){
         //2
         let engImg = json.levelTest.english;
         for(i=0; i < engImg.length ; i++){
-            engTestImg.innerHTML += '<img name="levelTest" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+            engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="delImg(this)"></img>';
         }
             
         
         let mathImg = json.levelTest.math;
         for(i=0; i < engImg.length ; i++){
-            mathTestImg.innerHTML += '<img name="levelTest" class="mini_img" src="' + mathImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+            mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" onclick="delImg(this)"></img>';
         }
 
 
@@ -171,7 +171,7 @@ fetch(url+id).then(function(res){
         }
         
         //4
-        checkList.innerHTML += '<img name="etcImg" class="mini_img" src="' + json.newCheckList.checklist.substr(14) +'" onclick="delImg(this)"></img>';
+        checkList.innerHTML += '<img name="checklist" class="mini_img" src="' + json.newCheckList.checklist.substr(14) +'" onclick="delImg(this)"></img>';
     })
 })
 
@@ -192,7 +192,7 @@ function addEngImg(input) {
     .then(response => {
         if (response.msg === 'success') {
             //새로운 이미지 div 추가
-          var newImage = '<img name="levelTest" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
+          var newImage = '<img name="english" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
 
           //이미지를 image-show div에 추가
           var imgList = document.getElementById('engTestImg');
@@ -221,7 +221,7 @@ function addMathImg(input) {
     .then(response => {
         if (response.msg === 'success') {
             //새로운 이미지 div 추가
-            var newImage = '<img name="levelTest" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
+            var newImage = '<img name="math" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
             math = file;
 
             //이미지를 image-show div에 추가
@@ -251,7 +251,7 @@ function newCheckImg(input) {
     }).then((res) => {
         if (res.msg == 'success') {
             //새로운 이미지 div 추가
-            var newImage = '<img name="etcImg" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
+            var newImage = '<img name="checklist" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
             checkList = file;
 
             //이미지를 image-show div에 추가
@@ -268,8 +268,12 @@ function newCheckImg(input) {
 
 function delImg(tag){
     let temp = tag.src.split("/");
-    let src = "/var/www/html/uploads/"+tag.name+"/"+temp[temp.length-1];
-    console.log(src);
+    let src = "/var/www/html/uploads/";
+    if(tag.name == "english" || tag.name == "math"){
+        src += "levelTest/"+temp[temp.length-1];
+    }else{
+        src += "etcImg/"+temp[temp.length-1];
+    }
     var formData = new FormData();
     formData.append('id',studentID);
     formData.append('type', tag.name);
@@ -345,9 +349,6 @@ function doneModify() {
     formData.append('id',studentID);
     formData.append('firstLevel', firstLevel);
     formData.append("newConsulting",newConsulting);
-    formData.append("english",english);
-    formData.append("math", math);
-    formData.append( "checklist",checkList);
    
     fetch(url, {
         method: "POST",
