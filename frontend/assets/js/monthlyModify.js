@@ -73,20 +73,8 @@ function doneModify(){
     if(file == null){
         return
     }
-    
-    let selectVal = select.options[select.selectedIndex].value;
-    let img = document.getElementById('monthlyImg').children;
 
-    let imgPath = []
-    for(i=0; i < img.length ; i++){
-        imgPath.push(img[i].src);
-    }
-    
-    var data = {
-        "id" : studentID,
-        "month" : selectVal,
-        "imgPath" : imgPath
-    }
+    let selectVal = select.options[select.selectedIndex].value;
 
     var formData = new FormData();
     formData.append('id',studentID);
