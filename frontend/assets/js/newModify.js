@@ -46,6 +46,10 @@ let engImgCnt = 0;
 let mathImgCnt = 0;
 let checkImgCnt = 0;
 
+let english;
+let math;
+let checklist;
+
 const id = '?id='+studentID;
 const url = "https://archive.top-edu.co.kr:8000/api/newModify";
 
@@ -84,12 +88,12 @@ fetch(url+id).then(function(res){
         //2
         let engImg = json.levelTest.english;
         if (engImg.length == 0){
-            engTestImg.innerHTML += '<img id='+engImgCnt+' class="mini_img" src="noimg_url" onclick="delImg(this.id)"></img>';
+            engTestImg.innerHTML += '<img class="mini_img" src="images/background_logo.png"></img>';
             engImgCnt+=1;
         }
         else{
             for(i=0; i < engImg.length ; i++){
-                engTestImg.innerHTML += '<img id='+engImgCnt+' class="mini_img" src="' + engImg[i] +'" onclick="delImg(this.id)"></img>';
+                engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i] +'" onclick="delImg(this)"></img>';
                 engImgCnt+=1;
             }
         }
@@ -97,12 +101,12 @@ fetch(url+id).then(function(res){
         
         let mathImg = json.levelTest.math;
         if (mathImg.length == 0){
-            mathTestImg.innerHTML += '<img id='+mathImgCnt+' class="mini_img" src="noimg_url" onclick="delImg(this.id)"></img>';
+            mathTestImg.innerHTML += '<img class="mini_img" src="images/background_logo.png"></img>';
             mathImgCnt+=1;
         }
         else{
             for(i=0; i < engImg.length ; i++){
-                mathTestImg.innerHTML += '<img id='+mathImgCnt+' class="mini_img" src="' + mathImg[i] +'" onclick="delImg(this.id)"></img>';
+                mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i] +'" onclick="delImg(this)"></img>';
                 mathImgCnt+=1;
             }
         }
@@ -177,7 +181,7 @@ fetch(url+id).then(function(res){
         }
         
         //4
-        checkList.innerHTML += '<img id="checkListImg" class="mini_img" src="' + json.newCheckList.checklist +'" onclick="delImg(this.id)"></img>';
+        checkList.innerHTML += '<img name="checkList" class="mini_img" src="' + json.newCheckList.checklist +'" onclick="delImg(this.src)"></img>';
         checkImgCnt += 1;
     })
 })
@@ -186,12 +190,16 @@ fetch(url+id).then(function(res){
 
 
 function addEngImg(input) {
+    if(english != null){
+        alert("하나의 이미지만 추가할 수 있습니다.");
+        return;
+    }
 
     var file = input.files[0];	//선택된 파일 가져오기
 
   	//새로운 이미지 div 추가
-    var newImage = '<img id='+engImgCnt+' class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this.id)"></img>';
-    engImgCnt+=1;
+    var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="window.open(this.src)"></img>';
+    english = file;
 
     //이미지를 image-show div에 추가
     var imgList = document.getElementById('engTestImg');
@@ -199,12 +207,15 @@ function addEngImg(input) {
 };
 
 function addMathImg(input) {
-
+    if(math != null){
+        alert("하나의 이미지만 추가할 수 있습니다.");
+        return;
+    }
     var file = input.files[0];	//선택된 파일 가져오기
 
   	//새로운 이미지 div 추가
-    var newImage = '<img id='+mathImgCnt+' class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this.id)"></img>';
-    mathImgCnt+=1;
+    var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="window.open(this.src)"></img>';
+    math = file;
 
     //이미지를 image-show div에 추가
     var imgList = document.getElementById('mathTestImg');
@@ -213,15 +224,15 @@ function addMathImg(input) {
 
 
 function newCheckImg(input) {
-    if(checkImgCnt >= 1){
-        alert("체크리스트는 하나의 이미지만 추가할 수 있습니다.");
+    if(checkFile != null){
+        alert("하나의 이미지만 추가할 수 있습니다.");
         return;
     }
     var file = input.files[0];	//선택된 파일 가져오기
 
   	//새로운 이미지 div 추가
-    var newImage = '<img id="checkListImg" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this.id)"></img>';
-    checkImgCnt+=1;
+    var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="window.open(this.src)"></img>';
+    checkList = file;
 
     //이미지를 image-show div에 추가
     var imgList = document.getElementById('newCheckImg');
@@ -230,7 +241,7 @@ function newCheckImg(input) {
 };
 
 function delImg(input){
-    
+    // 나중에 -> 클릭할 때마다 api 요청
   var file = input;
   let remove = document.getElementById(file);
 
@@ -246,8 +257,6 @@ function doneModify() {
     let lvEnglish = regLvEng.value;
     let regMath = regAtMath.value;
     let lvMath = regLvMath.value;
-    let english = [];
-    let math = [];
 
     if(regEnglish == 'x'){
         regEnglish = null;
@@ -260,16 +269,6 @@ function doneModify() {
     }
     if(lvMath == 'x'){
         lvMath = null;
-    }
-
-    var imgList = document.getElementById('engTestImg').children;
-    for(i=0; i< imgList.length; i++){
-        english.push(imgList[i].src);
-    }
-
-    var imgList = document.getElementById('mathTestImg').children;
-    for(i=0; i< imgList.length; i++){
-        math.push(imgList[i].src);
     }
 
     var temp = '';
@@ -290,45 +289,33 @@ function doneModify() {
     homework = parseInt(temp.substr(-1));
 
     textbox = document.getElementById('textbox').children[0].value;
-    
-    checkList = document.getElementById('newCheckImg').children[0];
-    if(checkList != null){
-        checkList = checkList.src;
+
+    let firstLevel = {
+        "regEng" : regEnglish,
+        "levelEng" : lvEnglish,
+        "regMath" : regMath,
+        "levelMath" : lvMath
     }
-
-
-    var data = {
-        "id" : studentID,
-
-        "firstLevel" : {
-            "regEng" : regEnglish,
-            "levelEng" : lvEnglish,
-            "regMath" : regMath,
-            "levelMath" : lvMath
-        },
-        "levelTest" : {
-            "english" : english,
-            "math" : math
-        },
-        "newConsulting" : {
-            "friendship" : friendShip,
+    let newConsulting = {
+        "friendship" : friendShip,
             "personality" : personality,
             "parentship" : parentShip,
             "concentration" : concentration,
             "homework" : homework,
             "comment" : textbox
-        },
-        "newCheckList" : {
-            "checklist" : checkList
-        }
     }
-
+    
+    var formData = new FormData();
+    formData.append('id',studentID);
+    formData.append('firstLevel', firstLevel);
+    formData.append("newConsulting",newConsulting);
+    formData.append("english",english);
+    formData.append("math", math);
+    formData.append( "checklist",checkList);
+   
     fetch(url, {
         method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
+        body: formData
     }).then((res) => console.log(res))
 
 }

@@ -80,12 +80,6 @@ function doneModify(){
     formData.append('gradeType', selectVal);
     formData.append("gradePath", file);
 
-    var data = {
-        "id" : studentID,
-        "gradeType" : selectVal,
-        "gradePath" : file
-    }
-
     fetch(url, {
         method: "POST",
         body: formData
