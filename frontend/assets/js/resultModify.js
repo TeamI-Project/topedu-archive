@@ -201,7 +201,7 @@ function delImg(tag){
 }
 function delPdf(){
     let tag = document.getElementById("careerPath").children;
-    console.log(tag);
+    console.log(tag[0]);
     let temp = tag.href.split("/");
     let src = "/var/www/html/uploads/testResult/"+tag.name+"/"+temp[temp.length-1];
     var formData = new FormData();
