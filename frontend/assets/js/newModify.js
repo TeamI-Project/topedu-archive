@@ -163,12 +163,7 @@ fetch(url+id).then(function(res){
             homework.innerHTML += temp;
         }
 
-        if(newc.comment == null){
-            textbox.innerHTML += '<textarea>'+"내용 없음"+'</textarea>';
-        }
-        else{
-            textbox.innerHTML += '<textarea>'+newc.comment+'</textarea>';
-        }
+        textbox.innerHTML += '<textarea>'+newc.comment+'</textarea>';
         
         //4
         checkList.innerHTML += '<img name="checklist" class="mini_img" src="' + json.newCheckList.checkList.substr(14) +'" onclick="delImg(this)"></img>';
