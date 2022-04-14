@@ -180,7 +180,7 @@ function addEtcImg(input) {
 //사진 삭제
 function delImg(tag){
     let temp = tag.src.split("/");
-    let src = "/var/www/html/uploads/testResult/"+tag.name+"/"+tag.src;
+    let src = "/var/www/html/uploads/testResult/"+tag.name+"/"+temp[temp.length-1];
     var formData = new FormData();
     formData.append('id',studentID);
     formData.append('type', tag.name);
