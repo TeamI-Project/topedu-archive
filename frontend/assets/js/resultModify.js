@@ -200,8 +200,7 @@ function delImg(tag){
     }).catch(error => alert('이미지 삭제에 실패했습니다.'));
 }
 function delPdf(){
-    let tag = document.getElementById("careerPath").children;
-    console.log(tag[0]);
+    let tag = document.getElementById("careerPath").children[0];
     let temp = tag.href.split("/");
     let src = "/var/www/html/uploads/testResult/"+tag.name+"/"+temp[temp.length-1];
     var formData = new FormData();
