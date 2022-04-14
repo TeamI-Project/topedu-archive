@@ -38,7 +38,6 @@ fetch(url).then(function(res){
         let scaImg = json.SCA.sca;
         for(i=0; i<scaImg.length; i++){
             SCA.innerHTML += '<img id="'+scaCnt+'" class ="mini_img" src="'+scaImg[i]+'" onclick="delImg(this.id)"/>';
-            scaCnt+=1;
         }
 
         let cpsImg = json.CPS.cps;

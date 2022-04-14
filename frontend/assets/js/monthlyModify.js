@@ -27,6 +27,7 @@ const url = "https://archive.top-edu.co.kr:8000/api/monthly?id="+studentID;
 
 let monthData;
 let ImgCnt=0;
+let file;
 
 fetch(url).then(function(res){
     res.json().then(function(json){
@@ -46,12 +47,15 @@ function changeMonth(){
 }
 
 function addEngImg(input) {
+    if(file != null){
+        alert("하나의 이미지만 추가할 수 있습니다.");
+        return;
+    }
 
-    var file = input.files[0];	//선택된 파일 가져오기
+    file = input.files[0];	//선택된 파일 가져오기
 
   	//새로운 이미지 div 추가
-    var newImage = '<img id='+ImgCnt+' class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this.id)"></img>';
-    ImgCnt+=1;
+    var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="window.open(this.src)"></img>';
 
     //이미지를 image-show div에 추가
     var imgList = document.getElementById('monthlyImg');
@@ -81,11 +85,13 @@ function doneModify(){
         "imgPath" : imgPath
     }
 
+    var formData = new FormData();
+    formData.append('id',studentID);
+    formData.append('month', selectVal);
+    formData.append("imgPath",file);
+   
     fetch(url, {
         method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
+        body: formData
     }).then((res) => console.log(res))
 }

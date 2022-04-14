@@ -18,6 +18,10 @@ function getCookie() {
 }
 
 let studentID = getCookie();
+const uploadURL = "https://archive.top-edu.co.kr:8000/api/upload";
+const deleteURL = "https://archive.top-edu.co.kr:8000/api/delete";
+
+
 
 //firstLevel
 let regAtEng = document.getElementById("regAtEng");
@@ -87,30 +91,16 @@ fetch(url+id).then(function(res){
 
         //2
         let engImg = json.levelTest.english;
-        if (engImg.length == 0){
-            engTestImg.innerHTML += '<img class="mini_img" src="images/background_logo.png"></img>';
-            engImgCnt+=1;
+        for(i=0; i < engImg.length ; i++){
+            engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="delImg(this)"></img>';
         }
-        else{
-            for(i=0; i < engImg.length ; i++){
-                engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i] +'" onclick="delImg(this)"></img>';
-                engImgCnt+=1;
-            }
-        }
-        
+            
         
         let mathImg = json.levelTest.math;
-        if (mathImg.length == 0){
-            mathTestImg.innerHTML += '<img class="mini_img" src="images/background_logo.png"></img>';
-            mathImgCnt+=1;
+        for(i=0; i < engImg.length ; i++){
+            mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" onclick="delImg(this)"></img>';
         }
-        else{
-            for(i=0; i < engImg.length ; i++){
-                mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i] +'" onclick="delImg(this)"></img>';
-                mathImgCnt+=1;
-            }
-        }
-        
+
 
         //3
         let newc = json.newConsulting;
@@ -181,75 +171,119 @@ fetch(url+id).then(function(res){
         }
         
         //4
-        checkList.innerHTML += '<img name="checkList" class="mini_img" src="' + json.newCheckList.checklist +'" onclick="delImg(this.src)"></img>';
-        checkImgCnt += 1;
+        checkList.innerHTML += '<img name="checkList" class="mini_img" src="' + json.newCheckList.checklist.substr(14) +'" onclick="delImg(this)"></img>';
     })
 })
 
-//이미지 불러오는 코드 넣기 (불러온만큼 imgCount++)
-
-
+//이미지 불러오는 코드 넣기
 function addEngImg(input) {
-    if(english != null){
-        alert("하나의 이미지만 추가할 수 있습니다.");
-        return;
-    }
 
     var file = input.files[0];	//선택된 파일 가져오기
 
-  	//새로운 이미지 div 추가
-    var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="window.open(this.src)"></img>';
-    english = file;
+    var formData = new FormData();
+    formData.append('id',studentID);
+    formData.append('type', "english");
+    formData.append("image", file);
 
-    //이미지를 image-show div에 추가
-    var imgList = document.getElementById('engTestImg');
-    imgList.innerHTML += (newImage);
+    fetch(uploadURL, {
+        method: "POST",
+        body: formData
+    }).then((res) => {
+        if (res.msg == 'success') {
+            //새로운 이미지 div 추가
+            var newImage = '<img name="english" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
+
+            //이미지를 image-show div에 추가
+            var imgList = document.getElementById('engTestImg');
+            imgList.innerHTML += (newImage);
+
+        }
+        else{
+            alert("이미지 저장에 실패했습니다.");
+        }
+    })
+
+
 };
 
 function addMathImg(input) {
-    if(math != null){
-        alert("하나의 이미지만 추가할 수 있습니다.");
-        return;
-    }
+
     var file = input.files[0];	//선택된 파일 가져오기
 
-  	//새로운 이미지 div 추가
-    var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="window.open(this.src)"></img>';
-    math = file;
+    var formData = new FormData();
+    formData.append('id',studentID);
+    formData.append('type', "math");
+    formData.append("image", file);
 
-    //이미지를 image-show div에 추가
-    var imgList = document.getElementById('mathTestImg');
-    imgList.innerHTML += (newImage);
+    fetch(uploadURL, {
+        method: "POST",
+        body: formData
+    }).then((res) => {
+        if (res.msg == 'success') {
+            //새로운 이미지 div 추가
+            var newImage = '<img name="math" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
+            math = file;
+
+            //이미지를 image-show div에 추가
+            var imgList = document.getElementById('mathTestImg');
+            imgList.innerHTML += (newImage);
+
+        }
+        else{
+            alert("이미지 저장에 실패했습니다.");
+        }
+    })
 };
 
 
 function newCheckImg(input) {
-    if(checkFile != null){
-        alert("하나의 이미지만 추가할 수 있습니다.");
-        return;
-    }
+
     var file = input.files[0];	//선택된 파일 가져오기
 
-  	//새로운 이미지 div 추가
-    var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="window.open(this.src)"></img>';
-    checkList = file;
+    var formData = new FormData();
+    formData.append('id',studentID);
+    formData.append('type', "checklist");
+    formData.append("image", file);
 
-    //이미지를 image-show div에 추가
-    var imgList = document.getElementById('newCheckImg');
-    imgList.innerHTML += (newImage);
+    fetch(uploadURL, {
+        method: "POST",
+        body: formData
+    }).then((res) => {
+        if (res.msg == 'success') {
+            //새로운 이미지 div 추가
+            var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
+            checkList = file;
+
+            //이미지를 image-show div에 추가
+            var imgList = document.getElementById('newCheckImg');
+            imgList.innerHTML += (newImage);
+
+        }
+        else{
+            alert("이미지 저장에 실패했습니다.");
+        }
+    })
 
 };
 
-function delImg(input){
-    // 나중에 -> 클릭할 때마다 api 요청
-  var file = input;
-  let remove = document.getElementById(file);
+function delImg(tag){
 
-  if(file == "checkListImg"){
-    checkImgCnt -=1;
-  }
+  var formData = new FormData();
+  formData.append('id',studentID);
+  formData.append('type', tag.name);
+  formData.append("image", tag.src);
 
-  remove.remove();
+  fetch(uploadURL, {
+      method: "POST",
+      body: formData
+  }).then((res) => {
+      if (res.msg == 'success') {
+          tag.remove();
+      }
+      else{
+          alert("이미지 삭제에 실패했습니다.");
+      }
+  })
 }
 
 function doneModify() {
