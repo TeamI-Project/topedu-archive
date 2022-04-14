@@ -47,9 +47,11 @@ fetch(url).then(function(res){
             CPS.innerHTML += '<img name="cps" class ="mini_img" src="'+cpsImg[i].substr(14)+'" onclick="delImg(this)"/>';
         }
 
-        let pdf = json.careerNet.careerNet;
-        careerNet.innerHTML += '<a name="career" href="'+pdf.substr(14)+'">pdf link</a>';
-        
+        let careerImg = json.careerNet.careerNet;
+        for(i=0; i<careerImg.length; i++){
+            careerNet.innerHTML += '<img name="career" class ="mini_img" src="'+careerImg[i].substr(14)+'" onclick="delImg(this)"/>';
+        }
+
         let ssImg = json.sixSense.sixSense;
         for(i=0; i<ssImg.length; i++){
             sixSense.innerHTML += '<img name="ss" class ="mini_img" src="'+ssImg[i].substr(14)+'" onclick="delImg(this)"/>';
@@ -111,7 +113,7 @@ function addCPSImg(input) {
     }).catch(error => alert('이미지 저장에 실패했습니다.'));
 };
 
-function addPdf(input) {
+function addCareerImg(input) {
 
     var file = input.files[0];	//선택된 파일 가져오기
     var formData = new FormData();
@@ -128,9 +130,9 @@ function addPdf(input) {
             location.reload();
         }
         else{
-            alert("pdf 저장에 실패했습니다.");
+            alert("이미지 저장에 실패했습니다.");
         }
-    }).catch(error => alert('pdf 저장에 실패했습니다.'));
+    }).catch(error => alert('이미지 저장에 실패했습니다.'));
 };
 
 function addSSImg(input) {
@@ -199,28 +201,7 @@ function delImg(tag){
         }
     }).catch(error => alert('이미지 삭제에 실패했습니다.'));
 }
-function delPdf(){
-    let tag = document.getElementById("careerPath").children[0];
-    let temp = tag.href.split("/");
-    let src = "/var/www/html/uploads/testResult/"+tag.name+"/"+temp[temp.length-1];
-    var formData = new FormData();
-    formData.append('id',studentID);
-    formData.append('type', tag.name);
-    formData.append("image", src);
 
-    fetch(deleteURL, {
-        method: "POST",
-        body: formData
-    }).then(res => res.json())
-    .then(response => {
-        if (response.msg === 'success') {
-            tag.remove();
-        }
-        else{
-            alert("pdf 삭제에 실패했습니다.");
-        }
-    }).catch(error => alert('pdf 삭제에 실패했습니다.'));
-}
 function doneModify(){
     location.href = "archive.html";
 }
