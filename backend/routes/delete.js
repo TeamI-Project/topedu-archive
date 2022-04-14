@@ -33,7 +33,7 @@ router.post("/", express.json(), (req, res) => {
                 params = [null, studentID];
                 query = "UPDATE NewRecord SET checklist=? \
                 WHERE studentID=?";
-                break;   
+                break;
             case 'sca':
             case 'cps':
             case 'careerNet':
