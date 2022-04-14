@@ -321,17 +321,17 @@ function doneModify() {
     }
     let newConsulting = {
         "friendship" : friendShip,
-            "personality" : personality,
-            "parentship" : parentShip,
-            "concentration" : concentration,
-            "homework" : homework,
-            "comment" : textbox
+        "personality" : personality,
+        "parentship" : parentShip,
+        "concentration" : concentration,
+        "homework" : homework,
+        "comment" : textbox
     }
     
     var formData = new FormData();
     formData.append('id',studentID);
-    formData.append('firstLevel', firstLevel);
-    formData.append("newConsulting",newConsulting);
+    formData.append('firstLevel', JSON.stringify(firstLevel));
+    formData.append("newConsulting",JSON.stringify(newConsulting));
    
     fetch(url, {
         method: "POST",
