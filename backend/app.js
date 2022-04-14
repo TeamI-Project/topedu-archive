@@ -32,6 +32,8 @@ const gradeModify = require('./routes/gradeModify');
 const monthly = require('./routes/monthly');
 const comment = require('./routes/comment');
 const upload = require('./routes/upload');
+const del = require('./routes/delete');
+
 
 app.use('/api/studentID', cors(), studentID);
 app.use('/api/studentInfo', cors(), studentInfo);
@@ -41,6 +43,7 @@ app.use('/api/gradeModify', cors(), gradeModify);
 app.use('/api/monthly', cors(), monthly);
 app.use('/api/comment', cors(), comment);
 app.use('/api/upload', cors(), upload);
+app.use('/api/delete', cors(), del);
 
 app.get("/", (req, res) => res.send("Hello World~!"));
 
