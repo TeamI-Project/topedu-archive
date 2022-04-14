@@ -229,9 +229,9 @@ fetch(url3+id).then(function(res){
 let month = document.getElementById("month");
 let monthlyImg = document.getElementById("monthlyImg");
 
-const url4 = "https://archive.top-edu.co.kr:8000/api/gradeModify";
+const url4 = "https://archive.top-edu.co.kr:8000/api/monthly";
 
-fetch(url+id).then(function(res){
+fetch(url4+id).then(function(res){
     res.json().then(function(json){
 
         let monthData = json.month;
@@ -249,9 +249,9 @@ let student = document.getElementById("studentComment");
 let parents = document.getElementById("parentsComment");
 let etc = document.getElementById("etcComment");
 
-const url = "https://archive.top-edu.co.kr:8000/api/comment";
+const url5 = "https://archive.top-edu.co.kr:8000/api/comment";
 
-fetch(url+id).then(function(res){
+fetch(url5+id).then(function(res){
     res.json().then(function(json){
         if(json.comment.teacherComment == null){
             teacher.innerHTML += '<p>내용없음</p>';
