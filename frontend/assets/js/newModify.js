@@ -92,13 +92,13 @@ fetch(url+id).then(function(res){
         //2
         let engImg = json.levelTest.english;
         for(i=0; i < engImg.length ; i++){
-            engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+            engTestImg.innerHTML += '<img name="levelTest" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="delImg(this)"></img>';
         }
             
         
         let mathImg = json.levelTest.math;
         for(i=0; i < engImg.length ; i++){
-            mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+            mathTestImg.innerHTML += '<img name="levelTest" class="mini_img" src="' + mathImg[i].substr(14) +'" onclick="delImg(this)"></img>';
         }
 
 
@@ -171,7 +171,7 @@ fetch(url+id).then(function(res){
         }
         
         //4
-        checkList.innerHTML += '<img name="checkList" class="mini_img" src="' + json.newCheckList.checklist.substr(14) +'" onclick="delImg(this)"></img>';
+        checkList.innerHTML += '<img name="etcImg" class="mini_img" src="' + json.newCheckList.checklist.substr(14) +'" onclick="delImg(this)"></img>';
     })
 })
 
@@ -251,7 +251,7 @@ function newCheckImg(input) {
     }).then((res) => {
         if (res.msg == 'success') {
             //새로운 이미지 div 추가
-            var newImage = '<img name="checklist" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
+            var newImage = '<img name="etcImg" class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
             checkList = file;
 
             //이미지를 image-show div에 추가
@@ -352,7 +352,15 @@ function doneModify() {
     fetch(url, {
         method: "POST",
         body: formData
-    }).then((res) => console.log(res))
+    }).then((res) => {
+        if (res.msg == 'success') {
+            alert("complete");
+        }
+        else{
+            alert("error");
+        }
+    }).catch(error => alert('error'));
+    
 
 }
 
