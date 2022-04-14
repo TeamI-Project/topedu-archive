@@ -135,8 +135,8 @@ router.post("/", express.json(), (req, res) => {
     const form = new formidable.IncomingForm();
     form.parse(req, (err, fields, files) => {
         studentID = fields.id;
-        firstLevel = fields.firstLevel;
-        newConsulting = fields.newConsulting;
+        firstLevel = JSON.parse(fields.firstLevel);
+        newConsulting = JSON.parse(fields.newConsulting);
 
         const query = "UPDATE NewRecord SET regEng=?, levelEng=?, \
         regMath=?, levelMath=?, friendship=?, personality=?, parentship=?, \
