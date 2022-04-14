@@ -60,18 +60,18 @@ const url = "https://archive.top-edu.co.kr:8000/api/newModify";
 fetch(url+id).then(function(res){
     res.json().then(function(json){
         //1
-        if(json.firstLevel.regEng == null){
+        if(json.firstLevel.regEnglish == null){
             regAtEng.value = 'x';
         }
         else{
-            regAtEng.value = json.firstLevel.regEng;
+            regAtEng.value = json.firstLevel.regEnglish;
         }
 
-        if(json.firstLevel.levelEng == null){
+        if(json.firstLevel.lvEnglish == null){
             regLvEng.value = 'x';
         }
         else{
-            regLvEng.value = json.firstLevel.levelEng;
+            regLvEng.value = json.firstLevel.lvEnglish;
         }
         
         if(json.firstLevel.regMath == null){
@@ -81,11 +81,11 @@ fetch(url+id).then(function(res){
             regAtMath.value = json.firstLevel.regMath;
         }
 
-        if(json.firstLevel.levelMath == null){
+        if(json.firstLevel.lvMath == null){
             regLvMath.value = 'x';
         }
         else{
-            regLvMath.value = json.firstLevel.levelMath;
+            regLvMath.value = json.firstLevel.lvMath;
         }      
         
 
