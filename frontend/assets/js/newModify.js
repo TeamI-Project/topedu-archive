@@ -277,13 +277,13 @@ function delImg(tag){
       method: "POST",
       body: formData
   }).then((res) => {
-      if (res.msg == 'success') {
-          tag.remove();
-      }
-      else{
-          alert("이미지 삭제에 실패했습니다.");
-      }
-  })
+    if (res.msg == 'success') {
+        tag.remove();
+    }
+    else{
+        alert("이미지 저장에 실패했습니다.");
+    }
+}).catch(error => alert('이미지 저장에 실패했습니다.'));
 }
 
 function doneModify() {
