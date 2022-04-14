@@ -21,11 +21,11 @@ let studentID = getCookie();
 const uploadURL = "https://archive.top-edu.co.kr:8000/api/upload";
 const deleteURL = "https://archive.top-edu.co.kr:8000/api/delete";
 
-let SCA = document.getElementById("SCA");
-let CPS = document.getElementById("CPS");
-let careerNet = document.getElementById("careerNet");
-let sixSense = document.getElementById("sixSense");
-let testEtc = document.getElementById("testEtc");
+let SCA = document.getElementById("scaImg");
+let CPS = document.getElementById("cpsImg");
+let careerNet = document.getElementById("careerPath");
+let sixSense = document.getElementById("ssImg");
+let testEtc = document.getElementById("etcImg");
 
 let scaCnt = 0;
 let cpsCnt = 0;
@@ -47,8 +47,10 @@ fetch(url).then(function(res){
             CPS.innerHTML += '<img name="cps" class ="mini_img" src="'+cpsImg[i].substr(14)+'" onclick="delImg(this)"/>';
         }
 
-        let careerPdf = json.careerNet.careerNet;
-        careerNet.innerHTML += '<p style="text-align: center;"><a name="careerNet" href="'+careerPdf.substr(14)+'">PDF로 제공됩니다. 누르면 이동</a></p>';
+        let careerImg = json.careerNet.careerNet;
+        for(i=0; i<careerImg.length; i++){
+            careerNet.innerHTML += '<img name="career" class ="mini_img" src="'+careerImg[i].substr(14)+'" onclick="delImg(this)"/>';
+        }
 
         let ssImg = json.sixSense.sixSense;
         for(i=0; i<ssImg.length; i++){
@@ -111,7 +113,7 @@ function addCPSImg(input) {
     }).catch(error => alert('이미지 저장에 실패했습니다.'));
 };
 
-function addPdf(input) {
+function addCareerImg(input) {
 
     var file = input.files[0];	//선택된 파일 가져오기
     var formData = new FormData();
@@ -128,9 +130,9 @@ function addPdf(input) {
             location.reload();
         }
         else{
-            alert("pdf 저장에 실패했습니다.");
+            alert("이미지 저장에 실패했습니다.");
         }
-    }).catch(error => alert('pdf 저장에 실패했습니다.'));
+    }).catch(error => alert('이미지 저장에 실패했습니다.'));
 };
 
 function addSSImg(input) {
@@ -180,11 +182,11 @@ function addEtcImg(input) {
 //사진 삭제
 function delImg(tag){
     let temp = tag.src.split("/");
-    let src = "/var/www/html/uploads/testResult/"+tag.name+"/"+tag.src;
+    let src = "/var/www/html/uploads/testResult/"+tag.name+"/"+temp[temp.length-1];
     var formData = new FormData();
     formData.append('id',studentID);
     formData.append('type', tag.name);
-    formData.append("image", tag.src);
+    formData.append("image", src);
 
     fetch(deleteURL, {
         method: "POST",
@@ -198,8 +200,8 @@ function delImg(tag){
             alert("이미지 삭제에 실패했습니다.");
         }
     }).catch(error => alert('이미지 삭제에 실패했습니다.'));
-    }
+}
 
 function doneModify(){
     location.href = "archive.html";
-  }
+}
