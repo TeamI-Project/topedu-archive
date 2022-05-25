@@ -7,7 +7,6 @@ const formidable = require('formidable');
 const fs = require('fs');
 const config = require('../config/config');
 // const cors = require('cors');
-// ALTER USER 'topedu'@'localhost' IDENTIFIED WITH mysql_native_password BY 'topedu';
 
 router.get("/", (req, res) => {
     const id = req.query.id;

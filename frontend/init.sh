@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cp -r ./ /var/www/html/top_archive/
+cp -r ./ /var/www/html/
 
