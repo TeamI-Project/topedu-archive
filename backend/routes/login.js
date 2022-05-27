@@ -6,15 +6,16 @@ const connection = mysql.createConnection(dbconfig);
 // const cors = require('cors');
 
 router.post("/", (req, res) => {
-    const teacherID = req.body.id;
-    const teacherPW = req.body.pw;
-    const query = "SELECT teacherID FROM Teacher WHERE teacherID='" + teacherID +
-                    "' AND teacherPW='" + teacherPW +"';";
-    connection.query(query, (err, results, field) => {
+    console.log(req.body);
+    const params = [req.body.id, req.body.pw];
+    const query = "SELECT teacherID FROM Teacher WHERE teacherID=? AND teacherPW=?"
+    connection.query(query, params, (err, results, field) => {
         if (err) throw err;
         res.header("Access-Control-Allow-Origin", "*");
         try {
-            if (results !== null) {
+            console.log("input : ", req.body.id, req.body.pw);
+            console.log("query : ", results[0]);
+            if (results.length > 0) {
                 res.status(200).json({
                     "msg": "ok"
                 });

@@ -12,9 +12,15 @@ router.get("/", (req, res) => {
         if (err) throw err;
         res.header("Access-Control-Allow-Origin", "*");
         try {
-            res.status(200).json({
-                "branch": results[0].branch
-            });
+            if (results.length > 0) {
+                res.status(200).json({
+                    "branch": results[0].branch
+                });
+            } else {
+                res.status(200).json({
+                    "msg": "error"
+                });
+            }
         } catch (err) {
             console.log(err);
             res.status(500);
