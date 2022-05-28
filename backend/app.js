@@ -36,6 +36,7 @@ const del = require('./routes/delete');
 const login = require('./routes/login');
 const teacher = require('./routes/teacher');
 const student = require('./routes/student');
+const register = require('./routes/register');
 
 app.use('/api/studentID', cors(), studentID);
 app.use('/api/studentInfo', cors(), studentInfo);
@@ -49,6 +50,7 @@ app.use('/api/delete', cors(), del);
 app.use('/api/login', cors(), login);
 app.use('/api/teacher', cors(), teacher);
 app.use('/api/student', cors(), student);
+app.use('/api/register/student', cors(), register);
 
 app.get("/", (req, res) => res.send("Hello World~!"));
 
