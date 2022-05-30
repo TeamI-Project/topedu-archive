@@ -24,15 +24,16 @@
 			<div id="signup-form">
 				<input type="text" name="id" id="id" placeholder="NAME" />
 				<input type="text" name="name" id="name" placeholder="ID" />
-                <input type="password" name="passwd" id="passwd" placeholder="PASSWORD" />
 				<form method="post" enctype="multipart/form-data">
 					<label for="chooseFile1" class="labelBtn">이미지추가</label>
 					<input type="file" id="chooseFile1" class="chooseFile" accept="image/*" onchange="addImg(this)">
 				</form>
-				<div id="Img">
-					
-				</div>
+				
 				<button onclick="register()">Register</button>
+			</div>
+			<br>
+			<div id="Img">
+					
 			</div>
 
 		<!-- Footer 

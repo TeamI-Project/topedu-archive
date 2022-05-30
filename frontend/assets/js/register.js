@@ -51,8 +51,15 @@ function register() {
 
     let name = document.getElementById("name").value;
     let studentID = document.getElementById("id").value;
-    let passwd = document.getElementById("passwd").value;
     const doubleCheck = "https://archive.top-edu.co.kr:8000/api/student?id="+studentID;
+    if(name && studentID && file){
+        console.log("good")
+    }
+    else{
+        console.log("bad")
+        alert("정보가 부족합니다.")
+        return
+    }
 
     fetch(doubleCheck).then(res => res.json())
     .then(response => {
