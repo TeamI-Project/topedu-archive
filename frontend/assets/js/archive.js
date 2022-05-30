@@ -34,7 +34,7 @@ fetch(info+studentID).then(function(res){
         let header = document.getElementById("header");
         header.innerHTML+='<img class ="profile" src="'+json.ans.img+'" onclick="window.open(this.src)"/>';
 		header.innerHTML+='<h1 id="studentID" style="display: inline;">'+json.ans.name+'</h1>';
-		header.innserHTML+='<p id="branch" style="display: inline;">'+ans.branch+'</p>';
+		header.innserHTML+='<p id="branch" style="display: inline;">'+branch+'</p>';
 
     })
 })
