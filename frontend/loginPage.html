@@ -58,7 +58,7 @@
 
 					fetch(url, {
 						method: "POST",
-						body: data
+						body: JSON.stringify(data)
 					}).then(res => res.json())
 					.then(response => {
 						if (response.msg === 'ok') {
