@@ -12,27 +12,26 @@ router.post("/", (req, res) => {
 
     let name = "";
     let id = "";
-    let passwd = "";
     let newPath = "";
     let branch = "";
     let status = "";
+    let oldPath = "";
 
 
     const form = new formidable.IncomingForm();
     form.parse(req, (err, fields, files) => {
         name = fields.name;
         id = fields.id;
-        passwd = fields.passwd;
         branch = fields.branch;
         status = fields.status;
-        const oldPath = files.image.filepath;
-        console.log("oldpath : ", oldPath);
+
+        oldPath = files.image.filepath;
         newPath = config.upload_url + 'students/' + files.image.newFilename;
 
         fs.rename(oldPath, newPath, (err) => {
             if(err) throw err;
         })
-
+    
         const params = [id, name, newPath, branch, status];
         const query = "INSERT INTO Students VALUES (?, ?, ?, ?, ?)";
         connection.query(query, params, (err, results, field) => {
