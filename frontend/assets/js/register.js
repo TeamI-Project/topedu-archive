@@ -70,7 +70,6 @@ function register() {
             var formData = new FormData();
             formData.append("name", name);
             formData.append('id',studentID);
-            formData.append('passwd', passwd);
             formData.append("image", file);
             formData.append("branch", branch);
             formData.append("status", 1);
