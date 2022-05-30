@@ -24,28 +24,29 @@ router.get("/", (req, res) => {
             element.dataType == 0 ? english.push(element.dataPath) : math.push(element.dataPath);
         }
         try {
+            console.log("record[0] : ", record)
             res.status(200)
             .json({
                 firstLevel : {
-                    regEnglish : record[0].regEng,
-                    lvEnglish : record[0].levelEng,
-                    regMath : record[0].regMath,
-                    lvMath : record[0].levelMath
+                    regEng : record.regEng,
+                    lvEnglish : record.levelEng,
+                    regMath : record.regMath,
+                    lvMath : record.levelMath
                 },
                 levelTest : {
                     english : english,
                     math : math
                 },
                 newConsulting : {
-                    friendship : record[0].friendship,
-                    personality : record[0].personality,
-                    parentship : record[0].parentship,
-                    concentration : record[0].concentration,
-                    homework : record[0].homework,
-                    comment : record[0].comment
+                    friendship : record.friendship,
+                    personality : record.personality,
+                    parentship : record.parentship,
+                    concentration : record.concentration,
+                    homework : record.homework,
+                    comment : record.comment
                 },
                 newCheckList : {
-                    checkList : record[0].checklist
+                    checkList : record.checklist
                 }
             });
         } catch (err) {
