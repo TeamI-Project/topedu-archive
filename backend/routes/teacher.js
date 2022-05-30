@@ -6,22 +6,21 @@ const connection = mysql.createConnection(dbconfig);
 // const cors = require('cors');
 
 router.get("/", (req, res) => {
-    const name = req.query.name;
-    const query = "SELECT * FROM Students WHERE studentName=?"
-    connection.query(query, name, (err, results, field) => {
+    const teacherID = req.query.id;
+    const query = "SELECT branch FROM Teacher WHERE teacherID=?";
+    connection.query(query, teacherID, (err, results, field) => {
         if (err) throw err;
         res.header("Access-Control-Allow-Origin", "*");
         try {
-            const ans = { result : [] };
-            Object.keys(results).forEach((key) => {
-                const row = results[key];
-
-                ans.result.push(row.studentID);
-            });
-
-            res.status(200).json({
-                ans
-            });
+            if (results.length > 0) {
+                res.status(200).json({
+                    "branch": results[0].branch
+                });
+            } else {
+                res.status(200).json({
+                    "msg": "error"
+                });
+            }
         } catch (err) {
             console.log(err);
             res.status(500);

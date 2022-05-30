@@ -16,7 +16,7 @@ app.use(express.json({
 
 const privateKey = fs.readFileSync("/etc/letsencrypt/live/archive.top-edu.co.kr/privkey.pem", "utf8");
 const certificate = fs.readFileSync("/etc/letsencrypt/live/archive.top-edu.co.kr/cert.pem", "utf8")
-const ca = fs.readFileSync("/etc/letsencrypt/live/archive.top-edu.co.kr/chain.pem", "utf8")
+const ca = fs.readFileSync("/etc/letsencrypt/live/archive.top-edu.co.kr/fullchain.pem", "utf8")
 
 const credentials = {
     key: privateKey,
@@ -33,7 +33,10 @@ const monthly = require('./routes/monthly');
 const comment = require('./routes/comment');
 const upload = require('./routes/upload');
 const del = require('./routes/delete');
-
+const login = require('./routes/login');
+const teacher = require('./routes/teacher');
+const student = require('./routes/student');
+const register = require('./routes/register');
 
 app.use('/api/studentID', cors(), studentID);
 app.use('/api/studentInfo', cors(), studentInfo);
@@ -44,6 +47,10 @@ app.use('/api/monthly', cors(), monthly);
 app.use('/api/comment', cors(), comment);
 app.use('/api/upload', cors(), upload);
 app.use('/api/delete', cors(), del);
+app.use('/api/login', cors(), login);
+app.use('/api/teacher', cors(), teacher);
+app.use('/api/student', cors(), student);
+app.use('/api/register/student', cors(), register);
 
 app.get("/", (req, res) => res.send("Hello World~!"));
 

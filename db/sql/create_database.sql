@@ -25,7 +25,8 @@ DROP TABLE IF EXISTS Teacher;
 CREATE TABLE Teacher (
     teacherID CHAR(20),
     teacherName CHAR(20) NOT NULL,
-    branch VARCHAR(10),
+    teacherPW CHAR(20) NOT NULL,
+    branch CHAR(10),
     PRIMARY KEY (teacherID)
 );
 

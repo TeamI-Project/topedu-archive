@@ -15,3 +15,5 @@ INSERT INTO Monthly (studentID, MonthType, monthPath) VALUES("mtop1234", 0, "dum
 INSERT INTO Consulting (studentID, teacherComment) VALUES ("mtop1234", "아주 잘하는 학생입니다.");
 
 INSERT INTO Modifyer (studentID, Consulting, ConsultingD) VALUES ("mtop1234", "mteacher99", now());
+
+INSERT INTO Teacher VALUES ("juwon", "이주원", "testpw", "CH");

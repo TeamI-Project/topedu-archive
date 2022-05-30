@@ -4,7 +4,6 @@ const mysql = require('mysql');
 const dbconfig = require('../config/database.js');
 const connection = mysql.createConnection(dbconfig);
 // const cors = require('cors');
-// ALTER USER 'topedu'@'localhost' IDENTIFIED WITH mysql_native_password BY 'topedu';
 
 router.get("/", (req, res) => {
     const id = req.query.id;
