@@ -20,9 +20,8 @@ router.get("/", (req, res) => {
 
             Object.keys(results).forEach((key) => {
                 const row = results[key];
-
-                console.log('dataType : ', row.dataType);
-                console.log('dataPath : ', row.dataPath);
+                // console.log('dataType : ', row.dataType);
+                // console.log('dataPath : ', row.dataPath);
                 
                 if (row.dataType === 0) {
                     sca.push(row.dataPath);
