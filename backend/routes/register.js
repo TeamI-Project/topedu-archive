@@ -12,11 +12,10 @@ router.post("/", (req, res) => {
 
     let name = "";
     let id = "";
-    let passwd = "";
     let newPath = "";
     let branch = "";
     let status = "";
-
+    let oldPath = "";
 
     const form = new formidable.IncomingForm();
     form.parse(req, (err, fields, files) => {
@@ -25,8 +24,8 @@ router.post("/", (req, res) => {
         passwd = fields.passwd;
         branch = fields.branch;
         status = fields.status;
-        const oldPath = files.image.filepath;
-        console.log("oldpath : ", oldPath);
+        
+        oldPath = files.image.filepath;
         newPath = config.upload_url + 'students/' + files.image.newFilename;
 
         fs.rename(oldPath, newPath, (err) => {
