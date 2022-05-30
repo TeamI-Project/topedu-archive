@@ -24,17 +24,17 @@ const info = "https://archive.top-edu.co.kr:8000/api/studentInfo?id=";
 fetch(info+studentID).then(function(res){
     res.json().then(function(json){
         let branch;
-        if(json.branch == 'CH'){
+        if(json.ans.branch == 'CH'){
             branch="창원점";
-        }else if(json.branch == 'MA'){
+        }else if(json.ans.branch == 'MA'){
             branch="마산점";
-        }else if(json.branch == 'SA'){
+        }else if(json.ans.branch == 'SA'){
             branch="사천점"
         }
         let header = document.getElementById("header");
-        header.innerHTML+='<img class ="profile" src="'+json.img+'" onclick="window.open(this.src)"/>';
-		header.innerHTML+='<h1 id="studentID" style="display: inline;">'+json.name+'</h1>';
-		header.innserHTML+='<p id="branch" style="display: inline;">'+branch+'</p>';
+        header.innerHTML+='<img class ="profile" src="'+json.ans.img+'" onclick="window.open(this.src)"/>';
+		header.innerHTML+='<h1 id="studentID" style="display: inline;">'+json.ans.name+'</h1>';
+		header.innserHTML+='<p id="branch" style="display: inline;">'+ans.branch+'</p>';
 
     })
 })
