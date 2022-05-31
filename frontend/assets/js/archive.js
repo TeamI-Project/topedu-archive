@@ -160,7 +160,7 @@ fetch(url1+id).then(function(res){
         if(json.newCheckList.checkList == null){
             checkList.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
-            checkList.innerHTML += '<img class="mini_img" src="'+json.newCheckList.checklist +'" onclick="window.open(this.src)"></img>';
+            checkList.innerHTML += '<img class="mini_img" src="'+json.newCheckList.checkList +'" onclick="window.open(this.src)"></img>';
         }
         
     })
@@ -197,8 +197,15 @@ fetch(url2+id).then(function(res){
             }
         }
 
-        let careerPdf = json.careerNet.careerNet;
-        careerNet.innerHTML += '<p style="text-align: center;"><a href="'+careerPdf[i]+'">PDF로 제공됩니다. 누르면 이동</a></p>';
+        let careerImg = json.careerNet.careerNet;
+        if(careerImg.length == 0){
+            careerNet.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+        }else{
+            for(i=0; i<cpsImg.length; i++){
+                careerNet.innerHTML += '<img class ="mini_img" src="'+careerImg[i]+'"  onclick="window.open(this.src)"/>';
+            }
+        }
+        
 
         let ssImg = json.sixSense.sixSense;
         if(ssImg.length == 0){
