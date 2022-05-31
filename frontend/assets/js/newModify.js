@@ -60,11 +60,11 @@ const url = "https://archive.top-edu.co.kr:8000/api/newModify";
 fetch(url+id).then(function(res){
     res.json().then(function(json){
         //1
-        if(json.firstLevel.regEnglish == null){
+        if(json.firstLevel.regEng == null){
             regAtEng.value = 'x';
         }
         else{
-            regAtEng.value = json.firstLevel.regEnglish;
+            regAtEng.value = json.firstLevel.regEng;
         }
 
         if(json.firstLevel.lvEnglish == null){
