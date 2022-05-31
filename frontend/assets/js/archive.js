@@ -70,11 +70,11 @@ const url1 = "https://archive.top-edu.co.kr:8000/api/newModify";
 fetch(url1+id).then(function(res){
     res.json().then(function(json){
         //1
-        if(json.firstLevel.regEnglish == null){
+        if(json.firstLevel.regEng == null){
             regAtEng.innerText = 'x';
         }
         else{
-            regAtEng.innerText = json.firstLevel.regEnglish;
+            regAtEng.innerText = json.firstLevel.regEng;
         }
 
         if(json.firstLevel.lvEnglish == null){
