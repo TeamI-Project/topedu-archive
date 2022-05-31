@@ -101,7 +101,7 @@ fetch(url+id).then(function(res){
         
         let mathImg = json.levelTest.math;
         if(mathImg.length > 0){
-            for(i=0; i < engImg.length ; i++){
+            for(i=0; i < mathImg.length ; i++){
                 mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i] +'" onclick="delImg(this)"></img>';
             }
         }
