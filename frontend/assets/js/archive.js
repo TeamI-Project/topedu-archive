@@ -232,6 +232,9 @@ let middleImg = document.getElementById("middleImg");
 let high = document.getElementById("gradeHigh");
 let highImg = document.getElementById("highImg");
 
+let getMiddle;
+let getHigh;
+
 const url3 = "https://archive.top-edu.co.kr:8000/api/gradeModify";
 
 fetch(url3+id).then(function(res){
@@ -239,23 +242,7 @@ fetch(url3+id).then(function(res){
 
         getMiddle = json.gradeMiddle;
         getHigh = json.gradeHigh;
-
-        let middleVal = middle.options[middle.selectedIndex].value;
-        if(getMiddle[middleVal] == null){
-            middleImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
-        }
-        else{
-            middleImg.innerHTML = '<img class ="mini_img" src="'+getMiddle[middleVal]+'" onclick="window.open(this.src)"/>';
-        }
-        
-        
-        let highVal = high.options[high.selectedIndex].value;
-        if(getHigh[highVal] == null){
-            highImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
-        }
-        else{
-            highImg.innerHTML = '<img class ="mini_img" src="'+getHigh[highVal]+'"  onclick="window.open(this.src)"/>';
-        }
+        changeMiddle()
         
     })
 })
@@ -321,3 +308,28 @@ fetch(url5+id).then(function(res){
         
     })
 })
+
+function changeMiddle(){
+
+    let middleVal = middle.options[middle.selectedIndex].value;
+    console.log(middleVal);
+    if(getMiddle[middleVal] == null){
+        middleImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+    }
+    else{
+        middleImg.innerHTML = '<img class ="mini_img" src="'+getMiddle[middleVal]+'" onclick="window.open(this.src)"/>';
+    }
+        
+
+}
+
+function changeHigh(){
+    let highVal = high.options[high.selectedIndex].value;
+    console.log(highVal);
+    if(getHigh[highVal] == null){
+        highImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+    }
+    else{
+        highImg.innerHTML = '<img class ="mini_img" src="'+getHigh[highVal]+'"  onclick="window.open(this.src)"/>';
+    }
+}
