@@ -18,6 +18,7 @@ function getCookie() {
 }
 
 let studentID = getCookie();
+console.log(studentID);
 
 
 let select = document.getElementById("grade");

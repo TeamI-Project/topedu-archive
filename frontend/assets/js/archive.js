@@ -18,6 +18,7 @@ function getCookie() {
 }
 
 let studentID = getCookie();
+console.log(studentID);
 
 const info = "https://archive.top-edu.co.kr:8000/api/studentInfo?id=";
 
@@ -223,8 +224,8 @@ fetch(url2+id).then(function(res){
 
 let middle = document.getElementById("gradeMiddle");
 let middleImg = document.getElementById("middleImg");
-let high = document.getElementById("gradeMiddle");
-let highImg = document.getElementById("middleImg");
+let high = document.getElementById("gradeHigh");
+let highImg = document.getElementById("highImg");
 
 const url3 = "https://archive.top-edu.co.kr:8000/api/gradeModify";
 
@@ -236,7 +237,7 @@ fetch(url3+id).then(function(res){
 
         let middleVal = middle.options[middle.selectedIndex].value;
         if(getMiddle[middleVal] == null){
-            middle.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+            middleImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }
         else{
             middleImg.innerHTML = '<img class ="mini_img" src="'+getMiddle[middleVal].substr(14)+'" onclick="window.open(this.src)"/>';

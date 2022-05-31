@@ -55,17 +55,17 @@
 			
 			<script>
 				function search() {
-					let value = document.getElementById("name");
-					value=value.value;
+					let value = document.getElementById("name").value;
 					const url = "https://archive.top-edu.co.kr:8000/api/studentID?name="+value;
 
 					fetch(url).then(function(res){
     					res.json().then(function(json){
 							let id_list = document.getElementById("id_list");
 							ids = json.ans.result;
-							if(ids == null){
-								id_list.innerHTML='<p>검색 결과 없음</p>'
+							if(ids.length == 0){
+								id_list.innerHTML='<div>검색 결과 없음</div>';
 							}else{
+								id_list.innerHTML = '';
 								for(i=0; i < ids.length ; i++){
 								id_list.innerHTML+='<button class="id_btn" onclick="setCookie(this)">'+ids[i]+'</button>';
 								}
