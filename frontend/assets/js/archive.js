@@ -105,7 +105,7 @@ fetch(url1+id).then(function(res){
             engTestImg.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
             for(i=0; i < engImg.length ; i++){
-                engTestImg.innerHTML += '<img class="mini_img" src="' + engImg[i].substr(14) +'" onclick="window.open(this.src)"></img>';
+                engTestImg.innerHTML += '<img class="mini_img" src="' + engImg[i] +'" onclick="window.open(this.src)"></img>';
             }
         }
         
@@ -116,7 +116,7 @@ fetch(url1+id).then(function(res){
             mathTestImg.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
             for(i=0; i < engImg.length ; i++){
-                mathTestImg.innerHTML += '<img class="mini_img" src="' + mathImg[i].substr(14) +'" oonclick="window.open(this.src)"></img>';
+                mathTestImg.innerHTML += '<img class="mini_img" src="' + mathImg[i] +'" oonclick="window.open(this.src)"></img>';
             }
         }
         
@@ -162,7 +162,7 @@ fetch(url1+id).then(function(res){
         if(json.newCheckList.checkList == null){
             checkList.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
-            checkList.innerHTML += '<img class="mini_img" src="'+json.newCheckList.checklist.substr(14) +'" onclick="window.open(this.src)"></img>';
+            checkList.innerHTML += '<img class="mini_img" src="'+json.newCheckList.checklist +'" onclick="window.open(this.src)"></img>';
         }
         
     })
@@ -185,7 +185,7 @@ fetch(url2+id).then(function(res){
             SCA.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
             for(i=0; i<scaImg.length; i++){
-                SCA.innerHTML += '<img class ="mini_img" src="'+scaImg[i].substr(14)+'" onclick="window.open(this.src)"/>';
+                SCA.innerHTML += '<img class ="mini_img" src="'+scaImg[i]+'" onclick="window.open(this.src)"/>';
             }
         }
         
@@ -195,19 +195,19 @@ fetch(url2+id).then(function(res){
             CPS.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
             for(i=0; i<cpsImg.length; i++){
-                CPS.innerHTML += '<img class ="mini_img" src="'+cpsImg[i].substr(14)+'"  onclick="window.open(this.src)"/>';
+                CPS.innerHTML += '<img class ="mini_img" src="'+cpsImg[i]+'"  onclick="window.open(this.src)"/>';
             }
         }
 
         // let careerPdf = json.careerNet.careerNet;
-        // careerNet.innerHTML += '<p style="text-align: center;"><a href="'+careerPdf[i].substr(14)+'">PDF로 제공됩니다. 누르면 이동</a></p>';
+        // careerNet.innerHTML += '<p style="text-align: center;"><a href="'+careerPdf[i]+'">PDF로 제공됩니다. 누르면 이동</a></p>';
 
         let ssImg = json.sixSense.sixSense;
         if(ssImg.length == 0){
             sixSense.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
             for(i=0; i<ssImg.length; i++){
-                sixSense.innerHTML += '<img class ="mini_img" src="'+ssImg[i].substr(14)+'"  onclick="window.open(this.src)"/>';
+                sixSense.innerHTML += '<img class ="mini_img" src="'+ssImg[i]+'"  onclick="window.open(this.src)"/>';
             }
         }
 
@@ -216,7 +216,7 @@ fetch(url2+id).then(function(res){
             testEtc.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
             for(i=0; i<etcImg.length; i++){
-                testEtc.innerHTML += '<img class ="mini_img" src="'+etcImg[i].substr(14)+'"  onclick="window.open(this.src)"/>';
+                testEtc.innerHTML += '<img class ="mini_img" src="'+etcImg[i]+'"  onclick="window.open(this.src)"/>';
             }
         }
     })
@@ -240,7 +240,7 @@ fetch(url3+id).then(function(res){
             middleImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }
         else{
-            middleImg.innerHTML = '<img class ="mini_img" src="'+getMiddle[middleVal].substr(14)+'" onclick="window.open(this.src)"/>';
+            middleImg.innerHTML = '<img class ="mini_img" src="'+getMiddle[middleVal]+'" onclick="window.open(this.src)"/>';
         }
         
         
@@ -249,7 +249,7 @@ fetch(url3+id).then(function(res){
             highImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }
         else{
-            highImg.innerHTML = '<img class ="mini_img" src="'+getHigh[highVal].substr(14)+'"  onclick="window.open(this.src)"/>';
+            highImg.innerHTML = '<img class ="mini_img" src="'+getHigh[highVal]+'"  onclick="window.open(this.src)"/>';
         }
         
     })
@@ -273,7 +273,7 @@ fetch(url4+id).then(function(res){
             monthlyImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }
         else{
-            monthlyImg.innerHTML = '<img class ="mini_img" src="'+img.substr(14)+'"  onclick="window.open(this.src)"/>';
+            monthlyImg.innerHTML = '<img class ="mini_img" src="'+img+'"  onclick="window.open(this.src)"/>';
         }
         
         

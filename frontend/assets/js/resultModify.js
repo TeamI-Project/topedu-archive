@@ -39,28 +39,28 @@ fetch(url).then(function(res){
 
         let scaImg = json.SCA.sca;
         for(i=0; i<scaImg.length; i++){
-            SCA.innerHTML += '<img name="sca" class ="mini_img" src="'+scaImg[i].substr(14)+'" onclick="delImg(this)"/>';
+            SCA.innerHTML += '<img name="sca" class ="mini_img" src="'+scaImg[i]+'" onclick="delImg(this)"/>';
         }
 
         let cpsImg = json.CPS.cps;
         for(i=0; i<cpsImg.length; i++){
-            CPS.innerHTML += '<img name="cps" class ="mini_img" src="'+cpsImg[i].substr(14)+'" onclick="delImg(this)"/>';
+            CPS.innerHTML += '<img name="cps" class ="mini_img" src="'+cpsImg[i]+'" onclick="delImg(this)"/>';
         }
 
         let careerImg = json.careerNet.careerNet;
         for(i=0; i<careerImg.length; i++){
-            careerNet.innerHTML += '<img name="career" class ="mini_img" src="'+careerImg[i].substr(14)+'" onclick="delImg(this)"/>';
+            careerNet.innerHTML += '<img name="career" class ="mini_img" src="'+careerImg[i]+'" onclick="delImg(this)"/>';
         }
 
         let ssImg = json.sixSense.sixSense;
         for(i=0; i<ssImg.length; i++){
-            sixSense.innerHTML += '<img name="ss" class ="mini_img" src="'+ssImg[i].substr(14)+'" onclick="delImg(this)"/>';
+            sixSense.innerHTML += '<img name="ss" class ="mini_img" src="'+ssImg[i]+'" onclick="delImg(this)"/>';
             ssCnt+=1;
         }
 
         let etcImg = json.testEtc.etc;
         for(i=0; i<etcImg.length; i++){
-            testEtc.innerHTML += '<img name="etc" class ="mini_img" src="'+etcImg[i].substr(14)+'" onclick="delImg(this)"/>';
+            testEtc.innerHTML += '<img name="etc" class ="mini_img" src="'+etcImg[i]+'" onclick="delImg(this)"/>';
             etcCnt+=1;
         }
     })

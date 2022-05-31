@@ -93,7 +93,7 @@ fetch(url+id).then(function(res){
         let engImg = json.levelTest.english;
         if(engImg.length > 0){
             for(i=0; i < engImg.length ; i++){
-                engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+                engTestImg.innerHTML += '<img name="english" class="mini_img" src="' + engImg[i] +'" onclick="delImg(this)"></img>';
             }
         }
         
@@ -102,7 +102,7 @@ fetch(url+id).then(function(res){
         let mathImg = json.levelTest.math;
         if(mathImg.length > 0){
             for(i=0; i < engImg.length ; i++){
-                mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i].substr(14) +'" onclick="delImg(this)"></img>';
+                mathTestImg.innerHTML += '<img name="math" class="mini_img" src="' + mathImg[i] +'" onclick="delImg(this)"></img>';
             }
         }
 
@@ -171,7 +171,7 @@ fetch(url+id).then(function(res){
         textbox.innerHTML += '<textarea>'+newc.comment+'</textarea>';
         
         //4
-        checkList.innerHTML += '<img name="checklist" class="mini_img" src="' + json.newCheckList.checkList.substr(14) +'" onclick="delImg(this)"></img>';
+        checkList.innerHTML += '<img name="checklist" class="mini_img" src="' + json.newCheckList.checkList +'" onclick="delImg(this)"></img>';
     })
 })
 
