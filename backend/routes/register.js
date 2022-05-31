@@ -46,6 +46,21 @@ router.post("/", (req, res) => {
                 const query = "INSERT INTO Students VALUES (?, ?, ?, ?, ?)";
                 connection.query(query, params, (err, results, field) => {
                     if (err) throw err;
+                });
+
+                const createConsultng = `INSERT INTO Consulting VALUES ('${id}', null, null, null, null);`;
+                let createGrade = '';
+                for(let gid=0; gid < 22; gid++) {
+                    createGrade += `INSERT INTO Grade VALUES ('${id}', ${gid}, null);`
+                }
+                let createMonthly = '';
+                for(let mid=0; mid < 12; mid++) {
+                    createGrade += `INSERT INTO Monthly VALUES ('${id}', ${mid}, null);`
+                }
+                const createNewRecord = `INSERT INTO NewRecord VALUES ('${id}', null, null, null, null, 0, 0, 0, 0, 0, null, null);`;
+
+                connection.query(createConsultng + createGrade + createMonthly + createNewRecord, (err, results, field) => {
+                    if(err) throw err;
                     res.header("Access-Control-Allow-Origin", "*");
                     try {
                         res.status(200).json({
@@ -55,8 +70,8 @@ router.post("/", (req, res) => {
                         console.log(err);
                         res.status(500);
                         res.send(err.message);
-                    }         
-                });
+                    }        
+                })
             }
         });
     })

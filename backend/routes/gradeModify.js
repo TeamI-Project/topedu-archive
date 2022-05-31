@@ -64,12 +64,12 @@ router.post("/", express.json(), (req, res) => {
             path = "grade/high/";
         }
 
-        const fileContent = fs.readFileSync(file.gradPath.filepath);
+        const fileContent = fs.readFileSync(file.gradePath.filepath);
 
         const bucketParams = {
             Bucket: bucketName,
-            Key: `${path}${Date.now()}_${file.gradPath.originalFilename}`, // file name that you want to save in s3 bucket
-            ContentType: file.gradPath.mimetype,
+            Key: `${path}${Date.now()}_${file.gradePath.originalFilename}`, // file name that you want to save in s3 bucket
+            ContentType: file.gradePath.mimetype,
             Body: fileContent
         }
 

@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
             });
 
             res.status(200).json({
-                month
+                month: month
             });
         } catch (err) {
             console.log(err);
