@@ -278,25 +278,25 @@ fetch(url5+id).then(function(res){
             teacher.innerHTML += '<p>내용없음</p>';
         }
         else{
-            teacher.innerHTML += '<p>'+json.comment.teacher+'</p>';
+            teacher.innerHTML += '<pre>'+json.comment.teacher+'</pre>';
         }
         if(json.comment.student == "null" || json.comment.student == null){
             student.innerHTML += '<p>내용없음</p>';
         }
         else{
-            student.innerHTML += '<p>'+json.comment.student+'</p>';
+            student.innerHTML += '<pre>'+json.comment.student+'</pre>';
         }
         if(json.comment.parents == "null" || json.comment.parents == null){
             parents.innerHTML += '<p>내용없음</p>';
         }
         else{
-            parents.innerHTML += '<p>'+json.comment.parents+'</p>';
+            parents.innerHTML += '<pre>'+json.comment.parents+'</pre>';
         }
         if(json.comment.etc == "null" || json.comment.etc == null){
             etc.innerHTML += '<p>내용없음</p>';
         }
         else{
-            etc.innerHTML += '<p>'+json.comment.etc+'</p>';
+            etc.innerHTML += '<pre>'+json.comment.etc+'</pre>';
         }
         
     })
