@@ -35,7 +35,7 @@ fetch(info+studentID).then(function(res){
         let header = document.getElementById("header");
         header.innerHTML+='<img class ="profile" src="'+json.ans.img+'" onclick="window.open(this.src)"/>';
 		header.innerHTML+='<h1 id="studentID" style="display: inline;">'+json.ans.name+'</h1>';
-		header.innserHTML+='<p id="branch" style="display: inline;">'+branch+'</p>';
+		header.innerHTML+='<p id="branch" style="display: inline;">'+branch+'</p>';
 
     })
 })
@@ -201,7 +201,7 @@ fetch(url2+id).then(function(res){
         if(careerImg.length == 0){
             careerNet.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
-            for(i=0; i<cpsImg.length; i++){
+            for(i=0; i<careerImg.length; i++){
                 careerNet.innerHTML += '<img class ="mini_img" src="'+careerImg[i]+'"  onclick="window.open(this.src)"/>';
             }
         }
