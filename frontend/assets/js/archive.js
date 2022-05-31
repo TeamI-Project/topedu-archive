@@ -125,31 +125,29 @@ fetch(url1+id).then(function(res){
 
         //3
         let newc = json.newConsulting;
-        for(i=0; i<3; i++){
-            var temp = '';
+        var temp = '';
 
-            //friendShip
-            temp = '📌 친구들과의 관계 : '+use1[i];
-            friendShip.innerText += temp;
+        //friendShip
+        temp = '📌 친구들과의 관계 : '+use1[newc.friendship];
+        friendShip.innerText += temp;
 
-            //personality
-            temp = '📌 평소 성격 : '+use2[i];
-            personality.innerText += temp;
+        //personality
+        temp = '📌 평소 성격 : '+use2[newc.personality];
+        personality.innerText += temp;
 
-            //parentShip
-            temp = '📌 부모님과의 소통 : '+use3[i];
-            parentShip.innerText += temp;
+        //parentShip
+        temp = '📌 부모님과의 소통 : '+use3[newc.parentship];
+        parentShip.innerText += temp;
 
-            //concentration
-            temp = '📌 집중력 : '+use1[i];
-            concentration.innerText += temp;
+        //concentration
+        temp = '📌 집중력 : '+use1[newc.concentration];
+        concentration.innerText += temp;
 
-            //homework
-            temp = '📌 과제성실도 : '+use1[i];
-            homework.innerText += temp;
-        }
+        //homework
+        temp = '📌 과제성실도 : '+use1[newc.homework];
+        homework.innerText += temp;
 
-        if(newc.comment == null){
+        if(newc.comment == "null" || newc.comment == null){
             temp = '📌 요약 : 내용 없음';
             textbox.innerText += temp;
         }
@@ -199,8 +197,8 @@ fetch(url2+id).then(function(res){
             }
         }
 
-        // let careerPdf = json.careerNet.careerNet;
-        // careerNet.innerHTML += '<p style="text-align: center;"><a href="'+careerPdf[i]+'">PDF로 제공됩니다. 누르면 이동</a></p>';
+        let careerPdf = json.careerNet.careerNet;
+        careerNet.innerHTML += '<p style="text-align: center;"><a href="'+careerPdf[i]+'">PDF로 제공됩니다. 누르면 이동</a></p>';
 
         let ssImg = json.sixSense.sixSense;
         if(ssImg.length == 0){
