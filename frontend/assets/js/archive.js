@@ -115,7 +115,7 @@ fetch(url1+id).then(function(res){
         if(mathImg.length == 0){
             mathTestImg.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
-            for(i=0; i < engImg.length ; i++){
+            for(i=0; i < mathImg.length ; i++){
                 mathTestImg.innerHTML += '<img class="mini_img" src="' + mathImg[i] +'" oonclick="window.open(this.src)"></img>';
             }
         }
