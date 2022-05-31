@@ -45,7 +45,15 @@
 			<script src="assets/js/main.js"></script>
 			
 			<script>
+				var cookies = document.cookie.split(";");
 
+				for (var i = 0; i < cookies.length; i++) {
+					var cookie = cookies[i];
+					var eqPos = cookie.indexOf("=");
+					var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+					document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+				}
+				
 				function login(){
 					var id = document.getElementById("id").value;
 					var pw = document.getElementById("passwd").value;
@@ -76,7 +84,7 @@
 
 				function setCookie(id) {
 					let todayDate = new Date();
-					todayDate.setDate(todayDate.getDate() + 7); // 현재 시각 + 일 단위로 쿠키 만료 날짜 변경
+					todayDate.setDate(todayDate.getDate() + 1); // 현재 시각 + 일 단위로 쿠키 만료 날짜 변경
 					//todayDate.setTime(todayDate.getTime() + (expiredays * 24 * 60 * 60 * 1000)); // 밀리세컨드 단위로 쿠키 만료 날짜 변경
 					document.cookie = "teacherID=" + escape(id);
 					location.href="index.html";
