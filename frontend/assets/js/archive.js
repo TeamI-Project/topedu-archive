@@ -242,7 +242,8 @@ fetch(url3+id).then(function(res){
 
         getMiddle = json.gradeMiddle;
         getHigh = json.gradeHigh;
-        changeMiddle()
+        changeMiddle();
+        changeHigh();
         
     })
 })
