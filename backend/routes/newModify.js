@@ -10,7 +10,7 @@ const config = require('../config/config');
 
 router.get("/", (req, res) => {
     const id = req.query.id;
-    const query_nr = "SELECT * FROM NewRecord WHERE studentID='" + id + "';"
+    const query_nr = "SELECT * FROM NewRecord WHERE studentID='" + id + "';";
     const query_lt = "SELECT * FROM LevelTest WHERE studentID='" + id + "';";
     connection.query(query_nr + query_lt, (err, results, field) => {
         if (err) throw err;
@@ -19,6 +19,7 @@ router.get("/", (req, res) => {
         const math = []
         const record = results[0];
         const lvTest = results[1];
+
         for (let index = 0; index < lvTest.length; index++) {
             const element = lvTest[index];
             element.dataType == 0 ? english.push(element.dataPath) : math.push(element.dataPath);
@@ -27,25 +28,25 @@ router.get("/", (req, res) => {
             res.status(200)
             .json({
                 firstLevel : {
-                    regEng : record.regEng,
-                    lvEnglish : record.levelEng,
-                    regMath : record.regMath,
-                    lvMath : record.levelMath
+                    regEng : record[0].regEng,
+                    lvEnglish : record[0].levelEng,
+                    regMath : record[0].regMath,
+                    lvMath : record[0].levelMath
                 },
                 levelTest : {
                     english : english,
                     math : math
                 },
                 newConsulting : {
-                    friendship : record.friendship,
-                    personality : record.personality,
-                    parentship : record.parentship,
-                    concentration : record.concentration,
-                    homework : record.homework,
-                    comment : record.comment
+                    friendship : record[0].friendship,
+                    personality : record[0].personality,
+                    parentship : record[0].parentship,
+                    concentration : record[0].concentration,
+                    homework : record[0].homework,
+                    comment : record[0].comment
                 },
                 newCheckList : {
-                    checkList : record.checklist
+                    checkList : record[0].checklist
                 }
             });
         } catch (err) {
