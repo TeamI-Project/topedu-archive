@@ -6,6 +6,10 @@ const connection = mysql.createConnection(dbconfig);
 const formidable = require('formidable');
 const fs = require('fs');
 const config = require('../config/config');
+const aws = require('aws-sdk');
+aws.config.loadFromPath(__dirname + '/../config/s3.json');
+const s3 = new aws.S3();
+const bucketName = 'topedu-bucket';
 
 router.post("/", express.json(), (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -44,18 +48,30 @@ router.post("/", express.json(), (req, res) => {
                 WHERE studentID=? AND dataPath=?";
                 break;
         }
-        connection.query(query, params, (err, results, field) => {
-            if (err) throw err;
-            try {
-                res.status(200).json({
-                    msg : "success"
+
+        objectPath = image.replace(config.upload_url, '');
+        s3.deleteObject({
+            Bucket: bucketName,
+            Key: objectPath // fileName
+        }, (err, data) => {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                connection.query(query, params, (err, results, field) => {
+                    if (err) throw err;
+                    try {
+                        res.status(200).json({
+                            msg : "success"
+                        });
+                    } catch (err) {
+                        console.log(err);
+                        res.status(500);
+                        res.send(err.message);
+                    }  
                 });
-            } catch (err) {
-                console.log(err);
-                res.status(500);
-                res.send(err.message);
-            }  
-        });
+            }
+        })
     })
 })
 
