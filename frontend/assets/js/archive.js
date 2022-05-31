@@ -171,7 +171,7 @@ fetch(url1+id).then(function(res){
 let SCA = document.getElementById("SCA");
 let CPS = document.getElementById("CPS");
 let careerNet = document.getElementById("careerNet");
-let sixSence = document.getElementById("sixSence");
+let sixSense = document.getElementById("sixSense");
 let testEtc = document.getElementById("testEtc");
 
 const url2 = "https://archive.top-edu.co.kr:8000/api/resultModify";
@@ -198,15 +198,15 @@ fetch(url2+id).then(function(res){
             }
         }
 
-        let careerPdf = json.careerNet.careerNet;
-        careerNet.innerHTML += '<p style="text-align: center;"><a href="'+careerPdf[i].substr(14)+'">PDF로 제공됩니다. 누르면 이동</a></p>';
+        // let careerPdf = json.careerNet.careerNet;
+        // careerNet.innerHTML += '<p style="text-align: center;"><a href="'+careerPdf[i].substr(14)+'">PDF로 제공됩니다. 누르면 이동</a></p>';
 
-        let ssImg = json.sixSence.sixSence;
+        let ssImg = json.sixSense.sixSense;
         if(ssImg.length == 0){
-            sixSence.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+            sixSense.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
             for(i=0; i<ssImg.length; i++){
-                sixSence.innerHTML += '<img class ="mini_img" src="'+ssImg[i].substr(14)+'"  onclick="window.open(this.src)"/>';
+                sixSense.innerHTML += '<img class ="mini_img" src="'+ssImg[i].substr(14)+'"  onclick="window.open(this.src)"/>';
             }
         }
 
