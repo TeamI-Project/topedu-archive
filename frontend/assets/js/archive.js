@@ -252,24 +252,16 @@ fetch(url3+id).then(function(res){
 
 let month = document.getElementById("month");
 let monthlyImg = document.getElementById("monthlyImg");
+let monthData;
 
 const url4 = "https://archive.top-edu.co.kr:8000/api/monthly";
 
 fetch(url4+id).then(function(res){
     res.json().then(function(json){
 
-        let monthData = json.month;
-        let monthVal = month.options[month.selectedIndex].value;
-        let index = monthCode.indexOf(monthVal);
-        let img = monthData[index]
-        if(img == null){
-            monthlyImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
-        }
-        else{
-            monthlyImg.innerHTML = '<img class ="mini_img" src="'+img+'"  onclick="window.open(this.src)"/>';
-        }
-        
-        
+        monthData = json.month;
+        changeMonth();
+
     })
 })
 
@@ -332,5 +324,18 @@ function changeHigh(){
     }
     else{
         highImg.innerHTML = '<img class ="mini_img" src="'+getHigh[highVal]+'"  onclick="window.open(this.src)"/>';
+    }
+}
+
+function changeMonth(){
+
+    let monthVal = month.options[month.selectedIndex].value;
+    let index = monthCode.indexOf(monthVal);
+    let img = monthData[index]
+    if(img == null){
+        monthlyImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
+    }
+    else{
+        monthlyImg.innerHTML = '<img class ="mini_img" src="'+img+'"  onclick="window.open(this.src)"/>';
     }
 }
