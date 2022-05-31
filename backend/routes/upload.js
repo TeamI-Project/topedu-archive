@@ -6,96 +6,118 @@ const connection = mysql.createConnection(dbconfig);
 const formidable = require('formidable');
 const fs = require('fs');
 const config = require('../config/config');
+const aws = require('aws-sdk');
+aws.config.loadFromPath(__dirname + '/../config/s3.json');
+const s3 = new aws.S3();
+const bucketName = 'topedu-bucket';
 
 router.post("/", express.json(), (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     let studentID = "";
     let type = "";
-    let newpath = "";
+    let path = "";
 
     const form = new formidable.IncomingForm();
-    form.parse(req, (err, fields, files) => {
+    form.parse(req, (err, fields, file) => {
         studentID = fields.id;
         type = fields.type;
-        const oldpath = files.image.filepath;
+
+        // type 에 따라 bucket directory path 지정
         switch(type) {
             case 'english':
+                path = 'levelTest/';
+                break;
             case 'math':
-                newpath = config.upload_url + 'levelTest/' + files.image.newFilename;
+                path = 'levelTest/';
                 break;
             case 'checklist':
-                newpath = config.upload_url + 'etcImg/' + files.image.newFilename;
+                path = 'etcImg/';
                 break;   
             case 'sca':
-                newpath = config.upload_url + 'testResult/sca/' + files.image.newFilename;
+                path = 'testResult/sca/'
                 break;  
             case 'cps':
-                newpath = config.upload_url + 'testResult/cps/' + files.image.newFilename;
+                path = 'testResult/cps/'
                 break;  
             case 'careerNet':
-                newpath = config.upload_url + 'testResult/career/' + files.image.newFilename;
+                path = 'testResult/career/';
                 break;  
             case 'sixSense':
-                newpath = config.upload_url + 'testResult/ss/' + files.image.newFilename;
+                path = 'testResult/ss/';
                 break;  
             case 'etc':
-                newpath = config.upload_url + 'testResult/etc/' + files.image.newFilename;
+                path = 'testResult/etc/';
                 break;  
         }
 
-        fs.rename(oldpath, newpath, (err) => {
-            if(err) throw err;
-        })
+        const fileContent = fs.readFileSync(file.image.filepath);
 
-        let params;
-        let query;
-
-        switch(type) {
-            case 'english':
-                params = [studentID, 0, newpath];
-                query = "INSERT INTO LevelTest VALUES (?, ?, ?)";
-                break;
-            case 'math':
-                params = [studentID, 1, newpath];
-                query = "INSERT INTO LevelTest VALUES (?, ?, ?)";
-                break;
-            case 'checklist':
-                params = [newpath, studentID];
-                query = "UPDATE NewRecord SET checklist=? \
-                WHERE studentID=?";
-                break;   
-            case 'sca':
-                params = [studentID, 0, newpath];
-                query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
-                break;  
-            case 'cps':
-                params = [studentID, 1, newpath];
-                query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
-                break;  
-            case 'careerNet':
-                params = [studentID, 2, newpath];
-                query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
-                break;  
-            case 'sixSense':
-                params = [studentID, 3, newpath];
-                query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
-                break;  
-            case 'etc':
-                params = [studentID, 4, newpath];
-                query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
-                break;  
+        const bucketParams = {
+            Bucket: bucketName,
+            Key: `${path}${Date.now()}_${file.image.originalFilename}`, // file name that you want to save in s3 bucket
+            ContentType: file.image.mimetype,
+            Body: fileContent
         }
-        connection.query(query, params, (err, results, field) => {
-            if (err) throw err;
-            try {
-                res.status(200).json({
-                    msg : "success"
+    
+        s3.upload(bucketParams, (err, data) => {
+            if (err) {
+                res.send(err);
+            }
+            else {
+
+                let params;
+                let query;
+
+                // type 에 따라 각각 params, query 지정 후 DB write
+                switch(type) {
+                    case 'english':
+                        params = [studentID, 0, data.Location];
+                        query = "INSERT INTO LevelTest VALUES (?, ?, ?)";
+                        break;
+                    case 'math':
+                        params = [studentID, 1, data.Location];
+                        query = "INSERT INTO LevelTest VALUES (?, ?, ?)";
+                        break;
+                    case 'checklist':
+                        params = [data.Location, studentID];
+                        query = "UPDATE NewRecord SET checklist=? \
+                        WHERE studentID=?";
+                        break;   
+                    case 'sca':
+                        params = [studentID, 0, data.Location];
+                        query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
+                        break;  
+                    case 'cps':
+                        params = [studentID, 1, data.Location];
+                        query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
+                        break;  
+                    case 'careerNet':
+                        params = [studentID, 2, data.Location];
+                        query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
+                        break;  
+                    case 'sixSense':
+                        params = [studentID, 3, data.Location];
+                        query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
+                        break;  
+                    case 'etc':
+                        params = [studentID, 4, data.Location];
+                        query = "INSERT INTO Testpaper VALUES (?, ?, ?)";
+                        break;  
+                }
+
+                connection.query(query, params, (err, results, field) => {
+                    if (err) throw err;
+                    try {
+                        res.status(200).json({
+                            msg : "success"
+                        });
+                    } catch (err) {
+                        console.log(err);
+                        res.status(500);
+                        res.send(err.message);
+                    }  
                 });
-            } catch (err) {
-                console.log(err);
-                res.status(500);
-                res.send(err.message);
-            }  
+            }
         });
     })
 })

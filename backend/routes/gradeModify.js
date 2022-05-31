@@ -6,6 +6,10 @@ const connection = mysql.createConnection(dbconfig);
 const formidable = require('formidable');
 const fs = require('fs');
 const config = require('../config/config');
+const aws = require('aws-sdk');
+aws.config.loadFromPath(__dirname + '/../config/s3.json');
+const s3 = new aws.S3();
+const bucketName = 'topedu-bucket';
 // const cors = require('cors');
 
 router.get("/", (req, res) => {
@@ -47,39 +51,49 @@ router.post("/", express.json(), (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     let studentID = "";
     let gradeType = "";
-    let newpath = "";
+    let path = "";
 
     const form = new formidable.IncomingForm();
-    form.parse(req, (err, fields, files) => {
+    form.parse(req, (err, fields, file) => {
         studentID = fields.id;
         gradeType = fields.gradeType;
-        const oldpath = files.gradePath.filepath;
-        
-        if (gradeType < 12) {
-            newpath = config.upload_url + "grade/middle/" + files.gradePath.newFilename;    
-        } else {
-            newpath = config.upload_url + "grade/high/" + files.gradePath.newFilename;
-        }
-        
-        fs.rename(oldpath, newpath, (err) => {
-            if(err) throw err;
-        })
 
-        const params = [newpath, studentID, gradeType];
-        const query = "UPDATE Grade SET dataPath=? \
-        WHERE studentID=? AND dataType=?";
-        
-        connection.query(query, params, (err, results, field) => {
-            if (err) throw err;
-            try {
-                res.status(200).json({
-                    msg : "success"
+        if (gradeType < 12) {
+            path = "grade/middle/";    
+        } else {
+            path = "grade/high/";
+        }
+
+        const fileContent = fs.readFileSync(file.gradPath.filepath);
+
+        const bucketParams = {
+            Bucket: bucketName,
+            Key: `${path}${Date.now()}_${file.gradPath.originalFilename}`, // file name that you want to save in s3 bucket
+            ContentType: file.gradPath.mimetype,
+            Body: fileContent
+        }
+
+        s3.upload(bucketParams, (err, data) => {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                const params = [data.Location, studentID, gradeType];
+                const query = "UPDATE Grade SET dataPath=? \
+                WHERE studentID=? AND dataType=?";
+                connection.query(query, params, (err, results, field) => {
+                    if (err) throw err;
+                    try {
+                        res.status(200).json({
+                            msg : "success"
+                        });
+                    } catch (err) {
+                        console.log(err);
+                        res.status(500);
+                        res.send(err.message);
+                    }  
                 });
-            } catch (err) {
-                console.log(err);
-                res.status(500);
-                res.send(err.message);
-            }  
+            }
         });
     })
 })
