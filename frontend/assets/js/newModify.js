@@ -249,13 +249,7 @@ function newCheckImg(input) {
 };
 
 function delImg(tag){
-    let temp = tag.src.split("/");
-    let src = "/var/www/html/uploads/";
-    if(tag.name == "english" || tag.name == "math"){
-        src += "levelTest/"+temp[temp.length-1];
-    }else{
-        src += "etcImg/"+temp[temp.length-1];
-    }
+    let src = tag.src;
     var formData = new FormData();
     formData.append('id',studentID);
     formData.append('type', tag.name);

@@ -181,8 +181,7 @@ function addEtcImg(input) {
 
 //사진 삭제
 function delImg(tag){
-    let temp = tag.src.split("/");
-    let src = "/var/www/html/uploads/testResult/"+tag.name+"/"+temp[temp.length-1];
+    let src = tag.src;
     var formData = new FormData();
     formData.append('id',studentID);
     if(tag.name == 'career'){
