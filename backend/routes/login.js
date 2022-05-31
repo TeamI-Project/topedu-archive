@@ -7,8 +7,6 @@ const connection = mysql.createConnection(dbconfig);
 
 router.post("/", (req, res) => {
     
-    
-    console.log(req.body);
     const params = [req.body.id, req.body.pw];
     const query = "SELECT teacherID FROM Teacher WHERE teacherID=? AND teacherPW=?"
     connection.query(query, params, (err, results, field) => {

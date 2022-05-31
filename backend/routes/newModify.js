@@ -24,7 +24,6 @@ router.get("/", (req, res) => {
             element.dataType == 0 ? english.push(element.dataPath) : math.push(element.dataPath);
         }
         try {
-            console.log("record[0] : ", record)
             res.status(200)
             .json({
                 firstLevel : {

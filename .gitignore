@@ -3,9 +3,8 @@ temp*
 ssh*
 .DS_Store
 
-# for db connect
-config.js
-mysql.js
+# for config
+config
 
 # for node
 database.js
