@@ -830,7 +830,8 @@ button,
     button,
     .button {
       width: 18em;
-      padding: 0; } }
+      padding: 0;
+      margin: 1px;} }
 
 /* Header */
 #header h1 {
