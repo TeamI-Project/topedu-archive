@@ -334,8 +334,8 @@ function changeHigh(){
 function changeMonth(){
 
     let monthVal = month.options[month.selectedIndex].value;
-    let index = monthCode.indexOf(Number(monthVal));
-    let img = monthData[index]
+    let index = monthCode.indexOf(monthVal);
+    let img = monthData[String(index)]
     if(img.length == 0){
         monthlyImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
     }

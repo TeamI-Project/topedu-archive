@@ -45,8 +45,8 @@ function changeMonth(){
 
 
     let monthVal = month.options[month.selectedIndex].value;
-    let index = monthCode.indexOf(Number(monthVal));
-    let img = monthData[index]
+    let index = monthCode.indexOf(monthVal);
+    let img = monthData[String(index)]
 
     for(i=0; i<img.length; i++){
         monthlyImg.innerHTML += '<img class ="mini_img" src="'+img[i]+'" onclick="delImg(this)"/>';
