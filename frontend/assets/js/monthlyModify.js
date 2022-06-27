@@ -24,10 +24,10 @@ let monthlyImg = document.getElementById("monthlyImg");
 let select = document.getElementById("month");
 
 const url = "https://archive.top-edu.co.kr:8000/api/monthly?id="+studentID;
+const deleteURL = "https://archive.top-edu.co.kr:8000/api/delete";
 
 let monthData;
 let ImgCnt=0;
-let file;
 
 fetch(url).then(function(res){
     res.json().then(function(json){
@@ -41,39 +41,18 @@ function changeMonth(){
     monthlyImg.innerHTML = "";
     let selectMonth = month.options[month.selectedIndex].value;
     let img = monthData[selectMonth]
-    if(img != null){
-        monthlyImg.innerHTML += '<img class ="mini_img" src="'+monthData[selectMonth]+'" onclick="window.open(this.src)"/>';
+
+    for(i=0; i<img.length; i++){
+        monthlyImg.innerHTML += '<img class ="mini_img" src="'+img[i]+'" onclick="delImg(this)"/>';
     }
    
 }
 
+
+
 function addEngImg(input) {
-    if(file != null){
-        alert("하나의 이미지만 추가할 수 있습니다.");
-        return;
-    }
 
-    file = input.files[0];	//선택된 파일 가져오기
-
-  	//새로운 이미지 div 추가
-    var newImage = '<img class="mini_img" src="' + URL.createObjectURL(file) +'" onclick="delImg(this)"></img>';
-
-    //이미지를 image-show div에 추가
-    var imgList = document.getElementById('monthlyImg');
-    imgList.innerHTML += (newImage);
-};
-
-function delImg(input){
-
-    input.remove();
-    file = null;
-}
-
-function doneModify(){
-    if(file == null){
-        return
-    }
-
+    var file = input.files[0];	//선택된 파일 가져오기
     let selectVal = select.options[select.selectedIndex].value;
 
     var formData = new FormData();
@@ -81,17 +60,39 @@ function doneModify(){
     formData.append('month', selectVal);
     formData.append("imgPath",file);
    
+
     fetch(url, {
         method: "POST",
         body: formData
     }).then(res => res.json())
     .then(response => {
         if (response.msg === 'success') {
-            alert("success")
-            location.href="archive.html";
+            location.reload();
         }
         else{
             alert("error");
         }
     }).catch(error => alert('error'));
+};
+
+function delImg(input){
+
+    let src = input.src;
+    var formData = new FormData();
+    formData.append('id',studentID);
+    formData.append('type', "monthly");
+    formData.append("image", src);
+
+    fetch(deleteURL, {
+        method: "POST",
+        body: formData
+    }).then(res => res.json())
+    .then(response => {
+        if (response.msg === 'success') {
+            tag.remove();
+        }
+        else{
+            alert("이미지 삭제에 실패했습니다.");
+        }
+    }).catch(error => alert('이미지 삭제에 실패했습니다.'));
 }

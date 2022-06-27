@@ -332,10 +332,12 @@ function changeMonth(){
     let monthVal = month.options[month.selectedIndex].value;
     let index = monthCode.indexOf(monthVal);
     let img = monthData[index]
-    if(img == null){
+    if(img.length == 0){
         monthlyImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
     }
     else{
-        monthlyImg.innerHTML = '<img class ="mini_img" src="'+img+'"  onclick="window.open(this.src)"/>';
+        for(i=0; i<img.length; i++){
+            monthlyImg.innerHTML = '<img class ="mini_img" src="'+img[i]+'"  onclick="window.open(this.src)"/>';
+        }
     }
 }
