@@ -336,6 +336,7 @@ function changeMonth(){
     let monthVal = month.options[month.selectedIndex].value;
     let index = monthCode.indexOf(monthVal);
     let img = monthData[String(index)]
+    monthlyImg.innerHTML = " "
     if(img.length == 0){
         monthlyImg.innerHTML = '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
     }
