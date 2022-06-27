@@ -34,9 +34,9 @@ router.post("/", express.json(), (req, res) => {
                 WHERE studentID=? AND dataPath=?";
                 break;
             case 'checklist':
-                params = [null, studentID];
-                query = "UPDATE NewRecord SET checklist=? \
-                WHERE studentID=?";
+                params = [studentID, image];
+                query = "DELETE FROM Checklist \
+                WHERE studentID=? AND imgPath=?";
                 break;
             case 'monthly':
                 params = [studentID, image];

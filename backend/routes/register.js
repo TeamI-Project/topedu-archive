@@ -53,13 +53,9 @@ router.post("/", (req, res) => {
                 for(let gid=0; gid < 22; gid++) {
                     createGrade += `INSERT INTO Grade VALUES ('${id}', ${gid}, null);`
                 }
-                let createMonthly = '';
-                for(let mid=0; mid < 12; mid++) {
-                    createGrade += `INSERT INTO Monthly VALUES ('${id}', ${mid}, null);`
-                }
-                const createNewRecord = `INSERT INTO NewRecord VALUES ('${id}', null, null, null, null, 0, 0, 0, 0, 0, null, null);`;
+                const createNewRecord = `INSERT INTO NewRecord VALUES ('${id}', null, null, null, null, 0, 0, 0, 0, 0, null);`;
 
-                connection.query(createConsultng + createGrade + createMonthly + createNewRecord, (err, results, field) => {
+                connection.query(createConsultng + createGrade + createNewRecord, (err, results, field) => {
                     if(err) throw err;
                     res.header("Access-Control-Allow-Origin", "*");
                     try {

@@ -8,13 +8,14 @@ const fs = require('fs');
 const config = require('../config/config');
 // const cors = require('cors');
 
+// 신규생 기록사항
 router.get("/", (req, res) => {
     const id = req.query.id;
     const query_nr = "SELECT * FROM NewRecord WHERE studentID='" + id + "';";
     const query_lt = "SELECT * FROM LevelTest WHERE studentID='" + id + "';";
     connection.query(query_nr + query_lt, (err, results, field) => {
         if (err) throw err;
-        res.header("Access-Control-Allow-Origin", "*");
+        
         const english = []
         const math = []
         const record = results[0];
@@ -24,36 +25,56 @@ router.get("/", (req, res) => {
             const element = lvTest[index];
             element.dataType == 0 ? english.push(element.dataPath) : math.push(element.dataPath);
         }
-        try {
-            res.status(200)
-            .json({
-                firstLevel : {
-                    regEng : record[0].regEng,
-                    lvEnglish : record[0].levelEng,
-                    regMath : record[0].regMath,
-                    lvMath : record[0].levelMath
-                },
-                levelTest : {
-                    english : english,
-                    math : math
-                },
-                newConsulting : {
-                    friendship : record[0].friendship,
-                    personality : record[0].personality,
-                    parentship : record[0].parentship,
-                    concentration : record[0].concentration,
-                    homework : record[0].homework,
-                    comment : record[0].comment
-                },
-                newCheckList : {
-                    checkList : record[0].checklist
-                }
+
+        const checklist = [];
+        const cl_query = "SELECT * FROM Checklist WHERE studentID='" + id + "';";
+        connection.query(cl_query, (err, results, field) => {
+            if (err) throw err;
+            res.header("Access-Control-Allow-Origin", "*");
+
+            Object.keys(results).forEach((key) => {
+                const row = results[key];
+                checklist.push(row.imgPath);
+                
             });
-        } catch (err) {
-            console.log(err);
-            res.status(500);
-            res.send(err.message);
-        }         
+
+            console.log("record : ", record[0]);
+            console.log("english : ", english);
+            console.log("math : ", math);
+            console.log("checklist : ", checklist);
+
+            try {
+                res.status(200)
+                .json({
+                    firstLevel : {
+                        regEng : record[0].regEng,
+                        lvEnglish : record[0].levelEng,
+                        regMath : record[0].regMath,
+                        lvMath : record[0].levelMath
+                    },
+                    levelTest : {
+                        english : english,
+                        math : math
+                    },
+                    newConsulting : {
+                        friendship : record[0].friendship,
+                        personality : record[0].personality,
+                        parentship : record[0].parentship,
+                        concentration : record[0].concentration,
+                        homework : record[0].homework,
+                        comment : record[0].comment
+                    },
+                    newCheckList : {
+                        checkList : checklist
+                    }
+                });
+            } catch (err) {
+                console.log(err);
+                res.status(500);
+                res.send(err.message);
+            }         
+        });
+
     });
 })
 
