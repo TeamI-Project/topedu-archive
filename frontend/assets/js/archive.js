@@ -341,7 +341,7 @@ function changeMonth(){
     }
     else{
         for(i=0; i<img.length; i++){
-            monthlyImg.innerHTML = '<img class ="mini_img" src="'+img[i]+'"  onclick="window.open(this.src)"/>';
+            monthlyImg.innerHTML += '<img class ="mini_img" src="'+img[i]+'"  onclick="window.open(this.src)"/>';
         }
     }
 }
