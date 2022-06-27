@@ -45,7 +45,7 @@ function changeMonth(){
 
 
     let monthVal = month.options[month.selectedIndex].value;
-    let index = monthCode.indexOf(monthVal);
+    let index = monthCode.indexOf(Number(monthVal));
     let img = monthData[index]
 
     for(i=0; i<img.length; i++){
