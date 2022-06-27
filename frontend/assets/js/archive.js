@@ -157,10 +157,14 @@ fetch(url1+id).then(function(res){
         }
         
         //4
-        if(json.newCheckList.checkList == null){
+
+        let newCheckListImg = json.newCheckList.checkList;
+        if(newCheckListImg.length == 0){
             checkList.innerHTML += '<img class="mini_img" src="images/background_logo.png" onclick="window.open(this.src)"></img>';
         }else{
-            checkList.innerHTML += '<img class="mini_img" src="'+json.newCheckList.checkList +'" onclick="window.open(this.src)"></img>';
+            for(i=0; i < newCheckListImg.length ; i++){
+                checkList.innerHTML += '<img class="mini_img" src="'+newCheckListImg[i] +'" onclick="window.open(this.src)"></img>';
+            }
         }
         
     })
