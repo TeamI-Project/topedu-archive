@@ -187,6 +187,9 @@ function delImg(tag){
     if(tag.name == 'career'){
         formData.append('type', "careerNet");
     }
+    else if(tag.name == 'ss'){
+        formData.append('type', "sixSense");
+    }
     else{
         formData.append('type', tag.name);
     }
