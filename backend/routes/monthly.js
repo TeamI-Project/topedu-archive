@@ -19,12 +19,14 @@ router.get("/", (req, res) => {
         if (err) throw err;
         res.header("Access-Control-Allow-Origin", "*");
         try {
-            const month = {};
-
+            let month = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [] , 10: [], 11: []};
+        
             Object.keys(results).forEach((key) => {
                 const row = results[key];
 
-                month[row.monthType] = row.monthPath;
+                if (row.monthPath !== null) {
+                    month[Number(row.monthType)].push(row.monthPath);
+                }
             });
 
             res.status(200).json({
@@ -101,9 +103,8 @@ router.post("/", express.json(), (req, res) => {
                 res.send(err);
             }
             else {
-                const params = [data.Location, studentID, month];
-                const query = "UPDATE Monthly SET monthPath=? \
-                                WHERE studentID=? AND monthType=?";
+                const params = [data.Location, month, studentID];
+                const query = "INSERT INTO Monthly (monthPath, monthType, studentID) VALUES (?, ?, ?)";
                 connection.query(query, params, (err, results, field) => {
                     if (err) throw err;
                     try {

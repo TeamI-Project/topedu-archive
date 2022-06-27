@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
         res.header("Access-Control-Allow-Origin", "*");
         try {
             if (results.length > 0) {
+                console.log("branch : ", results[0]);
                 res.status(200).json({
                     "branch": results[0].branch
                 });
