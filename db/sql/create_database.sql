@@ -43,8 +43,13 @@ CREATE TABLE NewRecord (
     concentration TINYINT,
     homework TINYINT,
     comment TEXT,
-    checklist VARCHAR(255),
     PRIMARY KEY (studentID)
+);
+
+DROP TABLE IF EXISTS Checklist;
+CREATE TABLE Checklist (
+    studentID CHAR(20),
+    imgPath VARCHAR(255)
 );
 
 DROP TABLE IF EXISTS LevelTest;

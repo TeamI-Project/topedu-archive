@@ -79,9 +79,8 @@ router.post("/", express.json(), (req, res) => {
                         query = "INSERT INTO LevelTest VALUES (?, ?, ?)";
                         break;
                     case 'checklist':
-                        params = [data.Location, studentID];
-                        query = "UPDATE NewRecord SET checklist=? \
-                        WHERE studentID=?";
+                        params = [studentID, data.Location];
+                        query = "INSERT INTO Checklist VALUES(?, ?)";
                         break;   
                     case 'sca':
                         params = [studentID, 0, data.Location];
