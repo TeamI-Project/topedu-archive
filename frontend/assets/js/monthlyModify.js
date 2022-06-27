@@ -95,7 +95,7 @@ function delImg(input){
     }).then(res => res.json())
     .then(response => {
         if (response.msg === 'success') {
-            tag.remove();
+            input.remove();
         }
         else{
             alert("이미지 삭제에 실패했습니다.");
