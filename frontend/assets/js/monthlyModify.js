@@ -23,6 +23,8 @@ let month = document.getElementById("month");
 let monthlyImg = document.getElementById("monthlyImg");
 let select = document.getElementById("month");
 
+let monthCode = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+
 const url = "https://archive.top-edu.co.kr:8000/api/monthly?id="+studentID;
 const deleteURL = "https://archive.top-edu.co.kr:8000/api/delete";
 
@@ -40,8 +42,11 @@ fetch(url).then(function(res){
 
 function changeMonth(){
     monthlyImg.innerHTML = "";
-    let selectMonth = month.options[month.selectedIndex].value;
-    let img = monthData[selectMonth]
+
+
+    let monthVal = month.options[month.selectedIndex].value;
+    let index = monthCode.indexOf(monthVal);
+    let img = monthData[index]
 
     for(i=0; i<img.length; i++){
         monthlyImg.innerHTML += '<img class ="mini_img" src="'+img[i]+'" onclick="delImg(this)"/>';
