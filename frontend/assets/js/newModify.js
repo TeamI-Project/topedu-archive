@@ -171,8 +171,11 @@ fetch(url+id).then(function(res){
         textbox.innerHTML += '<textarea>'+newc.comment+'</textarea>';
         
         //4
-        if(json.newCheckList.checkList != null){
-            checkList.innerHTML += '<img name="checklist" class="mini_img" src="' + json.newCheckList.checkList +'" onclick="delImg(this)"></img>';
+        let checkListImg = json.newCheckList.checkList;
+        if(checkListImg.length > 0){
+            for(i=0; i < checkListImg.length ; i++){
+                checkList.innerHTML += '<img name="checklist" class="mini_img" src="' + checkListImg[i] +'" onclick="delImg(this)"></img>';
+            }
         }
         
     })
