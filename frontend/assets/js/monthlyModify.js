@@ -33,6 +33,7 @@ fetch(url).then(function(res){
     res.json().then(function(json){
 
         monthData = json.month;
+        changeMonth()
         
     })
 })
