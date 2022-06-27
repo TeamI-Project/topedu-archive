@@ -38,6 +38,11 @@ router.post("/", express.json(), (req, res) => {
                 query = "UPDATE NewRecord SET checklist=? \
                 WHERE studentID=?";
                 break;
+            case 'monthly':
+                params = [studentID, image];
+                query = "DELETE FROM Monthly \
+                WHERE studentID=? AND monthPath=?";
+                break;
             case 'sca':
             case 'cps':
             case 'careerNet':
